@@ -3568,3 +3568,15 @@ Caused by: java.net.ConnectException: Connection refused (Connection refused)
 2019-07-02 15:56:03 INFO  AdminBootMain:31 - ***************************** AdminBootMain
 2019-07-02 16:27:29 DEBUG LoginPersistence:67 - manuel
 2019-07-02 16:27:30 DEBUG LoginPersistence:67 - manuel
+2019-07-02 17:53:40 INFO  AdminBootApplication:40 - ***************************** getCars
+2019-07-02 17:53:40 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-02 17:53:52 INFO  AdminBootApplication:40 - ***************************** getCars
+2019-07-02 17:53:52 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-02 17:54:03 INFO  AdminBootApplication:40 - ***************************** getCars
+2019-07-02 17:54:03 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-02 18:14:26 INFO  AdminBootApplication:40 - ***************************** getCars
+2019-07-02 18:14:27 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-02 18:14:48 INFO  AdminBootApplication:40 - ***************************** getCars
+2019-07-02 18:14:48 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-02 18:17:38 INFO  AdminBootApplication:40 - ***************************** getCars
+2019-07-02 18:17:39 INFO  AdminBootMain:31 - ***************************** AdminBootMain
