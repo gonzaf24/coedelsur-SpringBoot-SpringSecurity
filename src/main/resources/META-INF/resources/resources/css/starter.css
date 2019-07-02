@@ -1,0 +1,360 @@
+.sidebar-form {
+    border-radius: 3px;
+    border: 1px solid #374850;
+    margin: 10px 10px;
+}
+.sidebar-form, .sidebar-menu>li.header {
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+#userImage {
+    float: left;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: -2px;
+}
+
+ul.dropdown-menu > li.user-header {
+    height: auto!important;
+}
+
+a.dropdown-toggle {
+    background-color: #3c8dbc!important;
+}
+
+a#logout {
+    color: #3c8dbc!important;
+    background: transparent;
+}
+
+.login-logo_v1 {
+    margin: 20px;
+    text-align: center;
+    font-size: 60px;
+    font-weight: 500;
+}
+
+.datepickerLeft .p-datepicker-panel{
+    padding: 0;
+    border: none;
+    left: -120% !important;
+}
+
+li.header {
+    text-transform: uppercase;
+}
+
+.sidebar-form {
+    border-radius: 3px;
+    border: 1px solid #374850;
+    margin: 10px 10px;
+}
+.sidebar-form, .sidebar-menu>li.header {
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+#userImage {
+    float: left;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: -2px;
+}
+
+ul.dropdown-menu > li.user-header {
+    height: auto!important;
+}
+
+a.dropdown-toggle {
+    background-color: #3c8dbc!important;
+}
+
+a#logout {
+    color: #3c8dbc!important;
+    background: transparent;
+}
+
+.ui-timepicker-table td a{
+	    width: auto!important;
+}
+
+.main-container {
+  float: left;
+  position: relative;
+  left: 50%;
+}
+
+.fixer-container {
+  float: left;
+  position: relative;
+  left: -50%;
+}
+
+.ui-steps .ui-steps-item {
+    width: 24%;
+}
+
+.ui-state-highlight {
+    text-shadow: none !important;
+}
+
+.ui-steps.custom {
+    margin-bottom: 30px;
+}
+
+.ui-steps.custom .ui-steps-item .ui-menuitem-link {
+    height: 10px;
+    padding: 0 1em;
+}
+
+.ui-steps.custom .ui-steps-item .ui-steps-number {
+    background-color: #0081c2;
+    color: #FFFFFF;
+    display: inline-block;
+    width: 30px;
+    border-radius: 10px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.ui-steps.custom .ui-steps-item.ui-state-highlight .ui-steps-title {
+    color: #555;
+}
+
+
+.noMarginPaddingTop{
+	margin-top:0px;
+	padding-top:0px;
+}
+.noMarginPaddingBottom{
+	margin-bottom:0px;
+	padding-bottom:0px;
+}
+.noMarginPaddingLeft{
+	margin-left:0px;
+	padding-left:0px;
+}
+.noMarginPaddingRight{
+	margin-right:0px;
+	padding-right:0px;
+}
+.noMarginPaddingTopBottom{
+	margin-top:0px;
+	padding-top:0px;
+	margin-bottom:0px;
+	padding-bottom:0px;
+}
+.noMarginPaddingLeftRight{
+	margin-left:0px;
+	padding-left:0px;
+	margin-right:0px;
+	padding-right:0px;
+}
+.noMarginPadding{
+	margin-top:0px;
+	padding-top:0px;
+	margin-bottom:0px;
+	padding-bottom:0px;
+	margin-left:0px;
+	padding-left:0px;
+	margin-right:0px;
+	padding-right:0px;
+}
+
+.bordeTarjeta{
+border-radius: 20px 20px 20px 20px;
+-moz-border-radius: 20px 20px 20px 20px; 
+-webkit-border-radius: 20px 20px 20px 33px; 
+-moz-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+-webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+background-color: #d2d2d2!important;
+margin-top: 15px;
+}
+
+.breadcrumb{
+display: none;
+}
+
+.centeredPrueba {
+vertical-align: middle;
+}
+
+.textoAlCentroa {
+	text-align: center;
+}
+
+.ui-datatable-tablewrapper {
+	text-align: center;
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+	text-align: left !important;
+    border: solid #e5e5e5 !important;
+    border-width: 1px 0 0 0 !important;
+    background: transparent !important;
+    margin: 20px 20px 10px 20px !important;
+    padding: 10px 0 0 0 !important;	
+}
+
+.ui-widget-header {
+    color: #222;
+    border: 0px !important;
+    background: #fff;
+    font-weight: 600;
+    
+}
+
+
+body .ui-datatable th[role="columnheader"].ui-state-default, body .ui-treetable th[role="columnheader"].ui-state-default {
+	margin: 5% 8% 0 8% !important;
+    text-align: center;
+    height: 5rem !important;
+    background-color: #3c8dbc  !important;
+    border-color: #367fa9  !important;
+    color: #ffffff !important;
+}
+
+
+/* div.ui-selectonemenu div.ui-selectonemenu-trigger span.ui-icon-triangle-1-s { */
+/*     background: #080808 !important; */
+/*     display: inline; */
+/*     position: relative; */
+    
+/* }	 */
+
+
+/* body .ui-calendar button.ui-datepicker-trigger>span.ui-icon-calendar { */
+/*     background: #080808 !important; */
+/*     position: unset !important; */
+/*     top: 0 !important; */
+/*     display: initial !important; */
+/*     overflow: auto !important; */
+    
+/* } */
+
+.panelGridCenter {
+   margin: 0 auto;
+}
+
+.greenCheck{
+	color: #009688 !important;
+/* 	color: #13cc13 !important */
+}
+
+.redCross{
+	color: #d90000 !important;
+}
+
+.orangeEdit{
+	color: #ff8000 !important;
+}
+
+.blueIcon{
+	color: #3c8dbc !important;
+}
+
+
+.ui-messages-info1, .ui-message-info1{
+	color: #fff !important;
+    background-color: #00a65a !important;
+    border-color: #008d4c !important;
+}
+
+.ui-datatable-scrollable-theadclone {
+	visibility: collapse !important;
+	display: none !important;
+}
+
+
+.ui-datatable-hor-scroll .ui-datatable-tablewrapper,.scrolling-div .ui-datatable-tablewrapper{
+     overflow: auto;
+     width: 100%;
+     padding-bottom: 5px;
+}
+
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight, .form-control .ui-state-highlight {
+     background-color: #999 !important;
+     background-image: linear-gradient(to bottom, #999, #999) !important;
+}
+
+.pruebaFont {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #9f9f9f;
+}
+
+.ui-widget-content a{
+	color:#3c8dbc;
+}
+
+.imagenIconoMenuArribaDerecha{
+	float: left;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: -2px;
+	
+}
+
+
+
+.cabezal {
+
+	font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Open Sans'),
+         url(opensans.eot) format('embedded-opentype'),
+         url(opensans.ttf) format('truetype'),
+         url(opensans.otf) format('opentype'),
+         url(opensans.woff) format('woff');
+	
+/*  font-family:Georgia,serif; */
+/*  color:#4E443C; */
+/*  font-variant: small-caps; text-transform: none; font-weight: 100; margin-bottom: 0; */
+} 
+
+.noCabezal{
+	color: gray !important;
+}
+.margin10{
+	
+	margin-left:10px; 
+	margin-right:10px;
+}
+
+.prrafo {
+  font-family: "Helvetica Neue", "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+  font-size: 14px;
+  margin-top: .5em; color: #666;
+} 
+
+.prrafoInciio {
+ font-family:Georgia,serif;
+ font-size: .8em;
+ font-weight: bold;
+ text-transform:uppercase;
+ letter-spacing:2px; 
+} 
+
+/* body .ui-datatable th[role="columnheader"].ui-state-default, body .ui-treetable th[role="columnheader"].ui-state-default { */
+/* 	margin: 5% 8% 0 8% !important; */
+/*     text-align: center; */
+/*     height: 5rem !important; */
+/*     background-color: #009688  !important; */
+/*     border-color: #007d71 !important; */
+/*     color: #ffffff !important; */
+/* }	 */
+
+/* @media screen and (min-width: 769px) { */
+/*     .ui-datatable { */
+/*         margin: 5% 20% 0 20% !important; */
+/*     } */
+/* } */

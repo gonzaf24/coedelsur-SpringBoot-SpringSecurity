@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:c="http://java.sun.com/jsp/jstl/core"
+				xmlns:p="http://primefaces.org/ui"
+				template="/WEB-INF/templates/templateDoctor.xhtml">
+<ui:define name="body">
+
+	<f:metadata>
+    	<f:viewAction action="#{administrarConsultasMB.init}"/>
+	</f:metadata>
+	
+   <div class="box box-primary">
+            <div class="box-header with-border">
+                <h:form id="admConsultasForm">
+						   <h2 class="align-center">
+					            ADMINISTRAR CONSULTAS
+					            <br/>
+					       </h2>
+					       <p:separator style="margin-top:20px"/>
+						  
+  					       <p:panel styleClass="card">
+  					       
+  					       <div class="ui-sm-12 ui-g-11" />
+							<div class="ui-sm-12 ui-g-1">
+								<p:outputPanel >
+						     			<p:commandLink styleClass="fa fa-plus-circle" id="crearConsulta" value=" nuevo"  onclick="PF('crearConsulta').show();"/>									     			
+								</p:outputPanel>	
+							</div>
+  					       
+  					       <h:panelGrid columns="1" cellpadding="10"  styleClass="margin10"  >
+                        		 <br></br>
+								<p:dataTable  value="#{administrarConsultasMB.adminConsultasList}" var="consulta" emptyMessage="No hay consultas en la lista" scrollable="true" scrollHeight="300" > 
+							
+								   <p:column headerText="Descripción" style="text-align:center" >
+								         <p:outputLabel value="#{consulta.descripcion}"/>
+								   </p:column>
+								   <p:column headerText="Tipo consulta" style="text-align:center">
+								         <p:outputLabel value="#{consulta.tipoConsulta.label}"/>
+								   </p:column>
+								   <p:column headerText="Especialidad" style="text-align:center">
+								         <p:outputLabel value="#{consulta.especialidad.label}"/>
+								   </p:column>
+								   <p:column headerText="Precio" style="text-align:center">
+								         <p:outputLabel value="#{consulta.precio}"/>
+								   </p:column>
+								   <p:column headerText="Acción" style="text-align:center;">
+								    	<p:commandButton actionListener="#{administrarConsultasMB.deshabilitarConsulta(consulta)}" title="deshabilitar"/>
+								   </p:column>
+								</p:dataTable>
+							</h:panelGrid>
+					</p:panel>
+   			 </h:form>
+   	   </div>
+   </div>
+   
+   
+   <p:dialog header="NUEVA CONSULTA" styleClass="box-solid box-primary" widgetVar="crearConsulta" resizable="false" draggable="false" appendTo="@(body)" responsive="true" width="500"   modal="true" >
+		<h:form id="dlgCrearConsultaForm">    
+			<p:messages id="messagesCrearConsulta"/>
+                <p:growl/>
+                
+                <p:panelGrid id="nuevaConsultaGrid" columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8" cellpadding="5" layout="grid" styleClass="no-border ui-fluid"> 
+                <p:outputLabel  value="Descripción"/>
+			  		  <p:inputText id="descripcionID" required="true" value="#{administrarConsultasMB.descripcion}"/>
+                <p:outputLabel value="Tipo Consulta" />
+		        <p:selectOneMenu  id="tipoConsultaID" value="#{administrarConsultasMB.selectedTipoConsulta}" required="true" converter="tipoConsultaConverter">
+			         <f:selectItem itemLabel="Seleccionar"/>
+			         <f:selectItems value="#{administrarConsultasMB.tipoConsultaList}" var="model" itemLabel="#{model.label}" itemValue="#{model}"/>
+			    </p:selectOneMenu>
+				<p:outputLabel value="Especialidad" />
+				<p:selectOneMenu  id="especialidadesID" value="#{administrarConsultasMB.selectedEspecialidad}" required="true" converter="especialidadesConverter">
+			         <f:selectItem itemLabel="Seleccionar"/>
+			         <f:selectItems value="#{administrarConsultasMB.especialidadesList}" var="model1" itemLabel="#{model1.label}" itemValue="#{model1}"/>
+				</p:selectOneMenu>	  
+				<p:outputLabel value="Precio *"/>
+			    <p:inputText id="precioID" required="true"  value="#{administrarConsultasMB.precio}"/>	  
+                </p:panelGrid>
+				
+				<p:separator/>
+				
+	        	<p:commandButton id="cancelarBtn" immediate="true" value="Cancelar" styleClass="btn-danger ui-confirmdialog-no pull-left" icon="fa fa-close" oncomplete="PF('crearConsulta').hide()"/>
+         	    <p:commandButton  id="generarBtn"  styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check" actionListener="#{administrarConsultasMB.confirmarConsulta}" value="Confirmar" update="admConsultasForm,dlgCrearConsultaForm" oncomplete="if (args &amp;&amp; !args.validationFailed) PF('crearConsulta').hide()"/>							     
+		</h:form>		
+	</p:dialog> 
+	
+</ui:define>
+</ui:composition>

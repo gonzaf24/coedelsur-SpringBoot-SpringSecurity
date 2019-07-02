@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:c="http://java.sun.com/jsp/jstl/core"
+				xmlns:p="http://primefaces.org/ui"
+				template="/WEB-INF/templates/templateDoctor.xhtml">
+
+<ui:define name="body">
+
+	<div class="box box-primary">
+            <div class="box-header with-border">
+                <h:form id="datosPacienteForm">
+                    <div class="ui-g ui-fluid">
+                         <div class="ui-sm-12 ui-g-12">
+	  					  	  <h2 class="align-center">
+						            BUSQUEDA PACIENTE
+						            <br/>
+						      </h2>
+						      <p:separator style="margin-top:20px"/>
+						      <div class="ui-sm-12 ui-g-12">
+		  					  	 <div class="ui-g ui-fluid">
+				                     <div class="ui-sm-12 ui-g-12"> 
+				                      <h:panelGrid columns="4" cellpadding="0" width="100%" style="text-align:center">
+					                        <p:outputLabel for="nombreID" value="Nombre">
+						                        <p:inputText id="nombreID" value="#{busquedaPacienteMB.nombre}"></p:inputText>
+									        </p:outputLabel>
+									        <p:outputLabel for="apellidosID" value="Apellidos">
+						                        <p:inputText id="apellidosID" value="#{busquedaPacienteMB.apellidos}"></p:inputText>
+									        </p:outputLabel>
+									        <p:outputLabel for="ciID" value="C.Identidad">
+						                        <p:inputText id="ciID" value="#{busquedaPacienteMB.ci}"></p:inputText>
+									        </p:outputLabel>
+									        <p:commandLink  styleClass="fa fa-search"  actionListener="#{busquedaPacienteMB.buscarPacientesFiltros}" id="buscarID"  value=" BUSCAR" update="datosPacienteForm"/>
+				                      </h:panelGrid>
+								     </div>  
+								     <div class="ui-sm-12 ui-g-12"> 
+								     <h:panelGrid columns="1" cellpadding="10">
+		                        		<p:separator/>
+		                        		<br></br>
+		                        		<p:dataTable widgetVar="bPacienteDataTable"  var="bPaciente" value="#{busquedaPacienteMB.pacientesList}"  emptyMessage=" No se han encontrado pacientes " >
+										   <p:column headerText="Nombre">
+										         <p:outputLabel value="#{bPaciente.nombre}"/>
+										   </p:column>
+										   <p:column headerText="Apellidos" >
+										         <p:outputLabel value="#{bPaciente.apellidos}"/>
+										   </p:column>
+										   <p:column headerText="C.Identidad">
+										         <p:outputLabel value="#{bPaciente.cedulaIdentidad}"/>
+										   </p:column>
+										   <p:column headerText="F.Nacimiento">
+										         <p:outputLabel value="#{bPaciente.fechaNacimiento}"/>
+										   </p:column>
+										   <p:column headerText="Acción" >
+										    	<p:commandLink  styleClass="fa fa-search"  actionListener="#{busquedaPacienteMB.setSelectedIdPaciente(bPaciente.id)}" action="fichaPaciente?faces-redirect=true" title="acceder a la ficha del paciente"  />
+										   </p:column>
+										</p:dataTable> 
+		                        	</h:panelGrid>	
+								  </div>    
+		                    </div>
+					      </div>
+				  		</div>
+				  	</div>
+				</h:form>
+			</div>
+	</div>	
+	
+   
+    <script type="text/javascript">
+	PrimeFaces.locales['es'] = {
+	    closeText: 'Cerrar',
+	    prevText: 'Anterior',
+	    nextText: 'Siguiente',
+	    monthNames: ['Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+	    monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+	    dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+	    dayNamesShort: ['Dom','Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+	    dayNamesMin: ['D','L','M','M','J','V','S'],
+	    weekHeader: 'Semana',
+	    firstDay: 1,
+	    isRTL: false,
+	    showMonthAfterYear: false,
+	    yearSuffix: '',
+	    timeOnlyTitle: 'Sólo hora',
+	    timeText: 'Tiempo',
+	    hourText: 'Hora',
+	    minuteText: 'Minuto',
+	    secondText: 'Segundo',
+	    currentText: 'Fecha actual',
+	    ampm: false,
+	    month: 'Mes',
+	    week: 'Semana',
+	    day: 'Día',
+	    allDayText : 'Todo el día'
+	};
+ </script>
+    
+</ui:define>
+</ui:composition>

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:c="http://java.sun.com/jsp/jstl/core"
+				xmlns:p="http://primefaces.org/ui"
+				template="/paciente/solicitarCita.xhtml">
+<ui:define name="steps">
+
+	<f:metadata>
+    	<f:viewAction action="#{solicitarCitaMB.init3}" />
+	</f:metadata>
+	
+<div class="box box-primary" style="margin-top: 100px">
+            <div class="box-header with-border">
+                <h:form id="formStep3">
+                    <div class="ui-g ui-fluid">
+                         <div class="ui-sm-12 ui-g-12">
+                              <div class="ui-sm-12 ui-g-12" style="text-align: center; padding-top:80px">
+							      <h4>Turnos disponibles para el día: <b>#{solicitarCitaMB.selectedAgendaDia.label}</b></h4>
+							  </div>
+                              <div class="ui-sm-12 ui-g-12">
+		                          <div class="main-container">
+				  					  <div class="fixer-container">
+												  <p:selectOneRadio value="#{solicitarCitaMB.selectedAgendaTurno}" converter="agendaTurnoSolCitaCConverter" layout="responsive" columns="3" >
+												     <f:selectItems value="#{solicitarCitaMB.listTurnosAgendaDoctor}"  var="model" itemLabel="#{model.label}" itemValue="#{model}"/>
+												     <p:ajax event="change" listener="#{solicitarCitaMB.selectTurno}" update="siguiente" />
+												  </p:selectOneRadio>
+												  
+												  <c:if test="${empty solicitarCitaMB.listTurnosAgendaDoctor}">
+												  	<div class="ui-g-12 ui-md-12 ui-lg-12" style="text-align: center; margin-top:10px;">
+												      <h5>No quedan turnos para este día</h5>
+												  	</div>
+												  </c:if>
+								       </div>
+								  </div>
+						     </div>
+						     
+						     <div style="padding-top: 140px; text-align: center">
+								<div class="ui-sm-6 ui-g-6">
+								  <div class="main-container">
+			  						<div class="fixer-container">
+						   				  <p:outputPanel id="atras" styleClass="siguiente">
+								    		    <p:commandButton id="atrasBtn" action="step2SolicitarCita?faces-redirect=true" value="Atrás" styleClass="btn-danger ui-confirmdialog-no pull-left" icon="fa fa-arrow-left"  />
+									      </p:outputPanel>
+									 </div>
+							       </div>
+								</div>
+								<div class="ui-sm-6 ui-g-6">
+								   <div class="main-container">
+			  						   <div class="fixer-container">							    
+			  						    <p:outputPanel id="siguiente" styleClass="siguiente">
+									       <p:commandButton disabled="#{solicitarCitaMB.disableStep3}" actionListener="#{solicitarCitaMB.obtenerConsultorioYReservarTurno}" styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check" id="siguienteBtn" action="step4SolicitarCita?faces-redirect=true" value="Siguiente" />
+									    </p:outputPanel>
+									   </div>
+								   </div> 
+								 </div> 
+						    </div>
+						</div> 
+					</div>
+			    </h:form>
+		   </div>
+</div>									  
+</ui:define>
+</ui:composition>

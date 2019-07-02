@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:c="http://java.sun.com/jsp/jstl/core"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:sec="http://www.springframework.org/security/tags"
+				xmlns:cm="http://java.sun.com/jsf/composite/components"
+				template="/WEB-INF/templates/templatePaciente.xhtml">
+<ui:define name="body">
+
+	<f:metadata>
+    	<f:viewAction action="#{informesDocumentosMB.init}"/>
+	</f:metadata>
+
+<div class="box box-primary">
+      <div class="box-header with-border">
+         <h:form id="informesDocumentosMB">
+              <div class="ui-g ui-fluid">
+                 <div class="ui-sm-12 ui-g-12">
+				   <h2 class="align-center">
+			         Informes / Diagnosticos
+			         <br/>
+			       </h2>
+			       <div class="ui-sm-12 ui-g-12">
+			                <div class="ui-sm-12 ui-g-1"/>
+			                <div class="ui-sm-12 ui-g-10">
+			       			<p:dialog modal="true" widgetVar="statusDialog" draggable="false" closable="false" resizable="false">
+								    <i class="fa fa-refresh fa-spin fa-4x fa-fw"></i>
+							</p:dialog>
+						 
+						    <p:dataTable id="basicDT" var="miFile" value="#{informesDocumentosMB.listMisFiles}" emptyMessage="No hay archivos adjuntos aún.">
+						        <p:column headerText="Descripción">
+						            <h:outputText value="#{miFile.getDescripcion()}" />
+						        </p:column>
+						        <p:column headerText="Tipo documento">
+						            <h:outputText value="#{miFile.getTipoFile()}" />
+						        </p:column>
+						        <p:column headerText="Descargar" style="width:100px;text-align: center">
+								    <p:commandLink styleClass="fa fa-download"  ajax="false" actionListener="#{informesDocumentosMB.obtenerArchivo(miFile.id)}">
+								        <p:fileDownload value="#{informesDocumentosMB.archivo}" />
+								    </p:commandLink>
+						        </p:column>
+						    </p:dataTable>
+						    </div>
+						    <div class="ui-sm-12 ui-g-1"/>
+					</div>	    
+			      </div>
+			  </div>
+	     </h:form>
+	 </div>
+</div>	   
+
+							
+<script type="text/javascript">
+	function start() {
+	    PF('statusDialog').show();
+	}
+	 
+	function stop() {
+	    PF('statusDialog').hide();
+	}
+</script>
+
+</ui:define>
+</ui:composition>

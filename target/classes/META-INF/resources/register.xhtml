@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:adm="http://github.com/adminfaces"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<f:view contentType="text/html">
+    <h:head>
+        <title>Registro COE DEL SUR</title>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['favicon/favicon.ico']}"/>
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['favicon/favicon-16x16.png']}" sizes="16x16"/>
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['favicon/favicon-32x32.png']}" sizes="32x32"/>
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['favicon/favicon-96x96.png']}" sizes="96x96"/>
+        <link rel="manifest" href="/manifest.json"/>
+        <meta name="theme-color" content="#444"/>
+        <meta name="mobile-web-app-capable" content="yes"/>
+        <h:outputStylesheet library="css" name="starter.css" />
+    </h:head>
+
+    <h:body styleClass="hold-transition login-page">
+        <div id="loader" class="load-bar" style="display: none">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
+        <div class="login-box" style="max-width: 700px; width: 90%" >
+            
+            <div class="login-logo_v1">
+            	<b>COE</b>del<b>SUR</b> 
+            </div>
+           
+            <div class="box login-box-body">
+            		
+                <h:form>
+                
+                    <h3 class="align-center">
+			            Registro Usuario
+			            <br/>
+				    </h3>
+                    
+                    <p:messages closable="true"/>
+                    
+                    <div class="ui-sm-12 ui-g-12">
+                    
+                        <div class="ui-sm-12 ui-g-6">
+                    		<div class="form-group has-feedback">
+		                        <p:inputText autocomplete="nope" value="#{newUserForm.nuevoUsuario.usuario.username}" title="Debe ingresar su dirección de email" id="usuario"  styleClass="form-control" placeholder="Email" required="true" requiredMessage="Email es requerido.">
+		                        	<f:validator validatorId="custom.emailValidator" />
+		                        </p:inputText>	
+		                        <p:tooltip id="toolTipUsuario" for="usuario" showEvent="focus" hideEvent="blur" position="top"/>
+		                        <i class="fa fa-envelope form-control-feedback"></i>
+		                     </div> 
+                    	</div>
+                    	
+                    	<div class="ui-sm-12 ui-g-6">
+                    		<div class="form-group has-feedback">
+		                        <p:password value="#{newUserForm.nuevoUsuario.usuario.password}" title="Debe escojer una contraseña y debe tener mas de 5 caracteres" id="password" type="password" styleClass="form-control" placeholder="Contraseña" required="true"  requiredMessage="Contraseña es requerido." validatorMessage="Contraseña debe tener más de 5 caracteres.">
+		                         <f:validateLength minimum="5" maximum="25" />
+	                          </p:password>
+	                          <p:tooltip id="toolTipPassword" for="password" showEvent="focus" hideEvent="blur" position="top"/>
+	                          <i class="fa fa-lock form-control-feedback"></i>
+		                     </div> 
+                    	</div>
+                    	
+                    	<div class="ui-sm-12 ui-g-6">
+                    		<div class="form-group has-feedback">
+		                        <p:inputText value="#{newUserForm.nuevoUsuario.paciente.nombre}" title="Nombre"  id="nombre"  styleClass="form-control" placeholder="Nombre" required="true" requiredMessage="Nombre es requerido."/>
+		                         <p:tooltip id="toolTipNombre" for="nombre" showEvent="focus" hideEvent="blur" position="top"/>
+		                        <i class="fa fa-address-book form-control-feedback"></i>
+		                     </div> 
+                    	</div>
+                    	
+                    	<div class="ui-sm-12 ui-g-6">
+                    		<div class="form-group has-feedback">
+		                        <p:inputText value="#{newUserForm.nuevoUsuario.paciente.apellidos}" title="Apellidos"  id="apellidos"  styleClass="form-control" placeholder="Apellidos" required="true" requiredMessage="Apellidos es requerido."/>
+		                        <p:tooltip id="toolTipApellidos" for="apellidos" showEvent="focus" hideEvent="blur" position="top"/>
+		                        <i class="fa fa-address-book form-control-feedback"></i>
+		                     </div> 
+                    	</div>
+                    	
+                    	<div class="ui-sm-12 ui-g-6">
+                    		<div class="form-group has-feedback">
+		                        <p:inputText value="#{newUserForm.nuevoUsuario.paciente.cedulaIdentidad}" title="Cédula de Identidad sin puntos ni guiones" onkeyup="$(this).val($(this).val().replace(/[^0-9]/g,''));" id="ci"  styleClass="form-control" placeholder="CI" required="true" requiredMessage="CI es requerido."/>
+		                        <p:tooltip id="toolTipCi" for="ci" showEvent="focus" hideEvent="blur" position="top"/>
+		                        <i class="fa fa-address-card-o form-control-feedback"></i>
+		                     </div> 
+                    	</div>
+      	
+                    	<div class="ui-sm-12 ui-g-6">
+                    		<div class="form-group has-feedback">
+                    		    <p:selectOneMenu id="departamentoID" value="#{newUserForm.selectedDepartamento}" title="Departamento" required="true" converter="departamentoConfigConverter"  requiredMessage="Departamento es requerido.">
+						        	<f:selectItem itemLabel="Departamento"/>
+						        	<f:selectItems value="#{newUserForm.departamentosList}" var="model2" itemLabel="#{model2.label}" itemValue="#{model2}" />
+						        </p:selectOneMenu>
+		                        <i class="fa fa-home form-control-feedback"></i>
+		                     </div> 
+                    	</div>
+                    	
+                    	<div class="ui-sm-12 ui-g-6">
+                    		<div class="form-group has-feedback">
+		                        <p:inputText value="#{newUserForm.nuevoUsuario.paciente.domicilio}" title="Domicilio" id="domicilio" required="true" requiredMessage="Domicilio es requerido." styleClass="form-control" placeholder="Domicilio"/>
+		                        <p:tooltip id="toolTipDomicilio" for="domicilio" showEvent="focus" hideEvent="blur" position="top"/>
+		                        <i class="fa fa-home form-control-feedback"></i>
+		                     </div> 
+                    	</div>
+                    	
+                    	<div class="ui-sm-12 ui-g-6">
+                    		<div class="form-group has-feedback">
+		                        <p:inputText value="#{newUserForm.nuevoUsuario.paciente.telefono}" title="Teléfono" onkeyup="$(this).val($(this).val().replace(/[^0-9]/g,''));" id="telefono" styleClass="form-control" placeholder="Teléfono movil" required="true" requiredMessage="Teléfono es requerido." validatorMessage="Teléfono debe tener 9 dígitos.">
+		                          <f:validateLength  minimum="9" maximum="9" />
+		                        </p:inputText>
+		                        <p:tooltip id="toolTipTelefono" for="telefono" showEvent="focus" hideEvent="blur" position="top"/>
+		                        <i class="fa fa-phone form-control-feedback"></i>
+		                     </div> 
+                    	</div>
+                    	
+                    	<div class="ui-sm-12 ui-g-6">
+                    		<div class="form-group has-feedback">
+ 		                        <p:datePicker yearRange="1900:2050"  yearNavigator="true" monthNavigator="true" value="#{newUserForm.nuevoUsuario.paciente.fechaNacimiento}" title="Fecha de nacimiento" id="fechaNaciemiento" locale="es" navigator="true" pattern="dd-MM-yyyy" styleClass="prueba" placeholder="Fecha nacimiento" required="true" requiredMessage="Fecha nacimiento es requerido."/> 
+		                        <i class="fa fa-calendar form-control-feedback"></i>
+		                     </div> 
+                    	</div>
+                    
+                    </div>
+                    
+                   <div class="ui-sm-12 ui-g-12">     
+                        
+               		 <div class="ui-sm-12 ui-g-4"/>
+               		 <div class="ui-sm-12 ui-g-4">
+                     <div class="row">
+                        <p:spacer height="10"/>
+                         <div class="col-xs-12" style="text-align: center">
+                         	<p:commandButton ajax="false" id="button" value="Registrase" action="next" class="btn btn-success btn-block"></p:commandButton>
+                        </div>
+                     </div>
+                     </div>
+                     <div class="ui-sm-12 ui-g-4"/>
+                     
+                    </div>
+                     <div class="row" style="padding-top: 30px">
+	                	<div class="ui-sm-12 ui-g-12" style="text-align: center">
+	                	<a href="login.xhtml">Volver a Login</a>
+	                	</div>
+               		</div>
+                </h:form>
+                
+               
+            </div>
+            <!-- /.login-box-body -->
+        </div>
+        <adm:ripple />
+        <h:outputScript library="js" name="admintemplate.js" target="head"/>
+
+        <style type="text/css">
+            body .load-bar {
+                margin-top: -20px;
+            }
+            .prueba{
+            	width: 100%!important;
+            }
+            .ui-inputfield{
+            	width: 100%!important;
+            }
+        </style>
+         <script type="text/javascript">
+	PrimeFaces.locales['es'] = {
+	    closeText: 'Cerrar',
+	    prevText: 'Anterior',
+	    nextText: 'Siguiente',
+	    monthNames: ['Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+	    monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+	    dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+	    dayNamesShort: ['Dom','Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+	    dayNamesMin: ['D','L','M','M','J','V','S'],
+	    weekHeader: 'Semana',
+	    firstDay: 1,
+	    isRTL: false,
+	    showMonthAfterYear: false,
+	    yearSuffix: '',
+	    timeOnlyTitle: 'Sólo hora',
+	    timeText: 'Tiempo',
+	    hourText: 'Hora',
+	    minuteText: 'Minuto',
+	    secondText: 'Segundo',
+	    currentText: 'Fecha actual',
+	    ampm: false,
+	    month: 'Mes',
+	    week: 'Semana',
+	    day: 'Día',
+	    allDayText : 'Todo el día'
+	};
+ </script>
+    </h:body>
+</f:view>
+</html>

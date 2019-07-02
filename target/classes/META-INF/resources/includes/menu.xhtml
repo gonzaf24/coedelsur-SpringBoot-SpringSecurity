@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:sec="http://www.springframework.org/security/tags">
+
+	<ul class="sidebar-menu tree" data-widget="tree">
+		
+		
+		<sec:authorize access="hasRole('ROLE_DOCTOR')">	
+			
+			<li class="header">
+				General Doctor
+			</li>
+			
+	        <li>
+	        	<p:link outcome="/doctor/inicio?faces-redirect=true" >
+					 <i class="fa fa-home"></i>
+	                <span>Inicio</span>
+				</p:link>
+	        </li>
+	        
+	        <li>
+	            <p:link outcome="/doctor/miAgenda?faces-redirect=true" >
+	                 <i class="fa fa-calendar"></i>
+	                <span>Agenda</span>
+	            </p:link>
+	        </li>
+	         
+	        <li class="treeview">
+	            <a href="#">
+	                <i class="fa fa-blind"></i>
+	                <span>Paciente</span>
+	                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+	            </a>
+	            <ul class="treeview-menu">
+	                <li>
+	                    <p:link outcome="/doctor/busquedaPaciente?faces-redirect=true" >
+	               			<i class="fa fa-hand-stop-o"></i>
+	                        <span>Buscar</span>
+	           			 </p:link>
+	                </li>
+	                <li>
+	                    <p:link href="#">
+	                        <i class="fa fa-blind"></i>
+	                        <span>Nuevo</span>
+	                    </p:link>
+	                </li>
+	            </ul>
+	        </li>
+	        
+			<li class="treeview">
+	            <a href="#">
+	                <i class="fa fa-id-badge"></i>
+	                <span>H. Clinicas</span>
+	                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+	            </a>
+	            <ul class="treeview-menu">
+	                <li>
+	                    <p:link href="#">
+	                        <i class="fa fa-id-badge"></i>
+	                        <span>Buscar</span>
+	                    </p:link>
+	                </li>
+	                <li>
+	                	<p:link outcome="/doctor/historiaClinica?faces-redirect=true" >
+	                        <i class="fa fa-id-badge"></i>
+	                        <span>Nuevo</span>
+	           			 </p:link>
+	                </li>
+	            </ul>
+	         </li>
+	
+			<li class="treeview">
+	            <a href="#">
+	                <i class="fa fa-credit-card"></i>
+	                <span>Pagos</span>
+	                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+	            </a>
+	            <ul class="treeview-menu">
+	                <li>
+	                    <p:link href="#">
+	                        <i class="fa fa-credit-card"></i>
+	                        <span>Buscar</span>
+	                    </p:link>
+	                </li>
+	                <li>
+	                    <p:link href="#">
+	                        <i class="fa fa-credit-card"></i>
+	                        <span>Nuevo</span>
+	                    </p:link>
+	                </li>
+	            </ul>
+	        </li>
+	        
+	        <li class="header">
+	            Administración
+	        </li>
+	        
+	        <li class="treeview">
+	            <a href="#">
+	                <i class="fa fa-hand-stop-o"></i>
+	                <span>Configurar</span>
+	                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+	            </a>
+	            <ul class="treeview-menu">
+	            	 <li>
+	            	 	<p:link outcome="/doctor/otraAgenda?faces-redirect=true" >
+			                <i class="fa fa-calendar"></i>
+			                <span>Agenda</span>
+			            </p:link>
+	                 </li>
+	                 <li>
+	                 	<p:link outcome="/doctor/crearTurnos?faces-redirect=true" >
+			                <i class="fa fa-hand-stop-o"></i>
+	                        <span>Crear turnos</span>
+			            </p:link>
+	                </li>
+	                <li>
+	                	<p:link outcome="/doctor/editarTurnos?faces-redirect=true" >
+			                <i class="fa fa-hand-stop-o"></i>
+	                        <span>Editar turnos</span>
+			            </p:link>
+	                </li>
+	                <li>
+	                	<p:link outcome="/doctor/administrarDoctores?faces-redirect=true" >
+	                        <i class="fa fa-hand-stop-o"></i>
+	                        <span>Adm. doctores</span>
+	                    </p:link>
+	                </li>
+	                <li>
+	                	<p:link outcome="/doctor/administrarConsultas?faces-redirect=true" >
+	                         <i class="fa fa-hand-stop-o"></i>
+	                        <span>Adm. consultas</span>
+	                    </p:link>
+	                </li>
+	                <li>
+	                	<p:link outcome="/doctor/administrarCodigueras?faces-redirect=true" >
+	                         <i class="fa fa-hand-stop-o"></i>
+	                        <span>Adm. codigueras</span>
+	                    </p:link>
+	                </li>
+	            </ul>
+	        </li>
+	        
+		</sec:authorize>
+		
+		<sec:authorize access="hasRole('ROLE_PACIENTE')">
+		
+			<li class="header">
+				General Paciente
+			</li>
+			<li>
+	            <p:link outcome="/paciente/inicioPaciente?faces-redirect=true" >
+					 <i class="fa fa-home"></i>
+	                <span>Inicio</span>
+				</p:link>
+	        </li>
+	        
+	        <li>
+	            <p:link outcome="/paciente/step1SolicitarCita?faces-redirect=true" >
+	                <i class="fa fa-calendar-plus-o"></i>
+	                <span>Solicitar cita</span>
+	            </p:link>
+	        </li>
+	        
+	        <li>
+	            <p:link outcome="/paciente/consultarCitas?faces-redirect=true" >
+                    <i class="fa fa-calendar-check-o"></i>
+	                <span>Consultar citas</span>
+       			 </p:link>
+	        </li>    
+	        
+	        <li>
+	            <p:link outcome="/paciente/informesDocumentos?faces-redirect=true" >
+                    <i class="fa fa-file-image-o"></i>
+	                <span>Documentos</span>
+       			 </p:link>
+	        </li>
+	        
+	        <li>
+	            <p:commandLink action="pagosID" >
+	                 <i class="fa fa-credit-card-alt"></i>
+	                <span>Pagos</span>
+	            </p:commandLink>
+	        </li>                
+	       
+		</sec:authorize>
+	
+	    <li class="header">
+          Logut
+        </li>
+        <li>
+          <p:link href="/j_spring_security_logout" title="Salir">   Salir     </p:link>
+        </li>
+	
+	</ul>
+
+</ui:composition>

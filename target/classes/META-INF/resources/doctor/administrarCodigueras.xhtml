@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:p="http://primefaces.org/ui"
+				template="/WEB-INF/templates/templateDoctor.xhtml">
+<ui:define name="body" >
+
+	<f:metadata>
+    	<f:viewAction action="#{administrarCodiguerasMB.init}"/>
+	</f:metadata>
+
+<div class="box box-primary">
+       <div class="box-header with-border">
+           <h:form id="admCodiguerasForm">
+               <div class="ui-g ui-fluid">
+                    <div class="ui-sm-12 ui-g-12">
+           			  <h2 class="align-center">
+				            ADMINISTRACION
+				            <br/>
+				      </h2>
+				      <p:separator style="margin-top:20px"/>
+                     <div class="ui-sm-12 ui-g-12">
+						<div class="ui-sm-12 ui-g-3"/>
+						<div class="ui-sm-12 ui-g-6">
+							
+							 <h4 class="align-center">
+						             Especialidades
+						            <br/>
+						     </h4>
+							<div class="ui-sm-12 ui-g-12">
+								<div class="ui-sm-12 ui-g-10" />
+								<div class="ui-sm-12 ui-g-2">
+									<div class="main-container">
+	 									<div class="fixer-container">
+								     		<p:outputPanel >
+												<p:commandLink  id="nuevaEsp" styleClass="fa fa-plus-circle"  value=" nuevo"  onclick="PF('crearEspecialidad').show();return false"/>
+											</p:outputPanel>
+										</div>
+									</div>			
+								</div>
+								
+								
+								<div class="ui-sm-12 ui-g-12">
+							    	<p:pickList style="width:100%" responsive="true" id="especialidadID" value="#{administrarCodiguerasMB.especialidades}" var="especialidades" itemLabel="#{especialidades.label}" itemValue="#{especialidades.label}">
+								    	<f:facet name="sourceCaption">
+											<h:outputLabel value="Habilitados" />
+										</f:facet>
+										<f:facet name="targetCaption">
+											<h:outputLabel value="Deshabilitados" />
+										</f:facet>
+							    	</p:pickList>
+							    </div>	
+					    	</div>
+				    	</div>
+				    	<div class="ui-sm-12 ui-g-3"/>
+					</div>
+					
+					<div class="ui-sm-12 ui-g-12">
+					    <div class="ui-sm-12 ui-g-3"/>
+						<div class="ui-sm-12 ui-g-6">
+							 <h4 class="align-center">
+						             Tipo de Consultas
+						            <br/>
+						     </h4>
+							<div class="ui-sm-12 ui-g-12">
+								
+								<div class="ui-sm-12 ui-g-10" />
+								<div class="ui-sm-12 ui-g-2">
+									<div class="main-container">
+	 									<div class="fixer-container">
+								     		<p:outputPanel >
+												<p:commandLink id="nuevaTC" value=" nuevo" styleClass="fa fa-plus-circle"  onclick="PF('crearTipoCon').show();"/>
+											</p:outputPanel>
+										</div>
+									</div>			
+								</div>
+								
+								<div class="ui-sm-12 ui-g-12">
+									<p:pickList style="width:100%" responsive="true" id="tipoConsultaID" value="#{administrarCodiguerasMB.tipoConsultas}" var="tipoConsultas" itemLabel="#{tipoConsultas.label}" itemValue="#{tipoConsultas.label}">
+										<f:facet name="sourceCaption">
+											<h:outputLabel value="Habilitados" />
+										</f:facet>
+										<f:facet name="targetCaption">
+											<h:outputLabel value="Deshabilitados" />
+										</f:facet>
+									</p:pickList>
+								</div>
+							</div>
+						</div>
+						<div class="ui-sm-12 ui-g-3"/>	
+					</div>
+					
+					<div class="ui-sm-12 ui-g-12">
+					    <div class="ui-sm-12 ui-g-3"/>
+						<div class="ui-sm-12 ui-g-6">
+							<h4 class="align-center">
+						             Consultorios
+						            <br/>
+						     </h4>
+							<div class="ui-sm-12 ui-g-12">
+								<div class="ui-sm-12 ui-g-10" />
+								<div class="ui-sm-12 ui-g-2">
+									<div class="main-container">
+	 									<div class="fixer-container">
+								     		<p:outputPanel >
+												<p:commandLink id="nuevoConsultorio" value=" nuevo" styleClass="fa fa-plus-circle"  onclick="PF('crearConsultorio').show();"  />
+											</p:outputPanel>
+										</div>
+									</div>			
+								</div>
+							
+								<div class="ui-sm-12 ui-g-12">
+									<p:pickList style="width:100%" responsive="true" id="consultorioID" value="#{administrarCodiguerasMB.consultorios}" var="consultorio" itemLabel="#{consultorio.label}" itemValue="#{consultorio.label}">
+										<f:facet name="sourceCaption">
+											<h:outputLabel value="Habilitados" />
+										</f:facet>
+										<f:facet name="targetCaption">
+											<h:outputLabel value="Deshabilitados" />
+										</f:facet>
+									</p:pickList>
+								</div>
+							</div>
+						</div>
+						<div class="ui-sm-12 ui-g-3"/>	
+					</div>
+					
+					<div class="ui-sm-12 ui-g-3"/>
+					<div class="ui-sm-6 ui-g-3">
+					 	  <div class="main-container">
+							<div class="fixer-container">
+							     <p:outputPanel >							     
+								    <p:commandButton id="cancelarCodiguerasID" styleClass="btn-danger ui-confirmdialog-no pull-left" icon="fa fa-close"  value="Cancelar" />
+								 </p:outputPanel>
+						    </div>
+						 </div>
+					 </div>
+					 <div class="ui-sm-6 ui-g-3">
+					 	  <div class="main-container">
+							<div class="fixer-container">
+							     <p:outputPanel >
+								    <p:commandButton id="guardarCodiuerasID" styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check"  value="Guardar"/>
+								 </p:outputPanel>
+						    </div>
+						 </div>								 
+					 </div> 
+					 <div class="ui-sm-12 ui-g-3"/>
+                  </div>
+               </div>   
+          </h:form>
+     </div>
+</div>    
+             
+<p:dialog styleClass="box-solid box-primary"  header="NUEVA ESPECIALIDAD" widgetVar="crearEspecialidad" resizable="false" draggable="false" appendTo="@(body)" responsive="true" width="480"  modal="true" >
+		<h:form id="dlgCrearConsultaForm">    
+			<p:messages id="messagesDialogEsp"/>
+                <p:growl/>
+                <p:panelGrid id="nuevaEspecialidadGrid" columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8" cellpadding="5" layout="grid" styleClass="no-border ui-fluid"> 
+	                <p:outputLabel  value="Nombre *" />
+		            <p:inputText id="nombreEspID" value="#{administrarCodiguerasMB.nombreARegistrar}" required="true" requiredMessage="Debe ingresar un nombre." />
+                </p:panelGrid>
+				<p:separator/>
+				<div class="ui-sm-12 ui-g-12" style="text-align: center">
+			        <div class="ui-sm-6 ui-g-6">
+			           <div class="main-container">
+						    <div class="fixer-container">
+						        <p:outputPanel>
+						        	<p:commandButton id="cancelarEspBtn" styleClass="btn-danger ui-confirmdialog-no pull-left" icon="fa fa-close"  value="Cancelar"  oncomplete="PF('crearEspecialidad').hide()" />
+						        </p:outputPanel>
+						    </div>
+						</div>        
+			        </div>
+			        <div class="ui-sm-6 ui-g-6">
+			        	<div class="main-container">
+						    <div class="fixer-container">
+						         <p:outputPanel> 
+						         	<p:commandButton id="generarEspBtn" value="Confirmar" actionListener="#{doctorConfigHandler.crearCodigo('esp')}"  styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check" update="messagesDialogEsp,admCodiguerasForm" oncomplete="if (args &amp;&amp; !args.validationFailed) PF('crearEspecialidad').hide()"/>
+						         </p:outputPanel>
+						    </div>
+					    </div>	         
+			        </div>
+		        </div>
+		</h:form>		
+</p:dialog> 
+                
+
+
+<p:dialog styleClass="box-solid box-primary"  header="NUEVO TIPO CONSULTA" widgetVar="crearTipoCon" resizable="false" draggable="false" appendTo="@(body)" responsive="true" width="480"  modal="true" >
+		<h:form id="formCrearTC">    
+			<p:messages id="messagesDialogTC"/>
+                <p:growl/>
+                <p:panelGrid id="nuevaEspecialidadGrid" columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8" cellpadding="5" layout="grid" styleClass="no-border ui-fluid"> 
+	                <p:outputLabel  value="Nombre *" />
+		            <p:inputText id="nombreTCID" value="#{administrarCodiguerasMB.nombreARegistrar}" required="true" requiredMessage="Debe ingresar un nombre." />
+                </p:panelGrid>
+				<p:separator/>
+				<div class="ui-sm-12 ui-g-12" style="text-align: center">
+			        <div class="ui-sm-6 ui-g-6">
+			           <div class="main-container">
+						    <div class="fixer-container">
+						        <p:outputPanel>
+						        	<p:commandButton id="cancelarTCBtn" styleClass="btn-danger ui-confirmdialog-no pull-left" icon="fa fa-close"  value="Cancelar"  oncomplete="PF('crearTipoCon').hide()" />
+						        </p:outputPanel>
+						    </div>
+						</div>        
+			        </div>
+			        <div class="ui-sm-6 ui-g-6">
+			        	<div class="main-container">
+						    <div class="fixer-container">
+						         <p:outputPanel> 
+						         		<p:commandButton id="generarTCBtn" value="Confirmar" actionListener="#{doctorConfigHandler.crearCodigo('tc')}" styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check" update="messagesDialogTC,admCodiguerasForm"  oncomplete="if (args &amp;&amp; !args.validationFailed) PF('crearTipoCon').hide()" />
+						         </p:outputPanel>
+						    </div>
+					    </div>	         
+			        </div>
+		        </div>
+		</h:form>		
+</p:dialog> 
+
+
+<p:dialog styleClass="box-solid box-primary"  header="NUEVO CONSULTORIO" widgetVar="crearConsultorio" resizable="false" draggable="false" appendTo="@(body)" responsive="true" width="480"  modal="true" >
+		<h:form id="formCrearCons1">    
+			<p:messages id="messagesDialogCons"/>
+                <p:growl/>
+                <p:panelGrid id="nuevaEspecialidadGrid" columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8" cellpadding="5" layout="grid" styleClass="no-border ui-fluid"> 
+	                <p:outputLabel  value="Nombre *" />
+		            <p:inputText id="nombreConsID" value="#{administrarCodiguerasMB.nombreARegistrar}" required="true" requiredMessage="Debe ingresar un nombre." />
+                </p:panelGrid>
+				<p:separator/>
+				<div class="ui-sm-12 ui-g-12" style="text-align: center">
+			        <div class="ui-sm-6 ui-g-6">
+			           <div class="main-container">
+						    <div class="fixer-container">
+						        <p:outputPanel>
+						        	<p:commandButton id="cancelarConsBtn" value="Cancelar"  styleClass="btn-danger ui-confirmdialog-no pull-left" icon="fa fa-close" oncomplete="PF('crearConsultorio').hide()" />
+						        </p:outputPanel>
+						    </div>
+						</div>        
+			        </div>
+			        <div class="ui-sm-6 ui-g-6">
+			        	<div class="main-container">
+						    <div class="fixer-container">
+						         <p:outputPanel> 
+						         	<p:commandButton id="generarConstn" value="Confirmar" actionListener="#{doctorConfigHandler.crearCodigo('cons')}" styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check" update="messagesDialogCons,admCodiguerasForm"  oncomplete="if (args &amp;&amp; !args.validationFailed) PF('crearConsultorio').hide()" />
+						         </p:outputPanel>
+						    </div>
+					    </div>	         
+			        </div>
+		        </div>
+		</h:form>		
+</p:dialog> 
+
+	
+</ui:define>
+</ui:composition>

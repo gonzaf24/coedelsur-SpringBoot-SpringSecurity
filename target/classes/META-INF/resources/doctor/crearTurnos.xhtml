@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:c="http://java.sun.com/jsp/jstl/core"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:pe="http://primefaces.org/ui/extensions"
+				xmlns:sec="http://www.springframework.org/security/tags"
+				xmlns:cm="http://java.sun.com/jsf/composite/components"
+				template="/WEB-INF/templates/templateDoctor.xhtml">
+<ui:define name="body" >
+
+	<f:metadata>
+    	<f:viewAction action="#{crearTurnosMB.init}"/>
+	</f:metadata>
+
+	<div class="box box-primary">
+	    <div class="box-header with-border">
+	        <h:form id="formCrearTurno">
+	            <div class="ui-g ui-fluid">
+	                <div class="ui-sm-12 ui-g-12">
+						  <h2 class="align-center">
+					            CREAR TURNOS
+					            <br/>
+					      </h2>
+						  <p:separator style="margin-top:20px"/>
+						  <div class="ui-sm-12 ui-g-12">
+							  <div class="ui-sm-12 ui-g-2"/> 
+						      <div class="ui-sm-12 ui-g-4"> 
+							  		<p:separator/>   
+							      	<p:calendar id="calendarioDias" value="#{crearTurnosMB.diaSelected}" pages="1" mode="inline" locale="es" mindate="#{crearTurnosMB.today}" >
+							        	<p:ajax event="dateSelect"  listener="#{crearTurnosMB.agregarDiaCrearTurno}" async="true"  update="calendarioDias,listAgendaDia,nuevoTurno"/>
+							        </p:calendar>
+						      </div>
+							  <div class="ui-sm-12 ui-g-4"> 
+							  		<p:separator/>
+							        <p:dataList id="listAgendaDia" value="#{crearTurnosMB.listAgendaDia}" emptyMessage="No hay días seleccionados" var="agendaDia"  itemType="none" paginator="false"  >
+								        <f:facet name="header">
+								            Días Seleccionados
+								        </f:facet>
+								        <p:commandLink update="listAgendaDia, @widgetVar(crearWidgetID) " actionListener="#{crearTurnosMB.eliminarDiaCrearTurno(agendaDia)}" title="Eliminar día" styleClass="ui-icon ui-icon-closethick" style="float:left;margin-right:10px">
+								            <f:setPropertyActionListener value="#{agendaDia.dia}" target="#{crearTurnosMB.diaSelected}" />
+								            <h:outputText value="#{agendaDia.label}" />
+								        </p:commandLink>
+								        <h:outputText value="#{agendaDia.label}" style="display:inline-block"/>
+							        </p:dataList>
+							  </div>
+						      <div class="ui-sm-12 ui-g-2" /> 
+					      </div>
+					      
+					      <div class="ui-sm-12 ui-g-12">
+							<div class="ui-sm-12 ui-g-2"/> 
+						    <div class="ui-sm-12 ui-g-4">
+						    	<p:outputLabel for="consultaID" value="Doctor/a" >
+						            <p:selectOneMenu id="consultaID" value="#{crearTurnosMB.selectedDoctor}" converter="consultaDoctorConverter" required="true">
+						                <f:selectItem itemLabel="Seleccionar"/>
+							        	<f:selectItems value="#{crearTurnosMB.listDoctores}" var="model1" itemLabel="#{model1.label}" itemValue="#{model1}" />
+							        </p:selectOneMenu>
+							    </p:outputLabel>
+						    </div>
+					        <div class="ui-sm-12 ui-g-4"> 
+					        	<p:outputLabel for="consultorioID" value="Consultorio" >
+						            <p:selectOneMenu id="consultorioID" value="#{crearTurnosMB.selectedConsultorio}" converter="consultoriosConverter" required="true">
+						                <f:selectItem itemLabel="Seleccionar"/>
+							        	<f:selectItems value="#{crearTurnosMB.listConsultorios}" var="model2" itemLabel="#{model2.label}" itemValue="#{model2}" />
+							        </p:selectOneMenu>
+							    </p:outputLabel>
+					        </div>
+					        <div class="ui-sm-12 ui-g-2" /> 
+					      </div>
+					      
+					      <div class="ui-sm-12 ui-g-12">
+						      <div class="ui-sm-12 ui-g-2"/> 
+						      <div class="ui-sm-12 ui-g-8">
+									<div class="ui-sm-12 ui-g-9" />
+									<div class="ui-sm-12 ui-g-3">
+							     		<p:outputPanel >
+											<p:commandLink disabled="#{empty crearTurnosMB.listAgendaDia}" styleClass="fa fa-plus-circle"  id="nuevoTurno" value=" nuevo período"  onclick="PF('crearTurno').show();"/>
+										</p:outputPanel>	
+									</div>
+						      		<div class="ui-sm-12 ui-g-12">
+							      		<p:dataTable styleClass="tablaTurnos" var="horaTurno" id="idListaHoraTurno" value="#{crearTurnosMB.listAgendaHoraTurno}" emptyMessage="No hay turnos generados">
+										    <p:column headerText="Hr/Min Desde">
+										         <p:outputLabel value="#{horaTurno.labelHoraDesde}"  />
+										    </p:column>
+										     <p:column headerText="Hr/Min Hasta">
+										        <p:outputLabel value="#{horaTurno.labelHoraHasta}"  /> 
+										    </p:column>
+										    <p:column headerText="Intervalo">
+										    	<p:outputLabel value="#{horaTurno.intervalo.label}"  />
+										    </p:column>
+										    <p:column headerText="Acción">
+										        <div class="main-container">
+													<div class="fixer-container">
+													     <p:outputPanel >
+										    					<p:commandButton  id="eliminarTurno" value="eliminar" title="eliminar turno" actionListener="#{crearTurnosMB.eliminarTurno(horaTurno)}" update="idListaHoraTurno, @widgetVar(crearWidgetID)" />
+										                 </p:outputPanel>
+										            </div>
+										         </div>        
+										    </p:column>
+										    
+										</p:dataTable>
+									</div>
+							  </div>
+						      <div class="ui-sm-12 ui-g-2" /> 
+					      </div>
+				
+					       <div class="ui-sm-12 ui-g-12">
+					       	    <div class="ui-sm-12 ui-g-2"/>
+								<div class="ui-sm-12 ui-g-4">
+								 	  <div class="main-container">
+										<div class="fixer-container">
+										     <p:outputPanel >
+											    <p:commandButton id="cancelarCrearTurnoBtn" action="inicio" value="Cancelar" actionListener="#{crearTurnosMB.clearTurno}" styleClass="btn-danger ui-confirmdialog-no pull-left" icon="fa fa-close"  oncomplete="PF('crearTurno').hide()" update=":formCrearTurno" />
+											 </p:outputPanel>
+									    </div>
+									 </div>
+								 </div>
+								<div class="ui-sm-12 ui-g-4">
+								 	  <div class="main-container">
+										<div class="fixer-container">
+										     <p:outputPanel >
+										     <p:commandButton widgetVar="crearWidgetID" styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check"  disabled="#{empty crearTurnosMB.listAgendaHoraTurno || empty crearTurnosMB.listAgendaDia}" id="confirmarCrearTurnoBtn" value="Crear" oncomplete="if (args &amp;&amp; !args.validationFailed) PF('turnosGenerados').show()"  actionListener="#{crearTurnosMB.crearTurnos}" update=":formCrearTurno,:turnosGeneradosForm"  />
+											 </p:outputPanel>
+									    </div>
+									 </div>								 
+								 </div> 
+								<div class="ui-sm-12 ui-g-2"/>
+					     </div>
+	                </div>
+	            </div>
+	       </h:form>
+	   </div>
+	</div>
+	
+	
+	
+	<p:dialog  widgetVar="turnosGenerados" resizable="false" draggable="false" appendTo="@(body)" responsive="true" width="600"  modal="true" >
+	  <h:form id="turnosGeneradosForm">	
+		<p:messages id="messagesConfirmarTurnos" closable="true" showIcon="false"/>
+		 <h3 class="align-center">
+	            Se crearán los siguientes turnos
+	      </h3>
+	      	<p:separator />
+    	<p:dataTable  var="turnoGenerado" id="idTurnoGenerado" value="#{crearTurnosMB.listaAgendaGenerada}" emptyMessage="No hay turnos generados" scrollable="true" scrollHeight="400">
+		    <p:column headerText="Día">
+		         <p:outputLabel value="#{turnoGenerado.labelDia}"  />
+		    </p:column>
+		     <p:column headerText="Hr/Min Desde" style="text-align:center">
+		        <p:outputLabel value="#{turnoGenerado.labelHoraDesde}"  /> 
+		    </p:column>
+		    <p:column headerText="Hr/Min Hasta" style="text-align:center">
+		    	<p:outputLabel value="#{turnoGenerado.labelHoraHasta}"  />
+		    </p:column>
+		    <p:column headerText="Acción">
+		       <div class="main-container">
+				  <div class="fixer-container">
+					<p:outputPanel >
+		    			<p:commandButton  id="eliminarTurnoAgenda" value="eliminar" actionListener="#{crearTurnosMB.eliminarSelectedTurnoFromAgenda(turnoGenerado)}" update="turnosGeneradosForm" title="eliminar turno"  icon="ui-icon-search"/>
+		    		</p:outputPanel>
+		    	  </div>
+		       </div>
+		    </p:column>
+		</p:dataTable>
+    	<p:separator />
+    	
+		<div class="ui-sm-12 ui-g-12">
+			<div class="ui-sm-12 ui-g-6">
+			 	  <div class="main-container">
+					<div class="fixer-container">
+					     <p:outputPanel >
+				            <p:commandButton id="cancelarGener" value="Cancelar" actionListener="#{crearTurnosMB.clearListaAgendaGenerada}" styleClass="btn-danger ui-confirmdialog-no pull-left" icon="fa fa-close"   oncomplete="PF('turnosGenerados').hide()" update=":formCrearTurno:idListaHoraTurno"/>
+						 </p:outputPanel>
+				    </div>
+				 </div>
+			 </div>
+			 <div class="ui-sm-12 ui-g-6">
+			 	  <div class="main-container">
+					<div class="fixer-container">
+					     <p:outputPanel >
+					     	 <p:commandButton  id="confirmaGener" value="Confirmar" disabled="#{empty crearTurnosMB.listaAgendaGenerada}" actionListener="#{crearTurnosMB.confirmarTurnos}" styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check" update="turnosGeneradosForm,formCrearTurno"  oncomplete="if (args &amp;&amp; !args.validationFailed) PF('turnosGenerados').hide()"/>
+						 </p:outputPanel>
+				    </div>
+				 </div>								 
+			 </div> 
+		</div>
+	   </h:form>
+	</p:dialog>
+	
+	
+	 <p:dialog styleClass="box-solid box-primary"  header="NUEVO TURNO" widgetVar="crearTurno" resizable="false" draggable="false" appendTo="@(body)" responsive="true" width="400"  modal="true">
+		<h:form id="periodoForm">    
+			<p:messages id="messagesDialogTurnos"/>
+                <p:growl/>
+                <p:panelGrid columns="4" columnClasses="ui-grid-col-3,ui-grid-col-3,ui-grid-col-3,ui-grid-col-3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+					<p:outputLabel for="hdesde" value="Desde"/>
+					<pe:timePicker id="hdesde" mode="popup" required="true"  value="#{crearTurnosMB.desdeHoraSel}" timeSeparator=" : " showHours="true" startMinutes="0" endMinutes="50" intervalMinutes="5" showCloseButton="true"  
+		                   rows="4" widgetVar="customTimeWidgetDesde" />  
+		            <p:outputLabel for="hhasta" value="Hasta" />
+					<pe:timePicker id="hhasta" mode="popup" required="true" value="#{crearTurnosMB.hastaHoraSel}" timeSeparator=" : " showHours="true" startMinutes="0" endMinutes="50" intervalMinutes="5" showCloseButton="true"  
+					     rows="4" widgetVar="customTimeWidgetHasta" />  
+				</p:panelGrid> 
+				<p:panelGrid columns="2" columnClasses="ui-grid-col-3,ui-grid-col-9" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+					<p:outputLabel for="inter" value="Intervalo" styleClass="labelOverInput" />
+			            <p:selectOneMenu id="inter" value="#{crearTurnosMB.selectedIntervalo}" converter="selectStringValueConverter" >
+					        <f:selectItems value="#{crearTurnosMB.listIntervalos}" var="model2" itemLabel="#{model2.label}" itemValue="#{model2}" />
+					    </p:selectOneMenu>
+					</p:panelGrid> 
+				<p:separator/>
+        	    <p:commandButton id="cancelarBtn" value="Cancelar" styleClass="btn-danger ui-confirmdialog-no pull-left" icon="fa fa-close"   actionListener="#{crearTurnosMB.clearTurno}" oncomplete="PF('crearTurno').hide()" update=""/>
+ 				<p:commandButton id="generarBtn" tabindex="1" value="Generar" actionListener="#{crearTurnosMB.generarTurno}" styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check"   update="messagesDialogTurnos,:formCrearTurno:idListaHoraTurno,@widgetVar(crearWidgetID),@(all) " oncomplete="if (args &amp;&amp; !args.validationFailed) PF('crearTurno').hide()"/>
+		</h:form>		
+	 </p:dialog>  
+	
+	<script type="text/javascript">
+	PrimeFaces.locales['es'] = {
+	    closeText: 'Cerrar',
+	    prevText: 'Anterior',
+	    nextText: 'Siguiente',
+	    monthNames: ['Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+	    monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+	    dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+	    dayNamesShort: ['Dom','Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+	    dayNamesMin: ['D','L','M','M','J','V','S'],
+	    weekHeader: 'Semana',
+	    firstDay: 1,
+	    isRTL: false,
+	    showMonthAfterYear: false,
+	    yearSuffix: '',
+	    timeOnlyTitle: 'Sólo hora',
+	    timeText: 'Tiempo',
+	    hourText: 'Hora',
+	    minuteText: 'Minuto',
+	    secondText: 'Segundo',
+	    currentText: 'Fecha actual',
+	    ampm: false,
+	    month: 'Mes',
+	    week: 'Semana',
+	    day: 'Día',
+	    allDayText : 'Todo el día'
+	};
+ </script>                
+      
+</ui:define>
+</ui:composition>

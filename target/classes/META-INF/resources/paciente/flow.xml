@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	parent="parent-flow" start-state="start">
+	
+	<var name="sessionState"           class="com.uy.clinicasUY.bean.SessionState"/>
+	<var name="messageForm"            class="com.uy.clinicasUY.bean.form.MessageForm"/>
+	<var name="usuarioForm"            class="com.uy.clinicasUY.bean.form.UsuarioForm"/>
+	<var name="clinicasTemplateForm"   class="com.uy.clinicasUY.bean.form.ClinicasTemplateForm"/>
+	<var name="pacienteForm"           class="com.uy.clinicasUY.bean.form.PacienteForm"/>
+	<var name="solicitarCitaForm"      class="com.uy.clinicasUY.bean.form.SolicitarCitaForm"/>
+	<var name="consultarCitasForm"     class="com.uy.clinicasUY.bean.form.ConsultarCitasForm"/>
+	<var name="informesDocumentosForm" class="com.uy.clinicasUY.bean.form.InformesDocumentosForm"/>
+	<var name="pagosForm"              class="com.uy.clinicasUY.bean.form.PagosForm"/>
+	
+	<action-state id="start">
+	     <evaluate expression="pacienteController.preStart(externalContext)" />
+	     <transition on="next" to="inicioPaciente" />
+	     <transition on="invalidUser" to="timeOut" />
+  	</action-state>
+  	
+  	<view-state id="timeOut" model="pacienteForm">
+  		
+	</view-state>
+	
+	<view-state id="inicioPaciente" model="pacienteForm">
+		 <secured attributes="ROLE_PACIENTE" />
+		 <on-entry>
+	      	<evaluate expression="pacienteController.prePaciente()" />
+	     </on-entry>
+	</view-state>
+	 
+	<view-state id="solicitarCita" model="solicitarCitaForm">
+		<secured attributes="ROLE_PACIENTE" />
+	    <on-entry>
+	      <evaluate expression="pacienteController.preSolicitarCita()" />
+	    </on-entry>
+	    <transition on="step2" to="step2SolicitarCita" validate="false" />
+	</view-state>
+	
+	<view-state id="step1SolicitarCita" model="solicitarCitaForm">
+		<secured attributes="ROLE_PACIENTE" />
+	    <on-entry>
+	      <evaluate expression="pacienteController.preSolicitarCitaStep1()" />
+	    </on-entry>
+	    <transition on="step2" to="step2SolicitarCita" validate="false" />
+	</view-state>
+	
+	<view-state id="step2SolicitarCita" model="solicitarCitaForm">
+		<secured attributes="ROLE_PACIENTE" />
+	    <on-entry>
+	      <evaluate expression="pacienteController.preSolicitarCitaStep2()" />
+	    </on-entry>
+	    <transition on="step1" to="step1SolicitarCita" validate="false" />
+	    <transition on="step3" to="step3SolicitarCita" validate="false" />
+	</view-state>
+	
+	<view-state id="step3SolicitarCita" model="solicitarCitaForm">
+		<secured attributes="ROLE_PACIENTE" />
+	    <on-entry>
+	      <evaluate expression="pacienteController.preSolicitarCitaStep3()" />
+	    </on-entry>
+	    <transition on="step2" to="step2SolicitarCita" validate="false" />
+	    <transition on="step4" to="validateTurnoDisponible" validate="false"/>
+	</view-state>
+	
+	<action-state id="validateTurnoDisponible">
+		<evaluate expression="pacienteController.turnoDisponible()" />
+		<transition on="success" to="step4SolicitarCita"/> 
+		<transition on="error" to="step3SolicitarCita"/>
+	</action-state>
+	
+	<view-state id="step4SolicitarCita" model="solicitarCitaForm">
+		<secured attributes="ROLE_PACIENTE" />
+	    <on-entry>
+	      <evaluate expression="pacienteController.preSolicitarCitaStep4()" />
+	    </on-entry>
+	    <transition on="confirmarReservaTurno" to="confirmarReservaTurnoAction"/>
+	    <transition on="timeOut" to="timeOutStep4" history="discard"/>
+	    <transition on="cancelar" to="cancelarStep4" history="discard"/>
+	    <on-exit>
+	    	<evaluate expression="pacienteController.postSolicitarCitaStep4()" />
+	    </on-exit>
+	</view-state>
+	
+	<action-state id="confirmarReservaTurnoAction">
+		<evaluate expression="pacienteController.confirmarReservaTurno()" />
+		<transition on="succes" to="step5SolicitarCita" />
+	</action-state>
+	
+	<action-state id="timeOutStep4">
+		<evaluate expression="pacienteController.onTimeoutStep4()" />
+		<transition on="timeOutTransition" to="timeOutSolicitarCita" />
+	</action-state>
+	
+	<action-state id="cancelarStep4">
+		<evaluate expression="pacienteController.cancelarStep4()" />
+		<transition on="cancelar" to="inicioPaciente" />
+	</action-state>
+	
+	<view-state id="timeOutSolicitarCita"  model="solicitarCitaForm">
+		<secured attributes="ROLE_PACIENTE" />
+	</view-state>
+	
+	<view-state id="step5SolicitarCita" model="solicitarCitaForm">
+		<secured attributes="ROLE_PACIENTE" />
+		 <on-entry>
+	      <evaluate expression="pacienteController.confirmacionCitaFinStep5()"  />
+	    </on-entry>
+	</view-state>
+	 
+	<view-state id="consultarCitas" model="consultarCitasForm">
+		<secured attributes="ROLE_PACIENTE" />
+	    <on-entry>
+	      <evaluate expression="pacienteController.preConsultarCitas()"  />
+	    </on-entry>
+	</view-state>
+	 
+	<view-state id="informesDocumentos" model="informesDocumentosForm">
+		<secured attributes="ROLE_PACIENTE" />
+	    <on-entry>
+	      <evaluate expression="pacienteController.preInformesDocumentos()"  />
+	    </on-entry>
+	</view-state>
+	
+	<view-state id="pagos" model="pagosForm">
+		<secured attributes="ROLE_PACIENTE" />
+	    <on-entry>
+	      <evaluate expression="pacienteController.prePagos()"  />
+	    </on-entry>
+	</view-state>
+
+</flow>

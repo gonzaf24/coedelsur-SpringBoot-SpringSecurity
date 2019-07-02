@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/templates/templateDoctor.xhtml">
+
+    <ui:define name="head-end">
+
+    </ui:define>
+
+    <ui:define name="title">
+    	
+    	<h2 class="align-center">
+            
+        </h2>
+    	
+    	<h2 class="align-center">
+             <span class="hidden-xs">#{sessionMB.doctor.getNombreCompleto()}</span>
+            <br/>
+        </h2>
+    
+        <h2 class="align-center">
+            Bienvenido a la clinica <span class="text-aqua"> <i>COE DEL SUR</i></span> !
+            <br/>
+<!--             <small>En este aplicativo podras realizar todas las tareas de tu clinica.   </small> -->
+        </h2>
+        
+            <p:separator/>
+                            <h:form id="formInicio">
+            
+                  <p:panel styleClass="card">   
+                     <h4 style="text-align: center;">Ultimos 10 logueos en el sistema</h4>
+                     <h:panelGrid columns="1" cellpadding="10"  styleClass="margin10" >
+                     	            <p:commandButton value="rfrescar lista" styleClass="btn-material ui-confirmdialog-yes pull-right btn-teal" icon="fa fa-plus-circle" actionListener="#{sessionMB.refrescarLista}" ajax="true" id="naddaId" update="formInicio"/>
+                     
+	                                <p:commandButton value="registrar prueba" styleClass="btn-material ui-confirmdialog-yes pull-right btn-teal" icon="fa fa-plus-circle" actionListener="#{sessionMB.registrarLogueo()}" ajax="true" id="nadaId" update="formInicio"/>
+                        		<br></br>
+                        		<p:dataTable value="#{sessionMB.logueosList}" var="log" emptyMessage=" No hay regidtros aun." scrollable="true" scrollHeight="300"  >
+										   <p:column headerText="Usuario Dia Hora">
+										         <p:outputLabel value="#{log}"/>
+										   </p:column>
+								</p:dataTable> 
+                     </h:panelGrid>
+                  </p:panel> 
+                  </h:form>
+                  <p:separator/>
+        
+    </ui:define>
+    
+     <ui:define name="body">
+     </ui:define>
+
+
+</ui:composition>

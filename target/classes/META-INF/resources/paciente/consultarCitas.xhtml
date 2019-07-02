@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:c="http://java.sun.com/jsp/jstl/core"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:sec="http://www.springframework.org/security/tags"
+				xmlns:cm="http://java.sun.com/jsf/composite/components"
+				template="/WEB-INF/templates/templatePaciente.xhtml">
+<ui:define name="body">
+
+	<f:metadata>
+    	<f:viewAction action="#{consultarCitasMB.init}"/>
+	</f:metadata>
+
+<div class="box box-primary">
+      <div class="box-header with-border">
+         <h:form id="consultarCitasMB">
+              <div class="ui-g ui-fluid">
+                 <div class="ui-sm-12 ui-g-12">
+				   <h2 class="align-center">
+			         Mi historial de consultas
+			         <br/>
+			       </h2>
+			       <div class="ui-sm-12 ui-g-1"/>
+			       <div class="ui-sm-12 ui-g-10">
+				        <p:dataTable id="basicDT" var="consulta" value="#{consultarCitasMB.listMisConsultas}" emptyMessage="No hay citas reservadas aún.">
+						        
+					        <p:column headerText="Día">
+					            <h:outputText value="#{consulta.agendaDia.getLabel()}" />
+					        </p:column>
+					        <p:column headerText="Turno">
+					            <h:outputText value="#{consulta.agendaTurno.getLabel()}" />
+					        </p:column>
+					        <p:column headerText="Tipo">
+					            <h:outputText value="#{consulta.tipoConsulta.getLabel()}" />
+					        </p:column>
+					        <p:column headerText="Doctor">
+					            <h:outputText value="#{consulta.doctor.getNombreCompleto()}" />
+					        </p:column>
+					        <p:column headerText="Especialidad">
+					            <h:outputText value="#{consulta.especialidad.getLabel()}" />
+					        </p:column>
+					        <p:column style="width:55px;text-align: center">
+					             <p:commandLink styleClass="fa fa-search"  update="consultarCitasMB,dialogInfoConsultaForm" actionListener="#{consultarCitasMB.setSelectedConsulta(consulta)}" oncomplete="PF('pacienteDialog').show()" title="Ver" />
+					        </p:column>
+				       </p:dataTable>	
+			       </div>
+				   <div class="ui-sm-12 ui-g-1"/>		 
+			    </div>
+		    </div>
+	   </h:form>
+    </div>
+</div>						      
+
+	<p:dialog header="Información de la consulta" widgetVar="pacienteDialog" modal="true" >
+     <h:form id="dialogInfoConsultaForm">
+    	<div class="ui-sm-12 ui-g-12">	 
+    		   <div class="main-container">
+ 				<div class="fixer-container">    
+			        <p:outputPanel id="infoConsultaDetail" >
+			            <p:panelGrid  columns="2" rendered="#{not empty consultarCitasMB.selectedConsulta}" >
+			            		<h:outputLabel value="Nombre" />
+				                <h:outputText value="#{consultarCitasMB.paciente.getNombreCompleto()}" />
+			                    <h:outputLabel value="Día" />
+				                <h:outputText value="#{consultarCitasMB.selectedConsulta.agendaDia.getLabel()}" />
+				 				<h:outputLabel value="Turno" />
+				                <h:outputText value="#{consultarCitasMB.selectedConsulta.agendaTurno.getLabel()}" />
+				                <h:outputLabel value="Tipo consulta" />
+				                <h:outputText value="#{consultarCitasMB.selectedConsulta.tipoConsulta.getLabel()}"/>
+				 				<h:outputLabel value="Doctor/a" />
+				                <h:outputText value="#{consultarCitasMB.selectedConsulta.doctor.getNombreCompleto()}"/>
+				 				<h:outputLabel value="Especialidad" />
+				                <h:outputText value="#{consultarCitasMB.selectedConsulta.especialidad.getLabel()}" />
+				                <h:outputLabel value="Consultorio" />
+				                <h:outputText value="#{consultarCitasMB.selectedConsulta.consultorio.getLabel()}" />
+				                <h:outputLabel value="Clinica" />
+				                <h:outputText value="#{msg['general.clinica.nombre']}" />
+				                <h:outputLabel value="Dirección" />
+				                <h:outputText value="#{msg['general.clinica.direccion']}" />
+				                <h:outputLabel value="Pago" />
+				                <h:outputText value="PENDIENTE" />
+			            </p:panelGrid>
+			        </p:outputPanel>
+		        </div>
+		      </div>  
+        </div>
+        <div class="ui-sm-12 ui-g-12">    
+    	    <div class="main-container">
+ 				<div class="fixer-container">   
+			         <p:commandButton value="Pagar" type="button"  styleClass="buttonGeneralNegro"/>
+			         <p:commandButton value="Imprimir" type="button"  styleClass="buttonGeneralNegro">
+					    <p:printer target="infoConsultaDetail" />
+					 </p:commandButton>
+			         <p:commandButton value="Cancelar cita" type="button" styleClass="buttonGeneralNegro"/>
+			         <p:commandButton value="Cambiar día" type="button"  styleClass="buttonGeneralNegro"/>
+		        </div>
+		    </div>     
+	    </div>     
+	 </h:form>
+  </p:dialog>
+
+							  
+</ui:define>
+</ui:composition>

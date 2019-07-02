@@ -1,0 +1,1557 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:c="http://java.sun.com/jsp/jstl/core"
+				xmlns:p="http://primefaces.org/ui"
+				template="/WEB-INF/templates/templateDoctor.xhtml">
+<ui:define name="body" >
+
+<f:metadata>
+    <f:viewAction action="#{historiaClinicaMB.init}"/>
+</f:metadata>
+
+	<div class="box box-primary">
+            <div class="box-header with-border">
+                <h:form id="formHistoriaClinica">
+                   
+				  <h2 class="align-center">
+			           HISTORIA CLINICA
+			            <br/>
+			      </h2>
+                    <p:separator/>
+                     <p:panel styleClass="card" style="text-align:center"> 
+                       		<h:panelGrid columns="2" cellpadding="10" layout="grid" width="100%">
+                       			<h3 style="color: gray;"> #{fichaPacienteMB.paciente.getNombreCompleto()}</h3>
+								<h3 style="color: gray;">#{fichaPacienteMB.paciente.getFechaNacimientoLabel()}</h3>
+							</h:panelGrid>
+                     </p:panel>
+                    <br></br>
+                     <p:separator/>
+                    <p:panel styleClass="card"> 
+                     <h4 style="text-align: center;">ANTECEDENTES</h4>
+                     
+                    <div class="ui-sm-12 ui-g-11" />
+					<div class="ui-sm-12 ui-g-1">
+						<p:outputPanel >
+	                        <p:commandLink value=" nuevo" styleClass="fa fa-plus-circle" actionListener="#{historiaClinicaMB.nuevoAntecedente}" onclick="PF('nuevoAntecedentePacienteWV').show();"  ajax="true" id="nuevoAntecedente" update="formNuevoAntecedentePaciente"/>
+						</p:outputPanel>	
+					</div>
+                     
+                     <h:panelGrid columns="1" cellpadding="10"  styleClass="margin10" >
+                            	<br></br>
+                           		<p:dataTable value="#{historiaClinicaMB.antecedentesList}" var="ant" emptyMessage=" No hay antecedentes aun." scrollable="true" scrollHeight="300" >
+										   <p:column headerText="Fecha" style="text-align:center">
+										         <p:outputLabel value="#{ant.getFechaCreacionLabel()}"/>
+										   </p:column>
+										   <p:column headerText="Personal" >
+										    <p:panelGrid rendered="#{ant.personal != null}" columns="3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">  
+							               			<p:commandLink title="ver" styleClass="fa fa-eye " onsuccess="PF('verAntPersonalWV').show();return false" actionListener="#{historiaClinicaMB.selectAntecedente(ant)}" update="formVerAntecedentePersonal"/>
+											        <p:commandLink title="editar" styleClass="fa fa-pencil"  onsuccess="PF('editarAntecedentePersonalWV').show();return false" actionListener="#{historiaClinicaMB.selectAntecedente(ant)}" update="editarAnetcedentePersonal"/>
+											        <p:commandLink title="eliminar" styleClass="fa fa-trash"  actionListener="#{historiaClinicaMB.eliminarAntecedente('personal',ant)}" update="formHistoriaClinica">
+											        	<p:confirm header="Alerta!" message="¿ quiere eliminar personal ?" icon="ui-icon-alert"/>
+											        </p:commandLink>
+											 </p:panelGrid> 
+											 <p:panelGrid rendered="#{ant.personal == null}" columns="3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">    
+											   		 <p:commandLink  title="no hay antecedente personal" styleClass="fa fa-info-circle redCross"/>
+											   		 <p:commandLink  title="nuevo" styleClass="fa fa-plus-circle greenCheck" onsuccess="PF('nuevoAgregarAntecedentePersonalWV').show();return false" actionListener="#{historiaClinicaMB.selectAntecedente(ant)}" update="crearAgregarAnetcedentePersonal" >
+											        </p:commandLink>
+										    </p:panelGrid> 
+										   </p:column>
+										   <p:column headerText="Familiar">
+											   <p:panelGrid rendered="#{ant.familiar != null}" columns="3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">  
+							               			<p:commandLink  title="ver" styleClass="fa fa-eye" onsuccess="PF('verAntFamiliarWV').show();return false" actionListener="#{historiaClinicaMB.selectAntecedente(ant)}" update="formVerAntecedenteFamiliar">
+											        </p:commandLink>
+											        <p:commandLink  title="editar" styleClass="fa fa-pencil"  onsuccess="PF('editarAntecedenteFamiliarWV').show();return false" actionListener="#{historiaClinicaMB.selectAntecedente(ant)}" update="editarAnetcedenteFamiliar">
+											        </p:commandLink>
+											        <p:commandLink  title="eliminar" styleClass="fa fa-trash" actionListener="#{historiaClinicaMB.eliminarAntecedente('familiar',ant)}" update="formHistoriaClinica">
+											        	<p:confirm header="Alerta!" message="¿ quiere eliminar familiar ?" icon="ui-icon-alert"/>
+											        </p:commandLink>
+											   </p:panelGrid> 
+											   <p:panelGrid rendered="#{ant.familiar == null}" columns="3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">    
+											   		 <p:commandLink  title="no hay antecedente familiar" styleClass="fa fa-info-circle redCross"/>
+											   		 <p:commandLink  title="nuevo" styleClass="fa fa-plus-circle greenCheck" onsuccess="PF('nuevoAgregarAntecedenteFamiliarWV').show();return false" actionListener="#{historiaClinicaMB.selectAntecedente(ant)}" update="crearAgergarAnetcedenteFamiliar" >
+											        </p:commandLink>
+										       </p:panelGrid> 
+										   </p:column>
+										   <p:column headerText="Medicamento">
+										    	 <p:panelGrid rendered="#{ant.medicamento != null}" columns="3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">  
+							               			<p:commandLink  title="ver" styleClass="fa fa-eye" onsuccess="PF('verAntMedicamentoWV').show();return false" actionListener="#{historiaClinicaMB.selectAntecedente(ant)}" update="formVerAntecedenteMedicamento">
+											        </p:commandLink>
+											        <p:commandLink  title="editar" styleClass="fa fa-pencil"  onsuccess="PF('editarMedicamentoWV').show();return false" actionListener="#{historiaClinicaMB.selectAntecedente(ant)}" update="editarMedicamento">
+											        </p:commandLink>
+											        <p:commandLink  title="eliminar" styleClass="fa fa-trash" actionListener="#{historiaClinicaMB.eliminarAntecedente('medicamento',ant)}" update="formHistoriaClinica" >
+											        	<p:confirm header="Alerta!" message="¿ quiere eliminar medicamento ?" icon="ui-icon-alert"/>
+											        </p:commandLink>
+											   </p:panelGrid> 
+											   <p:panelGrid rendered="#{ant.medicamento == null}" columns="3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">    
+											   		 <p:commandLink  title="no hay antecedente medicamento" styleClass="fa fa-info-circle redCross"/>
+											   		 <p:commandLink  title="nuevo" styleClass="fa fa-plus-circle greenCheck"   onsuccess="PF('nuevoAgregarMedicamentoWV').show();return false" actionListener="#{historiaClinicaMB.selectAntecedente(ant)}" update="crearAgregarMedicamento">
+											        </p:commandLink>
+										       </p:panelGrid> 
+										   </p:column>
+										   <p:column headerText="Acción" >
+										     <p:panelGrid  columns="2" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">  
+										   		<p:commandButton  title="ver antecedente" value="" styleClass="fa fa-eye fa-5x blueIcon" actionListener="#{historiaClinicaMB.selectAntecedente(ant)}" onsuccess="PF('verAntWV').show();return false" update="formAntecedente"/>
+										   		<p:commandButton  title="eliminar antecedente" value="" styleClass="fa fa-trash fa-5x blueIcon" actionListener="#{historiaClinicaMB.eliminarAntecedente('antecedente',ant)}" update="formHistoriaClinica">
+											        	<p:confirm header="Alerta!" message="¿ quiere eliminar antecedente ?" icon="ui-icon-alert"/>
+											     </p:commandButton>
+											 </p:panelGrid>
+										   </p:column>
+								</p:dataTable>
+                     </h:panelGrid>
+                   </p:panel>  
+                     <p:separator/>
+                  <p:panel styleClass="card">   
+                     <h4 style="text-align: center;">CONSULTAS</h4>
+                     
+               		<div class="ui-sm-12 ui-g-11" />
+					<div class="ui-sm-12 ui-g-1">
+						<p:outputPanel >
+                        	<p:commandLink  styleClass="fa fa-plus-circle"  onclick="PF('nuevaConsultaActualWV').show();return false"    id="nuevoConsulta"  value=" nuevo" update="crearConsultaActual"/>
+						</p:outputPanel>	
+					</div>
+					
+                     <h:panelGrid columns="1" cellpadding="10"  styleClass="margin10">
+                        		<br></br>
+                        		<p:dataTable value="#{historiaClinicaMB.consultasMedicasList}" var="conMed" emptyMessage=" No hay consultas aun." scrollable="true" scrollHeight="300"  >
+										   <p:column headerText="Fecha" style="text-align:center">
+										         <p:outputLabel value="#{conMed.getFechaCreacionLabel()}"/>
+										   </p:column>
+										   <p:column headerText="Motivo" style="text-align:center">
+										     <p:outputLabel value="#{conMed.motivoConsulta}"/>
+										   </p:column>
+										   <p:column headerText="Diagnóstico" style="text-align:center">
+										     <p:outputLabel value="#{conMed.diagnostico}"/>
+										   </p:column>
+										   <p:column headerText="Acción" >
+										     <p:panelGrid  columns="3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">  
+										   		<p:commandButton  title="ver consulta" value="" styleClass="fa fa-eye fa-5x blueIcon" actionListener="#{historiaClinicaMB.selectConsultaMedica(conMed)}" onsuccess="PF('verConsultaMedicaWV').show();return false" update="formVerConsMedica"/>
+										   		<p:commandButton  title="editar consulta" value="" styleClass="fa fa-pencil fa-5x blueIcon"  onsuccess="PF('editarConsultaActualWV').show();return false" actionListener="#{historiaClinicaMB.selectConsultaMedica(conMed)}" update="editarConsultaActual"/>
+										   		<p:commandButton  title="eliminar consulta" value="" styleClass="fa fa-trash fa-5x blueIcon"  actionListener="#{historiaClinicaMB.eliminarConsultaMedica(conMed)}" update="formHistoriaClinica">
+											        	<p:confirm header="Alerta!" message="¿ quiere eliminar la consulta ?" icon="ui-icon-alert"/>
+											     </p:commandButton>
+											 </p:panelGrid>
+										   </p:column>
+								</p:dataTable>
+                     </h:panelGrid>
+                  </p:panel>   
+                     <p:separator/>
+                  <p:panel styleClass="card">   
+                     <h4 style="text-align: center;">PROCEDIMIENTOS DIAGNOSTICO Y/O TERAPEUTICO</h4>
+                     
+                    <div class="ui-sm-12 ui-g-11" />
+					<div class="ui-sm-12 ui-g-1">
+						<p:outputPanel >
+                        <p:commandLink  styleClass="fa fa-plus-circle"  icon="fa fa-plus-circle" onclick="PF('nuevoDiagnosticoPaciente').show();return false"    id="nuevoPersonal"  value=" nuevo" update="@(form)"/>
+						</p:outputPanel>	
+					</div>
+                     
+                     <h:panelGrid columns="1" cellpadding="10"  styleClass="margin10" >
+                        		<br></br>
+                           		<p:dataTable widgetVar="diagnosticoPersonalDataTable"  var="bPaciente"   emptyMessage=" No hay procedimientos agregados a la lista aun." scrollable="true" scrollHeight="300" >
+										   <p:column headerText="Procedimiento">
+										         <p:outputLabel value="#{bPaciente.nombre}"/>
+										   </p:column>
+										   <p:column headerText="F. Desde" >
+										         <p:outputLabel value="#{bPaciente.apellidos}"/>
+										   </p:column>
+										   <p:column headerText="F. Hasta">
+										         <p:outputLabel value="#{bPaciente.cedulaIdentidad}"/>
+										   </p:column>
+										   <p:column headerText="Origen">
+										         <p:outputLabel value="#{bPaciente.fechaNacimiento}"/>
+										   </p:column>
+										    <p:column headerText="Observaciones">
+										         <p:outputLabel value="#{bPaciente.fechaNacimiento}"/>
+										   </p:column>
+										   <p:column headerText="Acción" >
+											   <div class="main-container">
+								                    <div class="fixer-container">
+												    	<p:commandButton icon="fa fa-search" value="ver" action="verPaciente" title="acceder a la ficha del paciente" class="btn-block btn btn-default">
+												    	    <f:setPropertyActionListener value="#{bPaciente.id}" target="#{fichaPacienteMB.selectedIdPaciente}" />
+												    	</p:commandButton>
+												    </div>
+											    </div>
+										   </p:column>
+								</p:dataTable> 
+                     </h:panelGrid>
+                  </p:panel> 
+                  
+                  <p:separator/>
+                  
+                  <p:panel styleClass="card">   
+                     <h4 style="text-align: center;">DOCUMENTOS</h4>
+                     
+               		 <div class="ui-sm-12 ui-g-11" />
+					 <div class="ui-sm-12 ui-g-1">
+						<p:outputPanel >
+                        <p:commandLink  styleClass="fa fa-plus-circle" id="nuevoDoc"  value=" nuevo" icon="fa fa-plus-circle" onclick="PF('nuevoDocPaciente').show()" ajax="true" actionListener="#{historiaClinicaMB.nuevoDocumento}" update="formDocPaciente"/>
+						</p:outputPanel>	
+					 </div>
+                     <h:panelGrid columns="1" cellpadding="10"  styleClass="margin10" >
+			              		<br></br>
+			                   	<p:dataTable widgetVar="consultaActualDataTable1"  value="#{historiaClinicaMB.listMisFiles}" id="basicDT" var="miFile"  emptyMessage="No hay documentos agregados aún."  scrollable="true" scrollHeight="300"  >
+			                   		<p:column headerText="Fecha" style="text-align:center">
+							         <p:outputLabel value="#{miFile.getFechaCreacionLabel()}"/>
+							        </p:column>
+			                   		<p:column headerText="Descripción" style="text-align:center">
+			          				   <h:outputText value="#{miFile.getDescripcion()}" />
+						            </p:column>
+							        <p:column headerText="Tipo documento" style="text-align:center">
+							            <h:outputText value="#{miFile.getTipoFile()}" />
+							        </p:column>
+							        <p:column headerText="Acción" style="text-align:center">
+									 <p:panelGrid columns="2" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">  
+									    <p:commandButton title="descargar" value="" actionListener="#{historiaClinicaMB.obtenerArchivo(miFile.id)}" onclick="PrimeFaces.monitorDownload(start, stop);" styleClass="fa fa-download blueIcon" update="formHistoriaClinica">
+									        <p:fileDownload value="#{historiaClinicaMB.archivo}" />
+									    </p:commandButton>
+								        <p:commandButton  title="eliminar" value="" styleClass="fa fa-trash blueIcon" actionListener="#{historiaClinicaMB.eliminarDocumento(miFile)}" update="formHistoriaClinica" >
+								        	<p:confirm header="Alerta!" message="¿ quiere eliminar el documento ?" icon="ui-icon-alert"/>
+								        </p:commandButton>
+									 </p:panelGrid>
+							        </p:column>
+			                   	</p:dataTable>
+                     </h:panelGrid>
+                  </p:panel>  
+                     <p:separator />
+					 <p:panelGrid columns="2" cellpadding="5" layout="grid" styleClass="no-border ui-fluid margin10" >
+		        	     <p:commandButton id="cancelarBtn" value="ATRAS" action="verPaciente" styleClass="btn-danger ui-confirmdialog-no pull-left" icon="fa fa-arrow-left "/>
+		        	     <p:commandButton id="imprimirID" value="IMPRIMIR" update="formHistoriaClinica,imprimirHCLinicaForm" actionListener="#{historiaClinicaMB.nuevoImprimir}" onsuccess="PF('imprimirHClinicaWV').show();return false" styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-print" />
+					 </p:panelGrid>
+			</h:form>
+		</div>
+	  </div> 
+	
+	  <p:dialog header="IMPRIMIR HISTORIA CLINICA" widgetVar="imprimirHClinicaWV" resizable="false" draggable="false" appendTo="@(body)" width="600" responsive="true"  modal="true" styleClass="box-solid box-primary" >
+		<h:form id="imprimirHCLinicaForm">    
+			<p:messages id="messagesDialogImprimirHCLinica" closable="true"/>
+                <h4 style="text-align: center;">ANTECEDENTES</h4>
+                <p:dataTable value="#{historiaClinicaMB.antecedentesList}" var="ant" emptyMessage=" No hay antecedentes aun." scrollable="true" scrollHeight="300"  resizableColumns="true" >
+					   <p:column headerText="Fecha" style="text-align:center">
+					         <p:outputLabel value="#{ant.getFechaCreacionLabel()}"/>
+					   </p:column>
+					   <p:column headerText="Personal" >
+					    <p:panelGrid rendered="#{ant.personal != null}" columns="2" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">  
+		               			<p:commandLink title="ver" styleClass="fa fa-eye " onsuccess="PF('verAntPersonalWV').show();return false" actionListener="#{historiaClinicaMB.selectAntecedente(ant)}" update="formVerAntecedentePersonal"/>
+		               			<p:selectBooleanCheckbox title="imprimir" styleClass="no-border ui-fluid" value="#{ant.personal.imprimir}" rendered="#{!ant.imprimir}"  valueChangeListener="#{historiaClinicaMB.selectCheckImprimir(ant,'personal')}">
+					   		 <p:ajax update="imprimirHCLinicaForm"> </p:ajax>
+					   		</p:selectBooleanCheckbox>
+						 </p:panelGrid> 
+						 <p:panelGrid rendered="#{ant.personal == null}" columns="1" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">    
+						   		 <p:commandLink  title="no hay antecedente personal" styleClass="fa fa-info-circle redCross"/>
+					    </p:panelGrid> 
+					   </p:column>
+					   <p:column headerText="Familiar">
+						   <p:panelGrid rendered="#{ant.familiar != null}" columns="2" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">  
+		               			<p:commandLink  title="ver" styleClass="fa fa-eye" onsuccess="PF('verAntFamiliarWV').show();return false" actionListener="#{historiaClinicaMB.selectAntecedente(ant)}" update="formVerAntecedenteFamiliar"/>						       
+						   		 <p:selectBooleanCheckbox title="imprimir" styleClass="no-border ui-fluid" value="#{ant.familiar.imprimir}" rendered="#{!ant.imprimir}"  valueChangeListener="#{historiaClinicaMB.selectCheckImprimir(ant,'familiar')}">
+					   		 <p:ajax update="imprimirHCLinicaForm"> </p:ajax>
+					   		</p:selectBooleanCheckbox>
+						   </p:panelGrid> 
+						   <p:panelGrid rendered="#{ant.familiar == null}" columns="1" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">    
+						   		 <p:commandLink  title="no hay antecedente familiar" styleClass="fa fa-info-circle redCross"/>
+					       </p:panelGrid> 
+					   </p:column>
+					   <p:column headerText="Medicamento">
+					    	 <p:panelGrid rendered="#{ant.medicamento != null}" columns="2" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">  
+		               			<p:commandLink  title="ver" styleClass="fa fa-eye" onsuccess="PF('verAntMedicamentoWV').show();return false" actionListener="#{historiaClinicaMB.selectAntecedente(ant)}" update="formVerAntecedenteMedicamento"/>
+						       <p:selectBooleanCheckbox  title="imprimir" styleClass="no-border ui-fluid" value="#{ant.medicamento.imprimir}" rendered="#{!ant.imprimir}" valueChangeListener="#{historiaClinicaMB.selectCheckImprimir(ant,'medicamento')}">
+					   		 <p:ajax update="imprimirHCLinicaForm"> </p:ajax>
+					   		</p:selectBooleanCheckbox>
+						   </p:panelGrid> 
+						   <p:panelGrid rendered="#{ant.medicamento == null}" columns="1" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">    
+						   		 <p:commandLink  title="no hay antecedente medicamento" styleClass="fa fa-info-circle redCross"/>
+					       </p:panelGrid> 
+					   </p:column>
+					   <p:column headerText="Ver/Impr" >
+					     <p:panelGrid  columns="2" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">  
+					   		<p:commandLink  title="ver antecedente" value="" styleClass="fa fa-eye fa-5x blueIcon" actionListener="#{historiaClinicaMB.selectAntecedente(ant)}" onsuccess="PF('verAntWV').show();return false" update="formAntecedente"/>
+					   		<p:selectBooleanCheckbox title="imprimir" styleClass="no-border ui-fluid" value="#{ant.imprimir}"  valueChangeListener="#{historiaClinicaMB.selectCheckImprimir(ant,'todos')}">
+					   		 <p:ajax update="imprimirHCLinicaForm"> </p:ajax>
+					   		</p:selectBooleanCheckbox>
+						 </p:panelGrid>
+					   </p:column>
+			    </p:dataTable>
+                <h4 style="text-align: center;">CONSULTAS</h4>
+                <p:dataTable value="#{historiaClinicaMB.consultasMedicasList}" var="conMed" emptyMessage=" No hay consultas para imprimir." scrollable="true" scrollHeight="300"  resizableColumns="true" >
+						   <p:column headerText="Fecha" style="text-align:center">
+						         <p:outputLabel value="#{conMed.getFechaCreacionLabel()}"/>
+						   </p:column>
+						   <p:column headerText="Motivo" style="text-align:center">
+						     <p:outputLabel value="#{conMed.motivoConsulta}"/>
+						   </p:column>
+						   <p:column headerText="Ver/Impr" >
+						     <p:panelGrid  columns="2" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">  
+						   		<p:commandLink  title="ver consulta" value="" styleClass="fa fa-eye fa-5x blueIcon" actionListener="#{historiaClinicaMB.selectConsultaMedica(conMed)}" onsuccess="PF('verConsultaMedicaWV').show();return false" update="formVerConsMedica"/>
+							 	<p:selectBooleanCheckbox title="imprimir" styleClass="no-border ui-fluid" value="#{conMed.imprimir}" valueChangeListener="#{historiaClinicaMB.selectCheckImprimir(conMed)}">
+					   			 <p:ajax update="imprimirHCLinicaForm"> </p:ajax>
+					   			</p:selectBooleanCheckbox>
+							 </p:panelGrid>
+							 
+						   </p:column>
+				</p:dataTable>
+				<p:separator/>
+        	    <p:commandButton id="cancelarBtn" update="imprimirHCLinicaForm" value="Cancelar"  styleClass="btn-danger ui-confirmdialog-no pull-left" actionListener="#{historiaClinicaMB.cancelarDocumento}" icon="fa fa-close"   oncomplete="PF('imprimirHClinicaWV').hide()"/>
+				<p:commandButton id="imprimirID" value="imprimir" update="imprimirHCLinicaForm" actionListener="#{historiaClinicaMB.imprimir}" onclick="PF('imprimirHClinicaWV').hide();PrimeFaces.monitorDownload(start, stop);" styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-print" >
+	        	  	<p:fileDownload value="#{historiaClinicaMB.archivo}"  />
+	        	</p:commandButton>
+		 </h:form>		
+	   </p:dialog> 
+	 
+	  <p:dialog header="ADJUNTAR DOCUMENTO" widgetVar="nuevoDocPaciente" resizable="false" draggable="false" appendTo="@(body)" responsive="true"  modal="true" styleClass="box-solid box-primary" >
+		<h:form id="formDocPaciente">    
+			<p:messages id="messagesDialogDocumento" closable="true"/>
+                <p:growl/>
+                <p:panelGrid id="editPacienteGrid" columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel  value="Foto del doctor: "/>
+			        <p:fileUpload id="uploadImageDocID" auto="true" fileUploadListener="#{historiaClinicaMB.uploadDocPaciente}" styleClass="txtInputForm"
+				        fileLimitMessage="Esta permitido un solo archivo." widgetVar="imagenFlyerAviso"
+				        dragDropSupport="false" multiple="false"  update="messagesDialogDocumento,formDocPaciente"
+						label="Seleccionar archivo ">
+				        <p:spacer width="20" height="5" />${historiaClinicaMB.nombreArchivoFotoDoc}
+			        </p:fileUpload>
+			        <p:outputLabel value="Descripción  " for="descID" />	
+					<p:inputText id="descID" autocomplete="false" required="true" value="#{historiaClinicaMB.pacienteFile.descripcion}" requiredMessage="Descripción : es requerido"/>
+			        <p:outputLabel value="Tipo documento  " for="tipoDocID"/>
+					<p:selectOneMenu id="tipoDocID"  value="#{historiaClinicaMB.pacienteFile.tipoFile}" required="true" requiredMessage="Tipo documento : es requerido">
+                        <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                        <f:selectItem itemLabel="JPG" itemValue="JPG"/>
+                        <f:selectItem itemLabel="PNG" itemValue="PNG"/>
+                        <f:selectItem itemLabel="XLS" itemValue="XLS"/>
+                        <f:selectItem itemLabel="DOC" itemValue="DOC"/>
+                        <f:selectItem itemLabel="PDF" itemValue="PDF"/>
+                    </p:selectOneMenu>	
+				</p:panelGrid> 
+				<p:separator/>
+        	    <p:commandButton id="cancelarBtn" update="formHistoriaClinica" value="Cancelar"  styleClass="btn-danger ui-confirmdialog-no pull-left" actionListener="#{historiaClinicaMB.cancelarDocumento}" icon="fa fa-close"   oncomplete="PF('nuevoDocPaciente').hide()"/>
+        	    <p:commandButton id="nuevoDocumento" value="Confirmar" update="formDocPaciente,formHistoriaClinica" actionListener="#{historiaClinicaMB.confirmarNuevoDocumentoPaciente}" styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check" ajax="true"  oncomplete="if (args &amp;&amp; !args.validationFailed) PF('nuevoDocPaciente').hide()"/>
+		</h:form>		
+	 </p:dialog> 
+	
+	<p:dialog header="Antecedente Personal" widgetVar="verAntPersonalWV" width="500" resizable="false" draggable="false" appendTo="@(body)" responsive="true" modal="true" >
+       <h:form id="formVerAntecedentePersonal">
+        	<p:panel styleClass="card">
+                <p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Antecedente: " styleClass="cabezal" />	
+					<p:outputLabel value="#{historiaClinicaMB.selectedAntecedente.personal.antecedente}" styleClass="noCabezal" />
+                 </p:panelGrid>
+                 <p:panelGrid  columns="4" columnClasses="ui-grid-col-3,ui-grid-col-3,ui-grid-col-3,ui-grid-col-3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Desde: " styleClass="cabezal"/>
+                    <p:outputLabel value="#{historiaClinicaMB.selectedAntecedente.personal.fechaDesde}" styleClass="noCabezal" />
+                	<p:outputLabel value="Hasta: " styleClass="cabezal"/>
+                    <p:outputLabel value="#{historiaClinicaMB.selectedAntecedente.personal.fechaHasta}" styleClass="noCabezal"  />
+					<p:outputLabel value="No imprimir: " styleClass="cabezal" />
+					<p:outputLabel id="noImprimirID" styleClass="cabezal"/>
+					<p:outputLabel value="Origen: " styleClass="cabezal" />	
+					<p:outputLabel value="#{historiaClinicaMB.selectedAntecedente.personal.origen}" styleClass="noCabezal" />
+                 </p:panelGrid>
+                 <p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Observaciones: " styleClass="cabezal"/>	
+					<p:outputLabel value="#{historiaClinicaMB.selectedAntecedente.personal.observaciones}" styleClass="noCabezal" />
+                 </p:panelGrid>
+				<p:separator/>
+				<p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+		        	  <p:commandButton styleClass="btn-danger ui-confirmdialog-no"    icon="fa fa-close"  id="cancelarAntPersonal" value="Cerrar" oncomplete="PF('verAntPersonalWV').hide()"/>
+				</p:panelGrid>	
+          </p:panel>
+      </h:form>    
+    </p:dialog>
+    
+    <p:dialog header="ANTECEDENTE FAMILIAR" widgetVar="verAntFamiliarWV" width="500" resizable="false" draggable="false" appendTo="@(body)" responsive="true" modal="true" >
+       <h:form id="formVerAntecedenteFamiliar"> 
+        	<p:panel styleClass="card">
+        	
+                <p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Antecedente: " styleClass="cabezal"/>	
+					<p:outputLabel value="#{historiaClinicaMB.selectedAntecedente.familiar.antecedente}" styleClass="noCabezal" />
+                 </p:panelGrid>
+                 <p:panelGrid  columns="4" columnClasses="ui-grid-col-3,ui-grid-col-3,ui-grid-col-3,ui-grid-col-3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Desde: " styleClass="cabezal"/>
+                    <p:outputLabel value="#{historiaClinicaMB.selectedAntecedente.familiar.fechaDesde}" styleClass="noCabezal" />
+                	<p:outputLabel value="Hasta: " styleClass="cabezal"/>
+                    <p:outputLabel value="#{historiaClinicaMB.selectedAntecedente.familiar.fechaHasta}" styleClass="noCabezal" />
+					<p:outputLabel value="No imprimir: " styleClass="cabezal"/>
+					<p:outputLabel value="si / no"/>
+					<p:outputLabel value="Origen: " styleClass="cabezal"/>	
+					<p:outputLabel value="#{historiaClinicaMB.selectedAntecedente.familiar.origen}" styleClass="noCabezal" />
+                 </p:panelGrid>
+                 <p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Observaciones: " styleClass="cabezal"/>	
+					<p:outputLabel value="#{historiaClinicaMB.selectedAntecedente.familiar.observaciones}" styleClass="noCabezal" />
+                 </p:panelGrid>
+				<p:separator/>
+				<p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+		        	  <p:commandButton styleClass="btn-danger ui-confirmdialog-no"    icon="fa fa-close"  id="cancelarAntPersonal" value="Cerrar" oncomplete="PF('verAntFamiliarWV').hide()"/>
+				</p:panelGrid>	
+          </p:panel>
+       </h:form>   
+    </p:dialog>
+    
+    <p:dialog header="ANTECEDENTE MEDICAMENTO" widgetVar="verAntMedicamentoWV" width="500" resizable="false" draggable="false" appendTo="@(body)" responsive="true" modal="true" >
+       <h:form id="formVerAntecedenteMedicamento"> 
+        	<p:panel styleClass="card">
+                <p:panelGrid  columns="1" columnClasses="ui-grid-col-3,ui-grid-col-9" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Medicamento:" styleClass="cabezal"/>	
+					<p:outputLabel value="#{historiaClinicaMB.selectedAntecedente.medicamento.medicamento}" styleClass="noCabezal" />
+                 </p:panelGrid>
+                 <p:panelGrid  columns="3" columnClasses="ui-grid-col-3,ui-grid-col-4,ui-grid-col-5" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+					 <p:outputLabel  value="Dosis: " styleClass="cabezal"/>
+                     <p:outputPanel  />
+					 <p:outputLabel  /> 
+				     <p:outputLabel value="Frecuencia: " styleClass="cabezal"/>	
+					 <p:outputLabel  />  
+	                 <p:outputLabel  /> 
+                 </p:panelGrid>
+                 <p:panelGrid  columns="4" columnClasses="ui-grid-col-3,ui-grid-col-3,ui-grid-col-3,ui-grid-col-3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Desde: " styleClass="cabezal"/>
+                    <p:outputLabel value="#{historiaClinicaMB.selectedAntecedente.medicamento.fechaDesde}" styleClass="noCabezal" />
+                	<p:outputLabel value="Hasta: " styleClass="cabezal"/>
+                    <p:outputLabel value="#{historiaClinicaMB.selectedAntecedente.medicamento.fechaHasta}" styleClass="noCabezal" />
+                 </p:panelGrid>
+                 <p:panelGrid  columns="2" columnClasses="ui-grid-col-3,ui-grid-col-9" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Origen: " styleClass="cabezal"/>	
+					<p:outputLabel value="#{historiaClinicaMB.selectedAntecedente.medicamento.origen}" styleClass="noCabezal" />   
+                 </p:panelGrid>
+                 <p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Observaciones: " styleClass="cabezal"/>	
+					<p:outputLabel value="#{historiaClinicaMB.selectedAntecedente.medicamento.observaciones}" styleClass="noCabezal" />
+                 </p:panelGrid>
+				<p:separator/>
+				<p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+		        	  <p:commandButton styleClass="btn-danger ui-confirmdialog-no"  icon="fa fa-close" value="Cerrar" oncomplete="PF('verAntMedicamentoWV').hide()"/>
+				</p:panelGrid>
+          </p:panel>
+       </h:form>   
+    </p:dialog>
+    
+    <p:dialog header="ANTECEDENTE" widgetVar="verAntWV" width="600" resizable="true" draggable="false" appendTo="@(body)" responsive="true" modal="true" >
+         <h:form id="formAntecedente"> 	
+        	<p:panel styleClass="card">
+        	  
+        	  <p:panelGrid rendered="#{historiaClinicaMB.selectedAntecedente.personal != null}" columns="1"  cellpadding="5" layout="grid" styleClass="no-border ui-fluid">  	
+	                <h5 style="text-align: center" class="cabezal" >PERSONAL</h5>
+	                <p:panelGrid  columns="1"  cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+	                	<p:outputLabel value="Antecedente: " styleClass="cabezal"/>	
+						<p class="noCabezal" > #{historiaClinicaMB.selectedAntecedente.personal.antecedente} </p>
+	                 </p:panelGrid>
+	                 <p:panelGrid  columns="4" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+	                	<p:outputLabel value="Desde: " styleClass="cabezal" />
+	                   <p class="noCabezal" > #{historiaClinicaMB.selectedAntecedente.personal.fechaDesde}</p>
+	                	<p:outputLabel value="Hasta: " styleClass="cabezal" />
+	                   <p class="noCabezal" > #{historiaClinicaMB.selectedAntecedente.personal.fechaHasta}</p>
+						<p:outputLabel value="No imprimir: " styleClass="cabezal" />
+						<p:outputLabel value=" SI / NO"/>
+						<p:outputLabel value="Origen: " styleClass="cabezal" />	
+						<p class="noCabezal" >#{historiaClinicaMB.selectedAntecedente.personal.origen}</p>
+	                 </p:panelGrid>
+	                 <p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+	                	<p:outputLabel value="Observaciones: " styleClass="cabezal" />	
+						<p class="noCabezal" >#{historiaClinicaMB.selectedAntecedente.personal.observaciones}</p>
+	                 </p:panelGrid>
+               </p:panelGrid>  
+               
+               <p:panelGrid rendered="#{historiaClinicaMB.selectedAntecedente.familiar != null}" columns="1"  cellpadding="5" layout="grid" styleClass="no-border ui-fluid">  	  
+					<p:separator/>
+					<h5 style="text-align: center" class="cabezal" >FAMILIAR</h5>
+					<p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+	                	<p:outputLabel value="Antecedente: " styleClass="cabezal" />	
+						<p class="noCabezal" >#{historiaClinicaMB.selectedAntecedente.familiar.antecedente}</p>
+	                 </p:panelGrid>
+	                 <p:panelGrid  columns="4" columnClasses="ui-grid-col-3,ui-grid-col-3,ui-grid-col-3,ui-grid-col-3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+	                	<p:outputLabel value="Desde: " styleClass="cabezal" />
+	                  <p class="noCabezal" > #{historiaClinicaMB.selectedAntecedente.familiar.fechaDesde}</p>
+	                	<p:outputLabel value="Hasta: " styleClass="cabezal" />
+	                  <p class="noCabezal" > #{historiaClinicaMB.selectedAntecedente.familiar.fechaHasta}</p>
+						<p:outputLabel value="No imprimir: " styleClass="cabezal" />
+						<p:outputLabel value=" SI / NO " />
+						<p:outputLabel value="Origen: " styleClass="cabezal" />	
+						<p class="noCabezal" >#{historiaClinicaMB.selectedAntecedente.familiar.origen}</p>
+	                 </p:panelGrid>
+	                 <p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+	                	<p:outputLabel value="Observaciones: " styleClass="cabezal" />	
+						<p class="noCabezal" >#{historiaClinicaMB.selectedAntecedente.familiar.observaciones}</p>
+	                 </p:panelGrid>
+	                 <p:separator/>
+               </p:panelGrid>  
+               
+               <p:panelGrid rendered="#{historiaClinicaMB.selectedAntecedente.medicamento != null}" columns="1" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">  	  
+					
+					<h5 style="text-align: center" class="cabezal" >MEDICAMENTO</h5>
+					<p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+	                	<p:outputLabel value="Medicamento: " styleClass="cabezal" />	
+						<p class="noCabezal" >#{historiaClinicaMB.selectedAntecedente.medicamento.medicamento}</p>
+	                 </p:panelGrid>
+	                 <p:panelGrid  columns="3" columnClasses="ui-grid-col-3,ui-grid-col-4,ui-grid-col-5" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+						 <p:outputLabel  value="Dosis: " styleClass="cabezal" />
+	                     <p:outputPanel  />
+						 <p:outputLabel  /> 
+					     <p:outputLabel value="Frecuencia: " styleClass="cabezal" />	
+						 <p:outputLabel  />  
+		                 <p:outputLabel  /> 
+	                 </p:panelGrid>
+	                 <p:panelGrid  columns="4" columnClasses="ui-grid-col-3,ui-grid-col-3,ui-grid-col-3,ui-grid-col-3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+	                	<p:outputLabel value="Desde: " styleClass="cabezal" />
+	                  <p class="noCabezal" > #{historiaClinicaMB.selectedAntecedente.medicamento.fechaDesde}</p>
+	                	<p:outputLabel value="Hasta: " styleClass="cabezal" />
+	                   <p class="noCabezal" > #{historiaClinicaMB.selectedAntecedente.medicamento.fechaHasta}</p>
+	                 </p:panelGrid>
+	                 <p:panelGrid  columns="2" columnClasses="ui-grid-col-3,ui-grid-col-9" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+	                	<p:outputLabel value="Origen: " styleClass="cabezal" />	
+						<p class="noCabezal" >#{historiaClinicaMB.selectedAntecedente.medicamento.origen}</p>
+	                 </p:panelGrid>
+	                 <p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+	                	<p:outputLabel value="Observaciones: " styleClass="cabezal" />	
+						<p class="noCabezal" >#{historiaClinicaMB.selectedAntecedente.medicamento.observaciones}</p>
+	                 </p:panelGrid>
+               </p:panelGrid>  
+                 
+				<p:separator/>
+				<p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+		        	  <p:commandButton styleClass="btn-danger ui-confirmdialog-no"  icon="fa fa-close" value="Cerrar" oncomplete="PF('verAntWV').hide()"/>
+				</p:panelGrid>
+          </p:panel>
+        </h:form> 
+    </p:dialog>
+    
+    <p:dialog header="CONSULTA MEDICA" widgetVar="verConsultaMedicaWV" width="700" resizable="true" draggable="false" appendTo="@(body)" responsive="true" modal="true" >
+         <h:form id="formVerConsMedica"> 	
+        	<p:panel styleClass="card">
+        	  <p:panelGrid  columns="2" columnClasses="ui-grid-col-8,ui-grid-col-4" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Repetir medicamentos y/o pases " styleClass="cabezal" />
+				    <p class="noCabezal" >#{historiaClinicaMB.selectedConsultaMedica.repetirMedicamento}</p>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Motivo consulta" styleClass="cabezal"/>	
+					<p class="noCabezal" >#{historiaClinicaMB.selectedConsultaMedica.motivoConsulta}</p>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="1" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Anemesis " styleClass="cabezal"/>	
+					<p class="noCabezal" >#{historiaClinicaMB.selectedConsultaMedica.anemesis}</p>
+					<p:outputLabel value="Examen físico " styleClass="cabezal"/>	
+					<p class="noCabezal" >#{historiaClinicaMB.selectedConsultaMedica.examenFisico}</p>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="4" columnClasses="ui-grid-col-3,ui-grid-col-3,ui-grid-col-3,ui-grid-col-3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+	                <p:outputLabel value="Peso kg." styleClass="cabezal"/>
+                   <p class="noCabezal" > #{historiaClinicaMB.selectedConsultaMedica.pesoKgs}</p>
+                    <p:outputLabel value="Talla cm." styleClass="cabezal"/>
+                   <p class="noCabezal" > #{historiaClinicaMB.selectedConsultaMedica.tallaCms}</p>
+	                 <p:outputLabel value="IMC " styleClass="cabezal" />
+	                <p class="noCabezal" > #{historiaClinicaMB.selectedConsultaMedica.imc}</p>
+	                 <p:outputLabel value="Cintura cm." styleClass="cabezal"/>
+                    <p class="noCabezal" > #{historiaClinicaMB.selectedConsultaMedica.cinturaCms}</p>
+                 </p:panelGrid>
+                  <p:panelGrid  columns="1" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Conducta " styleClass="cabezal"/>	
+					<p class="noCabezal" >#{historiaClinicaMB.selectedConsultaMedica.conducta}</p>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Diagnóstico"  styleClass="cabezal"/>	
+					<p class="noCabezal" >#{historiaClinicaMB.selectedConsultaMedica.diagnostico}</p>
+                 </p:panelGrid>
+				<p:separator/>
+				<p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+		        	  <p:commandButton styleClass="btn-danger ui-confirmdialog-no"  icon="fa fa-close" value="Cerrar" oncomplete="PF('verConsultaMedicaWV').hide()"/>
+				</p:panelGrid>
+				
+          </p:panel>
+        </h:form> 
+    </p:dialog>
+    
+    
+
+	
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" styleClass="box-solid box-danger">
+         <p:commandButton value="Si" type="button" styleClass="btn-primary ui-confirmdialog-yes" icon="fa fa-check"/>
+         <p:commandButton value="No" type="button" styleClass="btn-danger ui-confirmdialog-no" icon="fa fa-close"/>
+     </p:confirmDialog>
+	 
+	 <p:dialog styleClass="box-solid box-primary" header="EDITAR PERSONAL" widgetVar="editarAntecedentePersonalWV" resizable="false" draggable="false" appendTo="@(body)" responsive="true" modal="true" >
+		<h:form id="editarAnetcedentePersonal">    
+		<p:growl />
+			<p:messages id="messageseditarAntecedentePersonal" closable="true"/>
+                 <p:panelGrid  columns="2" columnClasses="ui-grid-col-3,ui-grid-col-9" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Antecedente  " for="antecedenteID" />	
+					<p:inputText id="antecedenteID" autocomplete="false" required="true" value="#{historiaClinicaMB.selectedAntecedente.personal.antecedente}" requiredMessage="Antecedente : es requerido"/>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="4" columnClasses="ui-grid-col-3,ui-grid-col-3,ui-grid-col-3,ui-grid-col-3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel for="desde" value="Desde"/>
+                    <p:calendar id="desde" showOn="button" value="#{historiaClinicaMB.selectedAntecedente.personal.fechaDesde}" required="true" requiredMessage="Fecha desde: es requerido"/>
+                	<p:outputLabel for="hasta" value="Hasta"/>
+                    <p:calendar id="hasta" showOn="button" value="#{historiaClinicaMB.selectedAntecedente.personal.fechaHasta}" required="true" requiredMessage="Fecha hasta: es requerido"/>
+					<p:outputLabel value="No imprimir  " for="noImprimirID"/>
+					<p:selectOneMenu id="noImprimirID" >
+                        <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                        <f:selectItem itemLabel="SI" itemValue="SI"/>
+                        <f:selectItem itemLabel="NO" itemValue="NO"/>
+                    </p:selectOneMenu>	
+					<p:outputLabel value="Origen  " for="origenID" />	
+					<p:selectOneMenu id="origenID" value="#{historiaClinicaMB.selectedAntecedente.personal.origen}" required="true" requiredMessage="Origen: es requerido">
+                        <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                        <f:selectItem itemLabel="De relato" itemValue="1"/>
+                        <f:selectItem itemLabel="Certificado" itemValue="2"/>
+                        <f:selectItem itemLabel="Sin dato" itemValue="3"/>
+                    </p:selectOneMenu>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Observaciones" for="observacionesID"/>	
+					<p:inputTextarea id="observacionesID" required="true" requiredMessage="Observaciones: es requerido" value="#{historiaClinicaMB.selectedAntecedente.personal.observaciones}"/>
+                 </p:panelGrid>
+				<p:separator/>
+				
+				<p:panelGrid  columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+		        	  <p:commandButton styleClass="btn-danger ui-confirmdialog-no pull-left"    icon="fa fa-close"  id="cancelarAntPersonal"  update="editarAnetcedentePersonal"  value="Cancelar"   process="@this"  oncomplete="PF('editarAntecedentePersonalWV').hide()">
+		        	   	<p:resetInput target="editarAnetcedentePersonal" />
+		        	  </p:commandButton>
+		        	  <p:commandButton  actionListener="#{historiaClinicaMB.editarAntecedentePersonal}"   styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check"  id="confirmarAntPersonal"  update="editarAnetcedentePersonal"  value="Confirmar"  ajax="true"  oncomplete="if (args &amp;&amp; !args.validationFailed) PF('editarAntecedentePersonalWV').hide()" />
+				</p:panelGrid>	
+					         
+		</h:form>		
+	</p:dialog>
+	
+	<p:dialog styleClass="box-solid box-primary" header="EDITAR FAMILIAR" widgetVar="editarAntecedenteFamiliarWV" resizable="false" draggable="false" appendTo="@(body)" responsive="true" modal="true" >
+		<h:form id="editarAnetcedenteFamiliar">  
+		<p:growl />  
+			<p:messages id="messageseditarAntecedenteFamiliar" closable="true"/>
+                <p:panelGrid  columns="2" columnClasses="ui-grid-col-3,ui-grid-col-9" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Antecedente  " for="antecedenteID"/>	
+					<p:inputText id="antecedenteID" autocomplete="false" required="true" value="#{historiaClinicaMB.selectedAntecedente.familiar.antecedente}" requiredMessage="Antecedente : es requerido"/>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="4" columnClasses="ui-grid-col-3,ui-grid-col-3,ui-grid-col-3,ui-grid-col-3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel for="desde" value="Desde"/>
+                    <p:calendar id="desde" showOn="button" value="#{historiaClinicaMB.selectedAntecedente.familiar.fechaDesde}" required="true" requiredMessage="Fecha desde: es requerido"/>
+                	<p:outputLabel for="hasta" value="Hasta"/>
+                    <p:calendar id="hasta" showOn="button" value="#{historiaClinicaMB.selectedAntecedente.familiar.fechaHasta}" required="true" requiredMessage="Fecha hasta: es requerido"/>
+					<p:outputLabel value="No imprimir  " for="noImprimirID"/>
+					<p:selectOneMenu id="noImprimirID" >
+                        <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                        <f:selectItem itemLabel="SI" itemValue="SI"/>
+                        <f:selectItem itemLabel="NO" itemValue="NO"/>
+                    </p:selectOneMenu>	
+					<p:outputLabel value="Origen  " for="origenID"/>	
+					<p:selectOneMenu id="origenID" value="#{historiaClinicaMB.selectedAntecedente.familiar.origen}" required="true" requiredMessage="Origen: es requerido">
+                        <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                        <f:selectItem itemLabel="De relato" itemValue="1"/>
+                        <f:selectItem itemLabel="Certificado" itemValue="2"/>
+                        <f:selectItem itemLabel="Sin dato" itemValue="3"/>
+                    </p:selectOneMenu>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Observaciones" for="observacionesID"/>	
+					<p:inputTextarea id="observacionesID" required="true" requiredMessage="Observaciones: es requerido" value="#{historiaClinicaMB.selectedAntecedente.familiar.observaciones}"/>
+                 </p:panelGrid>
+				<p:separator/>
+				
+				<p:panelGrid  columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+		        	  <p:commandButton styleClass="btn-danger ui-confirmdialog-no pull-left"    icon="fa fa-close"  id="cancelarAntFam"   update="editarAnetcedenteFamiliar"  value="Cancelar"   process="@this"  oncomplete="PF('editarAntecedenteFamiliarWV').hide()">
+		        	   	<p:resetInput target="crearAnetcedenteFamiliar" />
+		        	  </p:commandButton>
+		        	  <p:commandButton  actionListener="#{historiaClinicaMB.editarAntecedenteFamiliar}"   styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check"  id="confirmarAntFam"  update="editarAnetcedenteFamiliar"  value="Confirmar"  ajax="true"  oncomplete="if (args &amp;&amp; !args.validationFailed) PF('editarAntecedenteFamiliarWV').hide()" />
+				</p:panelGrid>	         
+		</h:form>		
+	</p:dialog>
+	
+	<p:dialog styleClass="box-solid box-primary" header="EDITAR MEDICAMENTO" widgetVar="editarMedicamentoWV"  resizable="false" draggable="false" appendTo="@(body)" responsive="true" modal="true" >
+		<h:form id="editarMedicamento">    
+			<p:messages id="messageseditarMedicamento" closable="true"/>
+          <p:growl />
+                <p:panelGrid  columns="2" columnClasses="ui-grid-col-3,ui-grid-col-9" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Medicamento  " for="medicamentoID"/>	
+					<p:inputText id="medicamentoID" autocomplete="false" required="true" requiredMessage="Medicamento: es requerido" value="#{historiaClinicaMB.selectedAntecedente.medicamento.medicamento}"/>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="3" columnClasses="ui-grid-col-3,ui-grid-col-4,ui-grid-col-5" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                		
+					 <p:outputLabel for="dosis1ID" value="Dosis"/>
+                     <p:outputPanel>
+                        <p:inputText id="dosis1ID"/>
+                        <p:slider for="dosis1ID"  inValue="0.0" maxValue="20.0" step="0.01" />
+                     </p:outputPanel> 
+					 <p:selectOneMenu id="dosis2ID">
+                        <f:selectItem itemLabel="(ninguno)" itemValue=""/>
+                        <f:selectItem itemLabel="ninguno1" itemValue="ninguno1"/>
+                        <f:selectItem itemLabel="ninguno2" itemValue="ninguno2"/>
+                        <f:selectItem itemLabel="ninguno3" itemValue="ninguno3"/>
+                     </p:selectOneMenu>  
+					
+					<p:outputLabel value="Frecuencia " for="frecuencia1ID"/>	
+					<p:selectOneMenu id="frecuencia1ID">
+                        <f:selectItem itemLabel="(ninguno)" itemValue=""/>
+                        <f:selectItem itemLabel="ninguno1" itemValue="ninguno1"/>
+                        <f:selectItem itemLabel="ninguno2" itemValue="ninguno2"/>
+                        <f:selectItem itemLabel="ninguno3" itemValue="ninguno3"/>
+                     </p:selectOneMenu>  
+                     <p:selectOneMenu id="frecuencia2ID">
+                        <f:selectItem itemLabel="(ninguno)" itemValue=""/>
+                        <f:selectItem itemLabel="ninguno1" itemValue="ninguno1"/>
+                        <f:selectItem itemLabel="ninguno2" itemValue="ninguno2"/>
+                        <f:selectItem itemLabel="ninguno3" itemValue="ninguno3"/>
+                     </p:selectOneMenu>  
+                 </p:panelGrid>
+                 <p:panelGrid  columns="4" columnClasses="ui-grid-col-3,ui-grid-col-3,ui-grid-col-3,ui-grid-col-3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel for="desde" value="Desde"/>
+                    <p:calendar id="desde" showOn="button" required="true" requiredMessage="Fecha desde: es requerido" value="#{historiaClinicaMB.selectedAntecedente.medicamento.fechaDesde}"/>
+                	<p:outputLabel for="hasta" value="Hasta"/>
+                    <p:calendar id="hasta" showOn="button" required="true" requiredMessage="Fecha hasta: es requerido" value="#{historiaClinicaMB.selectedAntecedente.medicamento.fechaHasta}"/>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="2" columnClasses="ui-grid-col-3,ui-grid-col-9" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Origen  " for="origenID"/>	
+					<p:selectOneMenu id="origenID" required="true" requiredMessage="Origen: es requerido" value="#{historiaClinicaMB.selectedAntecedente.medicamento.origen}">
+                        <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                        <f:selectItem itemLabel="De relato" itemValue="1"/>
+                        <f:selectItem itemLabel="Certificado" itemValue="2"/>
+                        <f:selectItem itemLabel="Sin dato" itemValue="3"/>
+                    </p:selectOneMenu>    
+                 </p:panelGrid>
+                 <p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Observaciones" for="observacionesID"/>	
+					<p:inputTextarea id="observacionesID" required="true" requiredMessage="Observaciones: es requerido" value="#{historiaClinicaMB.selectedAntecedente.medicamento.observaciones}"/>
+                 </p:panelGrid>
+				<p:separator/>
+				<p:panelGrid  columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+		        	  <p:commandButton styleClass="btn-danger ui-confirmdialog-no pull-left"    icon="fa fa-close"  id="cancelarAntMedicamento"   update="editarMedicamento"  value="Cancelar"   process="@this"  oncomplete="PF('editarMedicamentoWV').hide()">
+		        	   	<p:resetInput target="crearMedicamento" />
+		        	  </p:commandButton>
+		        	  <p:commandButton  actionListener="#{historiaClinicaMB.editarAntecedenteMedicamento}"   styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check"  id="confirmarAntMedicamento"  update="editarMedicamento"  value="Confirmar"  oncomplete="if (args &amp;&amp; !args.validationFailed) PF('editarMedicamentoWV').hide()" />
+				</p:panelGrid>			         
+		</h:form>		
+	</p:dialog>
+	
+	
+	 <p:dialog header="NUEVO ANTECEDENTE" widgetVar="nuevoAntecedentePacienteWV" resizable="false" draggable="false" appendTo="@(body)" responsive="true"  modal="true" styleClass="box-solid box-primary" >
+		<h:form id="formNuevoAntecedentePaciente">    
+			   <p:panelGrid columns="2" cellpadding="5" layout="grid" columnClasses="ui-grid-col-9,ui-grid-col-3" styleClass="no-border ui-fluid">
+                   <p:commandButton disabled="#{historiaClinicaMB.nuevoAntecedente.personal.antecedente != null}" styleClass="btn-teal"  icon="fa fa-plus-circle" onclick="PF('nuevoAntecedentePersonalWV').show();return false"    id="nuevoPersonal"  value="NUEVO ANTECEDENTE PERSONAL" update="@(form)"/>
+	               <p:panelGrid columns="3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+	               		<c:if test="#{historiaClinicaMB.nuevoAntecedente.personal.antecedente != null}">
+	               			<p:commandLink  title="agregado" styleClass="fa fa-check greenCheck"/>
+					        <p:commandLink  title="editar" styleClass="fa fa-pencil orangeEdit" onclick="PF('nuevoAntecedentePersonalWV').show();return false"/>
+					        <p:commandLink  title="eliminar" styleClass="fa fa-trash" update="formNuevoAntecedentePaciente" actionListener="#{historiaClinicaMB.eliminarAntecedente('personal')}">
+					        	<p:confirm header="Alerta!" message="¿ quiere eliminar ?" icon="ui-icon-alert"/>
+					        </p:commandLink>
+					    </c:if>	
+					    <c:if test="#{historiaClinicaMB.nuevoAntecedente.personal.antecedente == null}">  
+					   		 <p:commandLink  title="no hay antecedente personal agregado" styleClass="fa fa-times redCross"/>
+					    </c:if>    
+	                </p:panelGrid>
+	               <p:commandButton disabled="#{historiaClinicaMB.nuevoAntecedente.familiar.antecedente != null}" styleClass="btn-teal"  icon="fa fa-plus-circle" onclick="PF('nuevoAntecedenteFamiliarWV').show();return false"   id="nuevoFamiliar"  value="NUEVO ANTECEDENTE FAMILIAR" update="@(form)"/>
+	              		<p:panelGrid columns="3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+		               		<c:if test="#{historiaClinicaMB.nuevoAntecedente.familiar.antecedente != null}">
+		               			<p:commandLink  title="agregado" styleClass="fa fa-check greenCheck"/>  
+						        <p:commandLink  title="editar" styleClass="fa fa-pencil orangeEdit" onclick="PF('nuevoAntecedenteFamiliarWV').show();return false"/>
+						        <p:commandLink  title="eliminar" styleClass="fa fa-trash" update="formNuevoAntecedentePaciente" actionListener="#{historiaClinicaMB.eliminarAntecedente('familiar')}">
+						        	<p:confirm header="Alerta!" message="¿ quiere eliminar ?" icon="ui-icon-alert"/>
+						        </p:commandLink>
+						    </c:if>	
+						     <c:if test="#{historiaClinicaMB.nuevoAntecedente.familiar.antecedente == null}">  
+						   		<p:commandLink  title="no hay antecedente familiar agregado" styleClass="fa fa-times redCross"/>
+					    	</c:if>	    
+		                </p:panelGrid>
+	                 <p:commandButton disabled="#{historiaClinicaMB.nuevoAntecedente.medicamento.medicamento != null}" styleClass="btn-teal"  icon="fa fa-plus-circle" onclick="PF('nuevoMedicamentoWV').show();return false"  id="nuevoMedicamento"  value="NUEVO MEDICAMENTO" update="@(form)"/>              
+	               		<p:panelGrid columns="3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+		               		<c:if test="#{historiaClinicaMB.nuevoAntecedente.medicamento.medicamento != null}">
+		               			<p:commandLink  title="agregado" styleClass="fa fa-check greenCheck"/>
+						        <p:commandLink  title="editar" styleClass="fa fa-pencil orangeEdit" onclick="PF('nuevoMedicamentoWV').show();return false" />
+						        <p:commandLink  title="eliminar" styleClass="fa fa-trash" update="formNuevoAntecedentePaciente" actionListener="#{historiaClinicaMB.eliminarAntecedente('medicamento')}">
+						        	<p:confirm header="Alerta!" message="¿ quiere eliminar ?" icon="ui-icon-alert"/>
+						        </p:commandLink>
+						    </c:if>	
+						     <c:if test="#{historiaClinicaMB.nuevoAntecedente.medicamento.medicamento == null}">  
+						   		<p:commandLink  title="no hay antecedente medicamento agregado" styleClass="fa fa-times redCross" />
+					    	</c:if>	 
+		                </p:panelGrid>		
+               </p:panelGrid>
+               <p:separator />
+				
+				<p:panelGrid columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+	        	  <p:commandButton  id="cancelarBtn" value="Cancelar"  styleClass="btn-danger ui-confirmdialog-no pull-left" icon="fa fa-close" update="formNuevoAntecedentePaciente,crearAnetcedentePersonal,crearAnetcedenteFamiliar,crearMedicamento" actionListener="#{historiaClinicaMB.eliminarAntecedenteForm('todos')}" oncomplete="PF('nuevoAntecedentePacienteWV').hide()" />
+	        	  <p:commandButton disabled="#{historiaClinicaMB.nuevoAntecedente.personal.antecedente == null and historiaClinicaMB.nuevoAntecedente.familiar.antecedente == null and historiaClinicaMB.nuevoAntecedente.medicamento.medicamento == null}" ajax="true" id="confirmarDo" value="Guardar" actionListener="#{historiaClinicaMB.guardarAntecedente}" oncomplete="PF('nuevoAntecedentePacienteWV').hide()" update="formHistoriaClinica,formNuevoAntecedentePaciente,crearAnetcedentePersonal,crearAnetcedenteFamiliar,crearMedicamento" styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check" />
+				</p:panelGrid>
+    	</h:form>		
+	 </p:dialog> 
+	 
+	 <p:dialog styleClass="box-solid box-primary" header="NUEVO PERSONAL" widgetVar="nuevoAntecedentePersonalWV" resizable="false" draggable="false" appendTo="@(body)" responsive="true" modal="true" >
+		<h:form id="crearAnetcedentePersonal">    
+			<p:messages id="messagesNuevoAntecedentePersonal" closable="true"/>
+                <p:panelGrid  columns="2" columnClasses="ui-grid-col-3,ui-grid-col-9" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Antecedente  " for="antecedenteID" />	
+					<p:inputText id="antecedenteID" autocomplete="false" required="true" value="#{historiaClinicaMB.nuevoAntecedente.personal.antecedente}" requiredMessage="Antecedente : es requerido"/>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="4" columnClasses="ui-grid-col-3,ui-grid-col-3,ui-grid-col-3,ui-grid-col-3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel for="desde" value="Desde"/>
+                    <p:calendar id="desde" showOn="button" value="#{historiaClinicaMB.nuevoAntecedente.personal.fechaDesde}" required="true" requiredMessage="Fecha desde: es requerido"/>
+                	<p:outputLabel for="hasta" value="Hasta"/>
+                    <p:calendar id="hasta" showOn="button" value="#{historiaClinicaMB.nuevoAntecedente.personal.fechaHasta}" required="true" requiredMessage="Fecha hasta: es requerido"/>
+					<p:outputLabel value="No imprimir  " for="noImprimirID"/>
+					<p:selectOneMenu id="noImprimirID" >
+                        <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                        <f:selectItem itemLabel="SI" itemValue="SI"/>
+                        <f:selectItem itemLabel="NO" itemValue="NO"/>
+                    </p:selectOneMenu>	
+					<p:outputLabel value="Origen  " for="origenID" />	
+					<p:selectOneMenu id="origenID" value="#{historiaClinicaMB.nuevoAntecedente.personal.origen}" required="true" requiredMessage="Origen: es requerido">
+                        <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                        <f:selectItem itemLabel="De relato" itemValue="1"/>
+                        <f:selectItem itemLabel="Certificado" itemValue="2"/>
+                        <f:selectItem itemLabel="Sin dato" itemValue="3"/>
+                    </p:selectOneMenu>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Observaciones" for="observacionesID"/>	
+					<p:inputTextarea id="observacionesID" required="true" requiredMessage="Observaciones: es requerido" value="#{historiaClinicaMB.nuevoAntecedente.personal.observaciones}"/>
+                 </p:panelGrid>
+				<p:separator/>
+				
+				<p:panelGrid  columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+		        	  <p:commandButton styleClass="btn-danger ui-confirmdialog-no pull-left"    icon="fa fa-close"  id="cancelarAntPersonal"      update="crearAnetcedentePersonal,formNuevoAntecedentePaciente"  value="Cancelar"   process="@this"  oncomplete="PF('nuevoAntecedentePersonalWV').hide()">
+		        	   	<p:resetInput target="crearAnetcedentePersonal" />
+		        	  </p:commandButton>
+		        	  <p:commandButton styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check"  id="confirmarAntPersonal"  update="crearAnetcedentePersonal,formNuevoAntecedentePaciente"  value="Confirmar"  ajax="true"  oncomplete="if (args &amp;&amp; !args.validationFailed) PF('nuevoAntecedentePersonalWV').hide()" />
+				</p:panelGrid>	
+					         
+		</h:form>		
+	</p:dialog>
+	
+	<p:dialog styleClass="box-solid box-primary" header="NUEVO FAMILIAR" widgetVar="nuevoAntecedenteFamiliarWV" resizable="false" draggable="false" appendTo="@(body)" responsive="true" modal="true" >
+		<h:form id="crearAnetcedenteFamiliar">    
+			<p:messages id="messagesNuevoAntecedenteFamiliar" closable="true"/>
+                <p:panelGrid  columns="2" columnClasses="ui-grid-col-3,ui-grid-col-9" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Antecedente  " for="antecedenteID"/>	
+					<p:inputText id="antecedenteID" autocomplete="false" required="true" value="#{historiaClinicaMB.nuevoAntecedente.familiar.antecedente}" requiredMessage="Antecedente : es requerido"/>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="4" columnClasses="ui-grid-col-3,ui-grid-col-3,ui-grid-col-3,ui-grid-col-3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel for="desde" value="Desde"/>
+                    <p:calendar id="desde" showOn="button" value="#{historiaClinicaMB.nuevoAntecedente.familiar.fechaDesde}" required="true" requiredMessage="Fecha desde: es requerido"/>
+                	<p:outputLabel for="hasta" value="Hasta"/>
+                    <p:calendar id="hasta" showOn="button" value="#{historiaClinicaMB.nuevoAntecedente.familiar.fechaHasta}" required="true" requiredMessage="Fecha hasta: es requerido"/>
+					<p:outputLabel value="No imprimir  " for="noImprimirID"/>
+					<p:selectOneMenu id="noImprimirID" >
+                        <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                        <f:selectItem itemLabel="SI" itemValue="SI"/>
+                        <f:selectItem itemLabel="NO" itemValue="NO"/>
+                    </p:selectOneMenu>	
+					<p:outputLabel value="Origen  " for="origenID"/>	
+					<p:selectOneMenu id="origenID" value="#{historiaClinicaMB.nuevoAntecedente.familiar.origen}" required="true" requiredMessage="Origen: es requerido">
+                        <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                        <f:selectItem itemLabel="De relato" itemValue="1"/>
+                        <f:selectItem itemLabel="Certificado" itemValue="2"/>
+                        <f:selectItem itemLabel="Sin dato" itemValue="3"/>
+                    </p:selectOneMenu>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Observaciones" for="observacionesID"/>	
+					<p:inputTextarea id="observacionesID" required="true" requiredMessage="Observaciones: es requerido" value="#{historiaClinicaMB.nuevoAntecedente.familiar.observaciones}"/>
+                 </p:panelGrid>
+				<p:separator/>
+				
+				<p:panelGrid  columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+		        	  <p:commandButton styleClass="btn-danger ui-confirmdialog-no pull-left"    icon="fa fa-close"  id="cancelarAntFam"   update="crearAnetcedenteFamiliar,formNuevoAntecedentePaciente"  value="Cancelar"   process="@this"  oncomplete="PF('nuevoAntecedenteFamiliarWV').hide()">
+		        	   	<p:resetInput target="crearAnetcedenteFamiliar" />
+		        	  </p:commandButton>
+		        	  <p:commandButton styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check"  id="confirmarAntFam"  update="crearAnetcedenteFamiliar,formNuevoAntecedentePaciente"  value="Confirmar"  ajax="true"  oncomplete="if (args &amp;&amp; !args.validationFailed) PF('nuevoAntecedenteFamiliarWV').hide()" />
+				</p:panelGrid>	         
+		</h:form>		
+	</p:dialog>
+	
+	<p:dialog styleClass="box-solid box-primary" header="NUEVO MEDICAMENTO" widgetVar="nuevoMedicamentoWV"  resizable="false" draggable="false" appendTo="@(body)" responsive="true" modal="true" >
+		<h:form id="crearMedicamento">    
+			<p:messages id="messagesNuevoMedicamento" closable="true"/>
+          
+                <p:panelGrid  columns="2" columnClasses="ui-grid-col-3,ui-grid-col-9" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Medicamento  " for="medicamentoID"/>	
+					<p:inputText id="medicamentoID" autocomplete="false" required="true" requiredMessage="Medicamento: es requerido" value="#{historiaClinicaMB.nuevoAntecedente.medicamento.medicamento}"/>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="3" columnClasses="ui-grid-col-3,ui-grid-col-4,ui-grid-col-5" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                		
+					 <p:outputLabel for="dosis1ID" value="Dosis"/>
+                     <p:outputPanel>
+                        <p:inputText id="dosis1ID"/>
+                        <p:slider for="dosis1ID"  inValue="0.0" maxValue="20.0" step="0.01" />
+                     </p:outputPanel> 
+					 <p:selectOneMenu id="dosis2ID">
+                        <f:selectItem itemLabel="(ninguno)" itemValue=""/>
+                        <f:selectItem itemLabel="ninguno1" itemValue="ninguno1"/>
+                        <f:selectItem itemLabel="ninguno2" itemValue="ninguno2"/>
+                        <f:selectItem itemLabel="ninguno3" itemValue="ninguno3"/>
+                     </p:selectOneMenu>  
+					
+					<p:outputLabel value="Frecuencia " for="frecuencia1ID"/>	
+					<p:selectOneMenu id="frecuencia1ID">
+                        <f:selectItem itemLabel="(ninguno)" itemValue=""/>
+                        <f:selectItem itemLabel="ninguno1" itemValue="ninguno1"/>
+                        <f:selectItem itemLabel="ninguno2" itemValue="ninguno2"/>
+                        <f:selectItem itemLabel="ninguno3" itemValue="ninguno3"/>
+                     </p:selectOneMenu>  
+                     <p:selectOneMenu id="frecuencia2ID">
+                        <f:selectItem itemLabel="(ninguno)" itemValue=""/>
+                        <f:selectItem itemLabel="ninguno1" itemValue="ninguno1"/>
+                        <f:selectItem itemLabel="ninguno2" itemValue="ninguno2"/>
+                        <f:selectItem itemLabel="ninguno3" itemValue="ninguno3"/>
+                     </p:selectOneMenu>  
+                 </p:panelGrid>
+                 <p:panelGrid  columns="4" columnClasses="ui-grid-col-3,ui-grid-col-3,ui-grid-col-3,ui-grid-col-3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel for="desde" value="Desde"/>
+                    <p:calendar id="desde" showOn="button" required="true" requiredMessage="Fecha desde: es requerido" value="#{historiaClinicaMB.nuevoAntecedente.medicamento.fechaDesde}"/>
+                	<p:outputLabel for="hasta" value="Hasta"/>
+                    <p:calendar id="hasta" showOn="button" required="true" requiredMessage="Fecha hasta: es requerido" value="#{historiaClinicaMB.nuevoAntecedente.medicamento.fechaHasta}"/>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="2" columnClasses="ui-grid-col-3,ui-grid-col-9" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Origen  " for="origenID"/>	
+					<p:selectOneMenu id="origenID" required="true" requiredMessage="Origen: es requerido" value="#{historiaClinicaMB.nuevoAntecedente.medicamento.origen}">
+                        <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                        <f:selectItem itemLabel="De relato" itemValue="1"/>
+                        <f:selectItem itemLabel="Certificado" itemValue="2"/>
+                        <f:selectItem itemLabel="Sin dato" itemValue="3"/>
+                    </p:selectOneMenu>    
+                 </p:panelGrid>
+                 <p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Observaciones" for="observacionesID"/>	
+					<p:inputTextarea id="observacionesID" required="true" requiredMessage="Observaciones: es requerido" value="#{historiaClinicaMB.nuevoAntecedente.medicamento.observaciones}"/>
+                 </p:panelGrid>
+				<p:separator/>
+				<p:panelGrid  columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+		        	  <p:commandButton styleClass="btn-danger ui-confirmdialog-no pull-left"    icon="fa fa-close"  id="cancelarAntMedicamento"   update="crearMedicamento,formNuevoAntecedentePaciente"  value="Cancelar"   process="@this"  oncomplete="PF('nuevoMedicamentoWV').hide()">
+		        	   	<p:resetInput target="crearMedicamento" />
+		        	  </p:commandButton>
+		        	  <p:commandButton styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check"  id="confirmarAntMedicamento"  update="crearMedicamento,formNuevoAntecedentePaciente"  value="Confirmar"  oncomplete="if (args &amp;&amp; !args.validationFailed) PF('nuevoMedicamentoWV').hide()" />
+				</p:panelGrid>			         
+		</h:form>		
+	</p:dialog>
+	
+		 <p:dialog styleClass="box-solid box-primary" header="NUEVO PERSONAL" widgetVar="nuevoAgregarAntecedentePersonalWV" resizable="false" draggable="false" appendTo="@(body)" responsive="true" modal="true" >
+		<h:form id="crearAgregarAnetcedentePersonal">    
+			<p:messages id="messagesNuevoAntecedentePersonal" closable="true"/>
+                <p:panelGrid  columns="2" columnClasses="ui-grid-col-3,ui-grid-col-9" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Antecedente  " for="antecedenteID" />	
+					<p:inputText id="antecedenteID" autocomplete="false" required="true" value="#{historiaClinicaMB.nuevoAntecedente.personal.antecedente}" requiredMessage="Antecedente : es requerido"/>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="4" columnClasses="ui-grid-col-3,ui-grid-col-3,ui-grid-col-3,ui-grid-col-3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel for="desde" value="Desde"/>
+                    <p:calendar id="desde" showOn="button" value="#{historiaClinicaMB.nuevoAntecedente.personal.fechaDesde}" required="true" requiredMessage="Fecha desde: es requerido"/>
+                	<p:outputLabel for="hasta" value="Hasta"/>
+                    <p:calendar id="hasta" showOn="button" value="#{historiaClinicaMB.nuevoAntecedente.personal.fechaHasta}" required="true" requiredMessage="Fecha hasta: es requerido"/>
+					<p:outputLabel value="No imprimir  " for="noImprimirID"/>
+					<p:selectOneMenu id="noImprimirID" >
+                        <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                        <f:selectItem itemLabel="SI" itemValue="SI"/>
+                        <f:selectItem itemLabel="NO" itemValue="NO"/>
+                    </p:selectOneMenu>	
+					<p:outputLabel value="Origen  " for="origenID" />	
+					<p:selectOneMenu id="origenID" value="#{historiaClinicaMB.nuevoAntecedente.personal.origen}" required="true" requiredMessage="Origen: es requerido">
+                        <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                        <f:selectItem itemLabel="De relato" itemValue="1"/>
+                        <f:selectItem itemLabel="Certificado" itemValue="2"/>
+                        <f:selectItem itemLabel="Sin dato" itemValue="3"/>
+                    </p:selectOneMenu>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Observaciones" for="observacionesID"/>	
+					<p:inputTextarea id="observacionesID" required="true" requiredMessage="Observaciones: es requerido" value="#{historiaClinicaMB.nuevoAntecedente.personal.observaciones}"/>
+                 </p:panelGrid>
+				<p:separator/>
+				
+				<p:panelGrid  columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+		        	  <p:commandButton styleClass="btn-danger ui-confirmdialog-no pull-left"    icon="fa fa-close"  id="cancelarAntPersonal"   update="crearAgregarAnetcedentePersonal,formNuevoAntecedentePaciente"  value="Cancelar"   process="@this"  oncomplete="PF('nuevoAgregarAntecedentePersonalWV').hide()">
+		        	   	<p:resetInput target="crearAnetcedentePersonal" />
+		        	  </p:commandButton>
+		        	  <p:commandButton styleClass="btn-primary ui-confirmdialog-yes pull-right" actionListener="#{historiaClinicaMB.guardarAntecedentePersonal}" icon="fa fa-check"  id="confirmarAntPersonal"  update="crearAgregarAnetcedentePersonal,formNuevoAntecedentePaciente,formHistoriaClinica"  value="Confirmar"  ajax="true"  oncomplete="if (args &amp;&amp; !args.validationFailed) PF('nuevoAgregarAntecedentePersonalWV').hide()" />
+				</p:panelGrid>	
+					         
+		</h:form>		
+	</p:dialog>
+	
+	<p:dialog styleClass="box-solid box-primary" header="NUEVO FAMILIAR" widgetVar="nuevoAgregarAntecedenteFamiliarWV" resizable="false" draggable="false" appendTo="@(body)" responsive="true" modal="true" >
+		<h:form id="crearAgergarAnetcedenteFamiliar">    
+			<p:messages id="messagesNuevoAntecedenteFamiliar" closable="true"/>
+                <p:panelGrid  columns="2" columnClasses="ui-grid-col-3,ui-grid-col-9" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Antecedente  " for="antecedenteID"/>	
+					<p:inputText id="antecedenteID" autocomplete="false" required="true" value="#{historiaClinicaMB.nuevoAntecedente.familiar.antecedente}" requiredMessage="Antecedente : es requerido"/>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="4" columnClasses="ui-grid-col-3,ui-grid-col-3,ui-grid-col-3,ui-grid-col-3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel for="desde" value="Desde"/>
+                    <p:calendar id="desde" showOn="button" value="#{historiaClinicaMB.nuevoAntecedente.familiar.fechaDesde}" required="true" requiredMessage="Fecha desde: es requerido"/>
+                	<p:outputLabel for="hasta" value="Hasta"/>
+                    <p:calendar id="hasta" showOn="button" value="#{historiaClinicaMB.nuevoAntecedente.familiar.fechaHasta}" required="true" requiredMessage="Fecha hasta: es requerido"/>
+					<p:outputLabel value="No imprimir  " for="noImprimirID"/>
+					<p:selectOneMenu id="noImprimirID" >
+                        <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                        <f:selectItem itemLabel="SI" itemValue="SI"/>
+                        <f:selectItem itemLabel="NO" itemValue="NO"/>
+                    </p:selectOneMenu>	
+					<p:outputLabel value="Origen  " for="origenID"/>	
+					<p:selectOneMenu id="origenID" value="#{historiaClinicaMB.nuevoAntecedente.familiar.origen}" required="true" requiredMessage="Origen: es requerido">
+                        <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                        <f:selectItem itemLabel="De relato" itemValue="1"/>
+                        <f:selectItem itemLabel="Certificado" itemValue="2"/>
+                        <f:selectItem itemLabel="Sin dato" itemValue="3"/>
+                    </p:selectOneMenu>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Observaciones" for="observacionesID"/>	
+					<p:inputTextarea id="observacionesID" required="true" requiredMessage="Observaciones: es requerido" value="#{historiaClinicaMB.nuevoAntecedente.familiar.observaciones}"/>
+                 </p:panelGrid>
+				<p:separator/>
+				
+				<p:panelGrid  columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+		        	  <p:commandButton styleClass="btn-danger ui-confirmdialog-no pull-left"    icon="fa fa-close"  id="cancelarAntFam"   update="crearAgergarAnetcedenteFamiliar,formNuevoAntecedentePaciente"  value="Cancelar"   process="@this"  oncomplete="PF('nuevoAgregarAntecedenteFamiliarWV').hide()">
+		        	   	<p:resetInput target="crearAnetcedenteFamiliar" />
+		        	  </p:commandButton>
+		        	  <p:commandButton styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check"  id="confirmarAntFam" actionListener="#{historiaClinicaMB.guardarAntecedenteFamiliar}" update="crearAgergarAnetcedenteFamiliar,formNuevoAntecedentePaciente,formHistoriaClinica"  value="Confirmar"  ajax="true"  oncomplete="if (args &amp;&amp; !args.validationFailed) PF('nuevoAgregarAntecedenteFamiliarWV').hide()" />
+				</p:panelGrid>	         
+		</h:form>		
+	</p:dialog>
+	
+	<p:dialog styleClass="box-solid box-primary" header="NUEVO MEDICAMENTO" widgetVar="nuevoAgregarMedicamentoWV"  resizable="false" draggable="false" appendTo="@(body)" responsive="true" modal="true" >
+		<h:form id="crearAgregarMedicamento">    
+			<p:messages id="messagesNuevoMedicamento" closable="true"/>
+          
+                <p:panelGrid  columns="2" columnClasses="ui-grid-col-3,ui-grid-col-9" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Medicamento  " for="medicamentoID"/>	
+					<p:inputText id="medicamentoID" autocomplete="false" required="true" requiredMessage="Medicamento: es requerido" value="#{historiaClinicaMB.nuevoAntecedente.medicamento.medicamento}"/>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="3" columnClasses="ui-grid-col-3,ui-grid-col-4,ui-grid-col-5" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                		
+					 <p:outputLabel for="dosis1ID" value="Dosis"/>
+                     <p:outputPanel>
+                        <p:inputText id="dosis1ID"/>
+                        <p:slider for="dosis1ID"  inValue="0.0" maxValue="20.0" step="0.01" />
+                     </p:outputPanel> 
+					 <p:selectOneMenu id="dosis2ID">
+                        <f:selectItem itemLabel="(ninguno)" itemValue=""/>
+                        <f:selectItem itemLabel="ninguno1" itemValue="ninguno1"/>
+                        <f:selectItem itemLabel="ninguno2" itemValue="ninguno2"/>
+                        <f:selectItem itemLabel="ninguno3" itemValue="ninguno3"/>
+                     </p:selectOneMenu>  
+					
+					<p:outputLabel value="Frecuencia " for="frecuencia1ID"/>	
+					<p:selectOneMenu id="frecuencia1ID">
+                        <f:selectItem itemLabel="(ninguno)" itemValue=""/>
+                        <f:selectItem itemLabel="ninguno1" itemValue="ninguno1"/>
+                        <f:selectItem itemLabel="ninguno2" itemValue="ninguno2"/>
+                        <f:selectItem itemLabel="ninguno3" itemValue="ninguno3"/>
+                     </p:selectOneMenu>  
+                     <p:selectOneMenu id="frecuencia2ID">
+                        <f:selectItem itemLabel="(ninguno)" itemValue=""/>
+                        <f:selectItem itemLabel="ninguno1" itemValue="ninguno1"/>
+                        <f:selectItem itemLabel="ninguno2" itemValue="ninguno2"/>
+                        <f:selectItem itemLabel="ninguno3" itemValue="ninguno3"/>
+                     </p:selectOneMenu>  
+                 </p:panelGrid>
+                 <p:panelGrid  columns="4" columnClasses="ui-grid-col-3,ui-grid-col-3,ui-grid-col-3,ui-grid-col-3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel for="desde" value="Desde"/>
+                    <p:calendar id="desde" showOn="button" required="true" requiredMessage="Fecha desde: es requerido" value="#{historiaClinicaMB.nuevoAntecedente.medicamento.fechaDesde}"/>
+                	<p:outputLabel for="hasta" value="Hasta"/>
+                    <p:calendar id="hasta" showOn="button" required="true" requiredMessage="Fecha hasta: es requerido" value="#{historiaClinicaMB.nuevoAntecedente.medicamento.fechaHasta}"/>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="2" columnClasses="ui-grid-col-3,ui-grid-col-9" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Origen  " for="origenID"/>	
+					<p:selectOneMenu id="origenID" required="true" requiredMessage="Origen: es requerido" value="#{historiaClinicaMB.nuevoAntecedente.medicamento.origen}">
+                        <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                        <f:selectItem itemLabel="De relato" itemValue="1"/>
+                        <f:selectItem itemLabel="Certificado" itemValue="2"/>
+                        <f:selectItem itemLabel="Sin dato" itemValue="3"/>
+                    </p:selectOneMenu>    
+                 </p:panelGrid>
+                 <p:panelGrid  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Observaciones" for="observacionesID"/>	
+					<p:inputTextarea id="observacionesID" required="true" requiredMessage="Observaciones: es requerido" value="#{historiaClinicaMB.nuevoAntecedente.medicamento.observaciones}"/>
+                 </p:panelGrid>
+				<p:separator/>
+				<p:panelGrid  columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+		        	  <p:commandButton styleClass="btn-danger ui-confirmdialog-no pull-left"    icon="fa fa-close"  id="cancelarAntMedicamento"   update="crearAgregarMedicamento,formNuevoAntecedentePaciente"  value="Cancelar"   process="@this"  oncomplete="PF('nuevoAgregarMedicamentoWV').hide()">
+		        	   	<p:resetInput target="crearMedicamento" />
+		        	  </p:commandButton>
+		        	  <p:commandButton styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check"  id="confirmarAntMedicamento" actionListener="#{historiaClinicaMB.guardarAntecedenteMedicamento}" update="crearAgregarMedicamento,formNuevoAntecedentePaciente,formHistoriaClinica"  value="Confirmar"  oncomplete="if (args &amp;&amp; !args.validationFailed) PF('nuevoAgregarMedicamentoWV').hide()" />
+				</p:panelGrid>			         
+		</h:form>		
+	</p:dialog>
+	
+	<p:dialog styleClass="box-solid box-primary" header="EDITAR CONSULTA MEDICA" widgetVar="editarConsultaActualWV" resizable="false" draggable="false" appendTo="@(body)" responsive="true"  modal="true" >
+		<h:form id="editarConsultaActual">  
+		<p:growl />  
+			<p:messages id="messagesEditarConsultaMedica" closable="true" />
+                <p:panelGrid  columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Repetir medicamentos y/o pases " for="repID" />
+					<p:selectOneMenu id="repID" required="true" value="#{historiaClinicaMB.selectedConsultaMedica.repetirMedicamento}" requiredMessage="Repetir medicamentos y/o pases: es requerido">
+                        <f:selectItem itemLabel="Seleccione" itemValue="" />
+                        <f:selectItem itemLabel="SI" itemValue="true"/>
+                        <f:selectItem itemLabel="NO" itemValue="false"/>
+                    </p:selectOneMenu>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Motivo consulta" for="motConsID"/>	
+					<p:inputText id="motConsID" autocomplete="false" required="true" value="#{historiaClinicaMB.selectedConsultaMedica.motivoConsulta}" requiredMessage="Motivo: es requerido"/>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="1" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Anemesis " for="anemesisID"/>	
+					<p:inputTextarea id="anemesisID" required="true" value="#{historiaClinicaMB.selectedConsultaMedica.anemesis}" requiredMessage="Anemesis: es requerido"/>
+					<p:outputLabel value="Examen físico " for="exFisicoID"/>	
+					<p:inputTextarea id="exFisicoID" required="true" value="#{historiaClinicaMB.selectedConsultaMedica.examenFisico}" requiredMessage="Examen físico: es requerido"/>
+                 </p:panelGrid>
+                 <p:panelGrid  columns="4" columnClasses="ui-grid-col-3,ui-grid-col-3,ui-grid-col-3,ui-grid-col-3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+	                <p:outputLabel for="peso" value="Peso kg."/>
+                    <p:outputPanel>
+                        <p:inputText id="peso" value="#{historiaClinicaMB.selectedConsultaMedica.pesoKgs}" required="true"  requiredMessage="Peso: es requerido" />
+                        <p:slider for="peso" maxValue="450"  />
+                    </p:outputPanel>
+                    <p:outputLabel for="talla" value="Talla cm."/>
+                    <p:outputPanel>
+                        <p:inputText id="talla" value="#{historiaClinicaMB.selectedConsultaMedica.tallaCms}" required="true"  requiredMessage="Talla: es requerido" />
+                        <p:slider for="talla" maxValue="300" />
+                    </p:outputPanel> 
+	                 <p:outputLabel value="IMC " for="imcID"/>
+	                 <p:inputText id="imcID" required="true" value="#{historiaClinicaMB.selectedConsultaMedica.imc}" requiredMessage="IMC: es requerido"/>
+	                 <p:outputLabel for="cintura" value="Cintura cm."/>
+                     <p:outputPanel>
+                        <p:inputText id="cintura" value="#{historiaClinicaMB.selectedConsultaMedica.cinturaCms}" required="true"  requiredMessage="Cintura: es requerido"/>
+                        <p:slider for="cintura" maxValue="300" />
+                     </p:outputPanel> 
+                 </p:panelGrid>
+                 <p:panelGrid  columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Diagnóstico " for="diagID"/>	
+					<p:inputText id="diagID" autocomplete="false" required="true" value="#{historiaClinicaMB.selectedConsultaMedica.diagnostico}" requiredMessage="Diagóstico: es requerido"/>
+                 </p:panelGrid>
+                  <p:panelGrid  columns="1" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Conducta " for="conductaID"/>	
+					<p:inputTextarea id="conductaID" required="true" value="#{historiaClinicaMB.selectedConsultaMedica.conducta}" requiredMessage="Conducta: es requerido"/>
+                 </p:panelGrid>
+                 
+                 
+                 <p:panelGrid  columns="1" cellpadding="5" layout="grid" styleClass="no-border ui-fluid" style="text-align:center">
+				      <p:outputLabel value="Diagnóstico " style="text-align:center"/>	
+				 </p:panelGrid>
+				 
+				 
+                 <p:panelGrid id="idTextoDiagnostico" columns="5" columnClasses="ui-grid-col-1,ui-grid-col-1,ui-grid-col-8,ui-grid-col-1,ui-grid-col-1" layout="grid" styleClass="no-border ui-fluid">
+                	<p:commandButton styleClass="ui-confirmdialog-yes pull-right btn-teal" icon="fa fa-plus-circle" immediate="true" id="editarDiagnosticoID"  update="editardiagnosticoMB" ajax="true"  actionListener="#{diagnosticoMB.fillPrimerCapituloList}"  oncomplete="PF('editarDiagnosticoWV').show();return false"/>
+					<p:tooltip id="toolTipAgregarDiagnosticoID" for="editarDiagnosticoID" value="Agregar diagnóstico" showEffect="clip" hideEffect="explode" position="right"/>
+					<h4  style="font-weight: bold;"> #{historiaClinicaMB.selectedConsultaMedica.diagnostico} </h4>
+					<p:tooltip id="toolTipBorrarDiagnosticoID" for="borrarDiagnosticoID" value="Borrar diagnóstico" showEffect="clip" hideEffect="explode" position="left"/>
+					<p:commandButton title="Borrar diagnóstico"  styleClass="btn-danger ui-confirmdialog-no" icon="fa fa-trash-o" id="borrarDiagnosticoID" immediate="true" update="crearConsultaActual" ajax="true" actionListener="#{historiaClinicaMB.borrarDiagnosticoEditar}"/>
+                 </p:panelGrid>
+                 
+                 
+				<p:separator/>
+				
+				<p:panelGrid  columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+		        	  <p:commandButton styleClass="btn-danger ui-confirmdialog-no pull-left"    icon="fa fa-close"  id="cancelarBtn"      update="editarConsultaActual"  value="Cancelar"   process="@this"  oncomplete="PF('editarConsultaActualWV').hide()">
+		        	   	<p:resetInput target="editarConsultaActual" />
+		        	  </p:commandButton>
+		        	  <p:commandButton styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check"  id="confirmarDoctor"  update="formHistoriaClinica,editarConsultaActual"  value="Confirmar"  ajax="true"  actionListener="#{historiaClinicaMB.editarConsultaMedica}"     oncomplete="if (args &amp;&amp; !args.validationFailed) PF('editarConsultaActualWV').hide()" />
+				</p:panelGrid>	
+		</h:form>		
+	</p:dialog>
+	
+	<p:dialog styleClass="box-solid box-primary" header="NUEVA CONSULTA" widgetVar="nuevaConsultaActualWV" resizable="false" draggable="false" appendTo="@(body)" responsive="true"  modal="true" >
+		<h:form id="crearConsultaActual">    
+			<p:messages id="messagesNuevaConsultaMedica" closable="true" />
+                <p:panelGrid  columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Repetir medicamentos y/o pases " for="repID" />
+					<p:selectOneMenu id="repID" required="true" value="#{historiaClinicaMB.nuevaConsultaMedica.repetirMedicamento}" requiredMessage="Repetir medicamentos y/o pases: es requerido">
+                        <f:selectItem itemLabel="Seleccione" itemValue="" />
+                        <f:selectItem itemLabel="SI" itemValue="true"/>
+                        <f:selectItem itemLabel="NO" itemValue="false"/>
+                    </p:selectOneMenu>
+                 </p:panelGrid>
+                 
+                 <p:panelGrid  columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Motivo consulta" for="motConsID"/>	
+					<p:inputText id="motConsID" autocomplete="false" required="true" value="#{historiaClinicaMB.nuevaConsultaMedica.motivoConsulta}" requiredMessage="Motivo: es requerido"/>
+                 </p:panelGrid>
+                 
+                 <p:panelGrid  columns="1" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Anemesis " for="anemesisID"/>	
+					<p:inputTextarea id="anemesisID" required="true" value="#{historiaClinicaMB.nuevaConsultaMedica.anemesis}" requiredMessage="Anemesis: es requerido"/>
+					<p:outputLabel value="Examen físico " for="exFisicoID"/>	
+					<p:inputTextarea id="exFisicoID" required="true" value="#{historiaClinicaMB.nuevaConsultaMedica.examenFisico}" requiredMessage="Examen físico: es requerido"/>
+                 </p:panelGrid>
+                 
+                 <p:panelGrid  columns="4" columnClasses="ui-grid-col-3,ui-grid-col-3,ui-grid-col-3,ui-grid-col-3" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+	                
+	                <p:outputLabel for="peso" value="Peso kg."/>
+                    <p:outputPanel>
+                        <p:inputText id="peso" value="#{historiaClinicaMB.nuevaConsultaMedica.pesoKgs}" required="true"  requiredMessage="Peso: es requerido" />
+                        <p:slider for="peso" maxValue="450"  />
+                    </p:outputPanel>
+                    
+                    <p:outputLabel for="talla" value="Talla cm."/>
+                    <p:outputPanel>
+                        <p:inputText id="talla" value="#{historiaClinicaMB.nuevaConsultaMedica.tallaCms}" required="true"  requiredMessage="Talla: es requerido" />
+                        <p:slider for="talla" maxValue="300" />
+                    </p:outputPanel> 
+	                
+	                 <p:outputLabel value="IMC " for="imcID"/>
+	                 <p:inputText id="imcID" required="true" value="#{historiaClinicaMB.nuevaConsultaMedica.imc}" requiredMessage="IMC: es requerido"/>
+	                 
+	                 <p:outputLabel for="cintura" value="Cintura cm."/>
+                     <p:outputPanel>
+                        <p:inputText id="cintura" value="#{historiaClinicaMB.nuevaConsultaMedica.cinturaCms}" required="true"  requiredMessage="Cintura: es requerido"/>
+                        <p:slider for="cintura" maxValue="300" />
+                     </p:outputPanel> 
+                 </p:panelGrid>
+                
+                 
+                  <p:panelGrid  columns="1" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+                	<p:outputLabel value="Conducta " for="conductaID"/>	
+					<p:inputTextarea id="conductaID" required="true" value="#{historiaClinicaMB.nuevaConsultaMedica.conducta}" requiredMessage="Conducta: es requerido"/>
+                 </p:panelGrid>
+				<p:separator/>
+				 <p:panelGrid  columns="1" cellpadding="5" layout="grid" styleClass="no-border ui-fluid" style="text-align:center">
+				      <p:outputLabel value="Diagnóstico " style="text-align:center"/>	
+				 </p:panelGrid>
+                 <p:panelGrid id="idTextoDiagnostico" columns="5" columnClasses="ui-grid-col-1,ui-grid-col-1,ui-grid-col-8,ui-grid-col-1,ui-grid-col-1" layout="grid" styleClass="no-border ui-fluid">
+                	<p:commandButton styleClass="ui-confirmdialog-yes pull-right btn-teal" icon="fa fa-plus-circle" immediate="true" id="agregarDiagnosticoID"  update="creardiagnosticoMB" ajax="true"  actionListener="#{diagnosticoMB.fillPrimerCapituloList}"  oncomplete="PF('nuevoDiagnosticoWV').show();return false"/>
+					<p:tooltip id="toolTipAgregarDiagnosticoID" for="agregarDiagnosticoID" value="Agregar diagnóstico" showEffect="clip" hideEffect="explode" position="right"/>
+					<h4  style="font-weight: bold;"> #{historiaClinicaMB.nuevaConsultaMedica.diagnostico} </h4>
+					<p:tooltip id="toolTipBorrarDiagnosticoID" for="borrarDiagnosticoID" value="Borrar diagnóstico" showEffect="clip" hideEffect="explode" position="left"/>
+					<p:commandButton title="Borrar diagnóstico"  styleClass="btn-danger ui-confirmdialog-no" icon="fa fa-trash-o" id="borrarDiagnosticoID" immediate="true" update="crearConsultaActual" ajax="true" actionListener="#{historiaClinicaMB.borrarDiagnostico}"/>
+                 </p:panelGrid>
+				
+				<p:separator/>
+				
+				<p:panelGrid  columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+		        	  <p:commandButton styleClass="btn-danger ui-confirmdialog-no pull-left"    icon="fa fa-close"  id="cancelarBtn"      update="crearConsultaActual"  value="Cancelar"   process="@this"  oncomplete="PF('nuevaConsultaActualWV').hide()">
+		        	   	<p:resetInput target="crearConsultaActual" />
+		        	  </p:commandButton>
+		        	  <p:commandButton  styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check"  id="confirmarDoctor"  update="formHistoriaClinica,crearConsultaActual"  value="Confirmar"  ajax="true"  actionListener="#{historiaClinicaMB.guardarConsultaMedica}"     oncomplete="if (args &amp;&amp; !args.validationFailed) PF('nuevaConsultaActualWV').hide()" />
+				</p:panelGrid>	
+				
+		</h:form>		
+	</p:dialog>
+	
+	<p:dialog styleClass="box-default" header="EDITAR DIAGNOSTICO" widgetVar="editarDiagnosticoWV" resizable="false" draggable="false" appendTo="@(body)" responsive="true"  modal="true" width="1000" >
+		<h:form id="editardiagnosticoMB">  
+	    <p:panelGrid columns="1" cellpadding="5" layout="grid" styleClass="no-border ui-fluid" >
+    		<p:panel styleClass="card">  	
+			     <p:selectOneButton id="oneBtn" value="#{diagnosticoMB.selectedTipoDiagnostico}" >
+			        <f:selectItem itemLabel="CIE10" id="cie10IdBtn" itemValue="cie10"  />
+			       	<p:tooltip id="toolTipcie10IdBtn" for="cie10IdBtn" value="buscar código de diagnóstico CIE10"  position="left"/>
+			       
+		            <f:selectItem itemLabel="Texto Libre" id="txtLibreIdBtn" itemValue="libre" />
+		            <p:ajax update="editardiagnosticoMB"  event="change" listener="#{diagnosticoMB.esCIE10}" />
+		         </p:selectOneButton>
+		          <p:tooltip id="toolTiptxtLibreIdBtn" for="txtLibreIdBtn" value="ingresar diagnóstico con texto libre" position="left"/>
+		          
+         	</p:panel>   
+	    </p:panelGrid>
+		<p:panelGrid style="margin-top:40px" rendered="#{diagnosticoMB.esCIE10}" columns="1" cellpadding="5" layout="grid" styleClass="no-border ui-fluid" >
+		    <p:panel styleClass="card"> 
+			    <p:tabView >
+			    <p:ajax event="tabChange" listener="#{diagnosticoMB.resetListas}" update="editardiagnosticoMB"/>
+			        <p:tab title="Por Capitulos">
+			        	<p:panelGrid style="margin-top:5px; " columns="1"  cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+							 <h5 class="pruebaFont" > * búsqueda por capítulos CIE10, seleccione valores </h5>
+			            </p:panelGrid>
+		                <p:panelGrid style="margin-top:40px" columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+		                    <p:selectOneMenu id="primerCapituloID" value="#{diagnosticoMB.selectedPrimerCapitulo}" converter="diagnosticoConverter" >
+				                <f:selectItem itemLabel="Seleccionar"/>
+				                	<p:ajax event="itemSelect"  listener="#{diagnosticoMB.fillSegundoCapituloList}" update="editardiagnosticoMB" />
+					        	<f:selectItems value="#{diagnosticoMB.primerCapituloList}" var="model1" itemLabel="#{model1.getLabel()}" itemValue="#{model1}" />
+					        </p:selectOneMenu>
+							<p:selectOneMenu id="SegundoCapituloID" value="#{diagnosticoMB.selectedSegundoCapitulo}" converter="diagnosticoConverter" disabled="#{diagnosticoMB.selectedPrimerCapitulo == null}">
+				                <f:selectItem itemLabel="Seleccionar"/>
+				                	<p:ajax event="itemSelect"  listener="#{diagnosticoMB.fillTercerCapituloList}" update="editardiagnosticoMB" />
+					        	<f:selectItems value="#{diagnosticoMB.segundoCapituloList}" var="model2" itemLabel="#{model2.getLabel()}" itemValue="#{model2}" />
+					        </p:selectOneMenu>
+					        <p:selectOneMenu id="tercerCapituloID" value="#{diagnosticoMB.selectedTercerCapitulo}" converter="diagnosticoConverter" disabled="#{diagnosticoMB.selectedSegundoCapitulo == null}">
+				                <f:selectItem itemLabel="Seleccionar"/>
+				                	<p:ajax event="itemSelect"  listener="#{diagnosticoMB.fillCuartoCapituloList}" update="editardiagnosticoMB" />
+					        	<f:selectItems value="#{diagnosticoMB.tercerCapituloList}" var="model3" itemLabel="#{model3.getLabel()}" itemValue="#{model3}" />
+					        </p:selectOneMenu>
+		                 </p:panelGrid>
+		                 <p:panelGrid style="margin-top:40px; margin-bottom:40px"  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+							   <p:dataTable rows="4" value="#{diagnosticoMB.cuartoCapituloList}" var="diag" selection="#{diagnosticoMB.selectedCIE10}"  rowKey="#{diag.id10}" emptyMessage=" No se encontraron diagnosticos para los filtros seleccionados" >
+							       <p:ajax event="rowSelectRadio" update="editardiagnosticoMB" listener="#{diagnosticoMB.onRowSelect}"/>
+								   <p:column selectionMode="single" styleClass="ui-grid-col-1"/>
+								   <p:column headerText="Código" styleClass="ui-grid-col-1">
+								     <p:outputLabel value="#{diag.id10}"/>
+								   </p:column>
+								   <p:column headerText="Descripción" styleClass="ui-grid-col-10">
+								     <p:outputLabel value="#{diag.dec10}"/>
+								   </p:column>
+								</p:dataTable>
+		                 </p:panelGrid>
+			        </p:tab>
+			        <p:tab title="Por Texto">
+			       		 <p:panelGrid style="margin-top:5px; " columns="1"  cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+							 <h5 class="pruebaFont" > * realizar búsqueda por decripción CIE10 </h5>
+			            </p:panelGrid>
+			             <p:panelGrid style="margin-top:40px" columns="2" columnClasses="ui-grid-col-10,ui-grid-col-2" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+				             <p:inputText placeholder="Escriba descripción de código CIE10 o parte de ella " id="buscarTexto" value="#{diagnosticoMB.busquedaTexto}"/>
+				             <p:commandButton value="BUSCAR" styleClass="ui-confirmdialog-yes pull-right btn-teal" icon="fa fa-search" id="buscarTextoID"   update="editardiagnosticoMB" ajax="true"  actionListener="#{diagnosticoMB.fillCuartoCapituloListFromText}" />
+			             </p:panelGrid>    
+			             <p:panelGrid style="margin-top:40px; margin-bottom:40px" columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+						     <p:dataTable  value="#{diagnosticoMB.busquedaTextoList}" var="diag" selection="#{diagnosticoMB.selectedCIE10}" rowKey="#{diag.id10}" emptyMessage=" No se encontraron diagnosticos para los filtros seleccionados" >
+							    <p:ajax event="rowSelectRadio" update="editardiagnosticoMB" listener="#{diagnosticoMB.onRowSelect}"/>
+							    <p:column selectionMode="single" styleClass="ui-grid-col-1"/>
+							    <p:column headerText="Código" styleClass="ui-grid-col-1">
+							     <p:outputLabel value="#{diag.id10}"/>
+							    </p:column>
+							    <p:column headerText="Descripción" styleClass="ui-grid-col-10">
+							     <p:outputLabel value="#{diag.dec10}"/>
+							    </p:column>
+							  </p:dataTable>
+		                 </p:panelGrid>
+			        </p:tab>
+			        <p:tab title="Por Codigo">
+				        <p:panelGrid style="margin-top:5px; " columns="1"  cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+							 <h5 class="pruebaFont" > * realizar búsqueda por código CIE10 </h5>
+			            </p:panelGrid> 
+			            <p:panelGrid style="margin-top:40px" columns="2"  columnClasses="ui-grid-col-10,ui-grid-col-2" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+				             <p:inputText placeholder="Escriba el código CIE10 aquí" id="buscarCodigo" value="#{diagnosticoMB.busquedaCodigo}" />
+				             <p:commandButton value="BUSCAR" styleClass="ui-confirmdialog-yes pull-right btn-teal" icon="fa fa-search" id="buscarCodigoID"  update="editardiagnosticoMB" ajax="true"  actionListener="#{diagnosticoMB.fillCuartoCapituloListFromCodigo}" />
+			             </p:panelGrid>
+			             <p:panelGrid style="margin-top:40px; margin-bottom:40px" columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+						     <p:dataTable  value="#{diagnosticoMB.busquedaCodigoList}" var="diag" selection="#{diagnosticoMB.selectedCIE10}" rowKey="#{diag.id10}" emptyMessage=" No se encontraron diagnosticos para los filtros seleccionados" >
+							   <p:ajax event="rowSelectRadio" update="editardiagnosticoMB" listener="#{diagnosticoMB.onRowSelect}"/>
+							   <p:column selectionMode="single" styleClass="ui-grid-col-1"/>
+							   <p:column headerText="Código" styleClass="ui-grid-col-1">
+							     <p:outputLabel value="#{diag.id10}"/>
+							   </p:column>
+							   <p:column headerText="Descripción" styleClass="ui-grid-col-10">
+							     <p:outputLabel value="#{diag.dec10}"/>
+							   </p:column>
+							 </p:dataTable>
+		                 </p:panelGrid>
+			        </p:tab>
+			    </p:tabView>
+			    
+			 </p:panel>
+		</p:panelGrid>
+		<p:panelGrid style="margin-top:40px"  rendered="#{diagnosticoMB.esTextoLibre}"  columns="1"   cellpadding="5" layout="grid" styleClass="no-border ui-fluid" >
+		  <p:panel styleClass="card"> 
+			<p:panelGrid style="margin-top:5px; " columns="1"  cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+				 <h5 class="pruebaFont" > * puede escribir libremente el diagnóstico, pero recuerde que se sugiere utilizar la codificación internacional CIE10 para tener historias clinicas standard </h5>
+            </p:panelGrid> 
+            <p:panelGrid style="margin-top:40px; margin-bottom:40px" columns="3"  columnClasses="ui-grid-col-9,ui-grid-col-1,ui-grid-col-2" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+	             <p:inputText id="textoLibre" placeholder="Escriba texto libre de diagnostico" value="#{diagnosticoMB.textoLibre}" />
+	             <p:commandButton title="ver 10 diagnósticos libres más usados" value="" styleClass="ui-confirmdialog-yes pull-right btn-teal" icon="fa fa-eye" id="verTextLibreID"  update="editardiagnosticoMB,editDetail" ajax="true"  actionListener="#{diagnosticoMB.ver10DiagnosticosTextoLibreMasUsados}" oncomplete="PF('masUsadosEditWv').show('#{component.clientId}')"/>
+	             <p:commandButton title="agregar diagnóstico" value="AGREGAR" styleClass="ui-confirmdialog-yes pull-right btn-teal" id="agregarTextLibreID"  update="editardiagnosticoMB" actionListener="#{diagnosticoMB.agregarTextoLibre}" />
+            </p:panelGrid>  
+            </p:panel>
+		</p:panelGrid>
+		<p:separator/>
+		<p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10" cellpadding="5" layout="grid" styleClass="no-border ui-fluid" >
+				 <p:outputLabel value="Diagnostico : "/>
+           		<h3>#{diagnosticoMB.selectedCIE10.getLabel()}</h3>
+		</p:panelGrid>
+		<p:separator/>
+		<p:panelGrid  columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+        	  <p:commandButton styleClass="btn-danger ui-confirmdialog-no pull-left" icon="fa fa-close"  id="cancelarBtnDiag" immediate="true"  update="editardiagnosticoMB"  value="Cancelar"   process="@this"  oncomplete="PF('editarDiagnosticoWV').hide()">
+        	   	<p:resetInput target="editardiagnosticoMB" />
+        	  </p:commandButton>
+        	  <p:commandButton styleClass="btn-primary ui-confirmdialog-yes pull-right" immediate="true" icon="fa fa-check" id="confirmarDiagnostico" update="editardiagnosticoMB,:editarConsultaActual:idTextoDiagnostico" value="Confirmar" ajax="true" actionListener="#{historiaClinicaMB.confirmarDiagnosticoEditar}" oncomplete="PF('editarDiagnosticoWV').hide()" />
+		</p:panelGrid>	
+		
+		</h:form>		
+	</p:dialog>
+	
+	
+	 <p:overlayPanel widgetVar="masUsadosEditWv" showEffect="fade" hideEffect="fade" dismissable="false" showCloseIcon="true">
+        <p:outputPanel id="editDetail">
+            <p:panelGrid style="margin-top:10px; margin-bottom:10px" columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+			     <p:dataList value="#{diagnosticoMB.diezMasUsadosTextoLibreList}"  emptyMessage="no hay aún" var="item" type="unordered" itemType="none" rows="10" >
+			        <f:facet name="header">
+			            Diagnósticos más usados:
+			        </f:facet>
+			        <p:commandLink value="#{item}" update="editardiagnosticoMB" oncomplete="PF('masUsadosEditWv').hide()" title="seleccionar" actionListener="#{diagnosticoMB.seleccionarDiagnosticoLibreMasUsados(item)}"  />
+			
+			    </p:dataList>
+             </p:panelGrid>    
+        </p:outputPanel>
+    </p:overlayPanel>
+	
+	
+	<p:dialog styleClass="box-default" header="AGREGAR DIAGNOSTICO" widgetVar="nuevoDiagnosticoWV" resizable="false" draggable="false" appendTo="@(body)" responsive="true"  modal="true" width="1000" >
+		<h:form id="creardiagnosticoMB">  
+	    <p:panelGrid columns="1" cellpadding="5" layout="grid" styleClass="no-border ui-fluid" >
+    		<p:panel styleClass="card">  	
+			     <p:selectOneButton id="oneBtn" value="#{diagnosticoMB.selectedTipoDiagnostico}" >
+			        <f:selectItem itemLabel="CIE10" id="cie10IdBtn" itemValue="cie10"  />
+			       	<p:tooltip id="toolTipcie10IdBtn" for="cie10IdBtn" value="buscar código de diagnóstico CIE10"  position="left"/>
+			       
+		            <f:selectItem itemLabel="Texto Libre" id="txtLibreIdBtn" itemValue="libre" />
+		            <p:ajax update="creardiagnosticoMB"  event="change" listener="#{diagnosticoMB.esCIE10}" />
+		         </p:selectOneButton>
+		          <p:tooltip id="toolTiptxtLibreIdBtn" for="txtLibreIdBtn" value="ingresar diagnóstico con texto libre" position="left"/>
+         	</p:panel>   
+	    </p:panelGrid>
+		<p:panelGrid style="margin-top:40px" rendered="#{diagnosticoMB.esCIE10}" columns="1" cellpadding="5" layout="grid" styleClass="no-border ui-fluid" >
+		    <p:panel styleClass="card"> 
+			    <p:tabView >
+			    <p:ajax event="tabChange" listener="#{diagnosticoMB.resetListas}" update="creardiagnosticoMB"/>
+			        <p:tab title="Por Capitulos">
+			        	<p:panelGrid style="margin-top:5px; " columns="1"  cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+							 <h5 class="pruebaFont" > * búsqueda por capítulos CIE10, seleccione valores </h5>
+			            </p:panelGrid>
+		                <p:panelGrid style="margin-top:40px" columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+		                    <p:selectOneMenu id="primerCapituloID" value="#{diagnosticoMB.selectedPrimerCapitulo}" converter="diagnosticoConverter" >
+				                <f:selectItem itemLabel="Seleccionar"/>
+				                	<p:ajax event="itemSelect"  listener="#{diagnosticoMB.fillSegundoCapituloList}" update="creardiagnosticoMB" />
+					        	<f:selectItems value="#{diagnosticoMB.primerCapituloList}" var="model1" itemLabel="#{model1.getLabel()}" itemValue="#{model1}" />
+					        </p:selectOneMenu>
+							<p:selectOneMenu id="SegundoCapituloID" value="#{diagnosticoMB.selectedSegundoCapitulo}" converter="diagnosticoConverter" disabled="#{diagnosticoMB.selectedPrimerCapitulo == null}">
+				                <f:selectItem itemLabel="Seleccionar"/>
+				                	<p:ajax event="itemSelect"  listener="#{diagnosticoMB.fillTercerCapituloList}" update="creardiagnosticoMB" />
+					        	<f:selectItems value="#{diagnosticoMB.segundoCapituloList}" var="model2" itemLabel="#{model2.getLabel()}" itemValue="#{model2}" />
+					        </p:selectOneMenu>
+					        <p:selectOneMenu id="tercerCapituloID" value="#{diagnosticoMB.selectedTercerCapitulo}" converter="diagnosticoConverter" disabled="#{diagnosticoMB.selectedSegundoCapitulo == null}">
+				                <f:selectItem itemLabel="Seleccionar"/>
+				                	<p:ajax event="itemSelect"  listener="#{diagnosticoMB.fillCuartoCapituloList}" update="creardiagnosticoMB" />
+					        	<f:selectItems value="#{diagnosticoMB.tercerCapituloList}" var="model3" itemLabel="#{model3.getLabel()}" itemValue="#{model3}" />
+					        </p:selectOneMenu>
+		                 </p:panelGrid>
+		                 <p:panelGrid style="margin-top:40px; margin-bottom:40px"  columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+							   <p:dataTable rows="4" value="#{diagnosticoMB.cuartoCapituloList}" var="diag" selection="#{diagnosticoMB.selectedCIE10}"  rowKey="#{diag.id10}" emptyMessage=" No se encontraron diagnosticos para los filtros seleccionados" >
+							       <p:ajax event="rowSelectRadio" update="creardiagnosticoMB" listener="#{diagnosticoMB.onRowSelect}"/>
+								   <p:column selectionMode="single" styleClass="ui-grid-col-1"/>
+								   <p:column headerText="Código" styleClass="ui-grid-col-1">
+								     <p:outputLabel value="#{diag.id10}"/>
+								   </p:column>
+								   <p:column headerText="Descripción" styleClass="ui-grid-col-10">
+								     <p:outputLabel value="#{diag.dec10}"/>
+								   </p:column>
+								</p:dataTable>
+		                 </p:panelGrid>
+			        </p:tab>
+			        <p:tab title="Por Texto">
+			       		 <p:panelGrid style="margin-top:5px; " columns="1"  cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+							 <h5 class="pruebaFont" > * realizar búsqueda por decripción CIE10 </h5>
+			            </p:panelGrid>
+			             <p:panelGrid style="margin-top:40px" columns="2" columnClasses="ui-grid-col-10,ui-grid-col-2" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+				             <p:inputText placeholder="Escriba descripción de código CIE10 o parte de ella " id="buscarTexto" value="#{diagnosticoMB.busquedaTexto}"/>
+				             <p:commandButton value="BUSCAR" styleClass="ui-confirmdialog-yes pull-right btn-teal" icon="fa fa-search" id="buscarTextoID"   update="creardiagnosticoMB" ajax="true"  actionListener="#{diagnosticoMB.fillCuartoCapituloListFromText}" />
+			             </p:panelGrid>    
+			             <p:panelGrid style="margin-top:40px; margin-bottom:40px" columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+						     <p:dataTable  value="#{diagnosticoMB.busquedaTextoList}" var="diag" selection="#{diagnosticoMB.selectedCIE10}" rowKey="#{diag.id10}" emptyMessage=" No se encontraron diagnosticos para los filtros seleccionados" >
+							    <p:ajax event="rowSelectRadio" update="creardiagnosticoMB" listener="#{diagnosticoMB.onRowSelect}"/>
+							    <p:column selectionMode="single" styleClass="ui-grid-col-1"/>
+							    <p:column headerText="Código" styleClass="ui-grid-col-1">
+							     <p:outputLabel value="#{diag.id10}"/>
+							    </p:column>
+							    <p:column headerText="Descripción" styleClass="ui-grid-col-10">
+							     <p:outputLabel value="#{diag.dec10}"/>
+							    </p:column>
+							  </p:dataTable>
+		                 </p:panelGrid>
+			        </p:tab>
+			        <p:tab title="Por Codigo">
+				        <p:panelGrid style="margin-top:5px; " columns="1"  cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+							 <h5 class="pruebaFont" > * realizar búsqueda por código CIE10 </h5>
+			            </p:panelGrid> 
+			            <p:panelGrid style="margin-top:40px" columns="2"  columnClasses="ui-grid-col-10,ui-grid-col-2" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+				             <p:inputText placeholder="Escriba el código CIE10 aquí" id="buscarCodigo" value="#{diagnosticoMB.busquedaCodigo}" />
+				             <p:commandButton value="BUSCAR" styleClass="ui-confirmdialog-yes pull-right btn-teal" icon="fa fa-search" id="buscarCodigoID"  update="creardiagnosticoMB" ajax="true"  actionListener="#{diagnosticoMB.fillCuartoCapituloListFromCodigo}" />
+			             </p:panelGrid>
+			             <p:panelGrid style="margin-top:40px; margin-bottom:40px" columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+						     <p:dataTable  value="#{diagnosticoMB.busquedaCodigoList}" var="diag" selection="#{diagnosticoMB.selectedCIE10}" rowKey="#{diag.id10}" emptyMessage=" No se encontraron diagnosticos para los filtros seleccionados" >
+							   <p:ajax event="rowSelectRadio" update="creardiagnosticoMB" listener="#{diagnosticoMB.onRowSelect}"/>
+							   <p:column selectionMode="single" styleClass="ui-grid-col-1"/>
+							   <p:column headerText="Código" styleClass="ui-grid-col-1">
+							     <p:outputLabel value="#{diag.id10}"/>
+							   </p:column>
+							   <p:column headerText="Descripción" styleClass="ui-grid-col-10">
+							     <p:outputLabel value="#{diag.dec10}"/>
+							   </p:column>
+							 </p:dataTable>
+		                 </p:panelGrid>
+			        </p:tab>
+			    </p:tabView>
+			    
+			 </p:panel>
+		</p:panelGrid>
+		<p:panelGrid style="margin-top:40px"  rendered="#{diagnosticoMB.esTextoLibre}"  columns="1"   cellpadding="5" layout="grid" styleClass="no-border ui-fluid" >
+		  <p:panel styleClass="card"> 
+			<p:panelGrid style="margin-top:5px; " columns="1"  cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+				 <h5 class="pruebaFont" > * puede escribir libremente el diagnóstico, pero recuerde que se sugiere utilizar la codificación internacional CIE10 para tener historias clinicas standard </h5>
+            </p:panelGrid> 
+            <p:panelGrid style="margin-top:40px; margin-bottom:40px" columns="3"  columnClasses="ui-grid-col-9,ui-grid-col-1,ui-grid-col-2" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+	             <p:inputText id="textoLibre" placeholder="Escriba texto libre de diagnostico" value="#{diagnosticoMB.textoLibre}" />
+	             <p:commandButton title="ver 10 diagnósticos libres más usados" value="" styleClass="ui-confirmdialog-yes pull-right btn-teal" icon="fa fa-eye" id="verTextLibreID"  update="creardiagnosticoMB,carDetail" ajax="true"  actionListener="#{diagnosticoMB.ver10DiagnosticosTextoLibreMasUsados}" oncomplete="PF('masUsadosWv').show('#{component.clientId}')"/>
+	             <p:commandButton title="agregar diagnóstico" value="AGREGAR" styleClass="ui-confirmdialog-yes pull-right btn-teal" id="agregarTextLibreID"  update="creardiagnosticoMB" actionListener="#{diagnosticoMB.agregarTextoLibre}" />
+            </p:panelGrid>  
+            </p:panel>
+		</p:panelGrid>
+		<p:separator/>
+		<p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10" cellpadding="5" layout="grid" styleClass="no-border ui-fluid" >
+				 <p:outputLabel value="Diagnostico : "/>
+           		<h3>#{diagnosticoMB.selectedCIE10.getLabel()}</h3>
+		</p:panelGrid>
+		<p:separator/>
+		<p:panelGrid  columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+        	  <p:commandButton styleClass="btn-danger ui-confirmdialog-no pull-left" icon="fa fa-close"  id="cancelarBtnDiag" immediate="true"  update="creardiagnosticoMB"  value="Cancelar"   process="@this"  oncomplete="PF('nuevoDiagnosticoWV').hide()">
+        	   	<p:resetInput target="creardiagnosticoMB" />
+        	  </p:commandButton>
+        	  <p:commandButton styleClass="btn-primary ui-confirmdialog-yes pull-right" immediate="true" icon="fa fa-check" id="confirmarDiagnostico" update="creardiagnosticoMB,:crearConsultaActual:idTextoDiagnostico" value="Confirmar" ajax="true" actionListener="#{historiaClinicaMB.confirmarDiagnostico}" oncomplete="PF('nuevoDiagnosticoWV').hide()" />
+		</p:panelGrid>	
+		
+		</h:form>		
+	</p:dialog>
+	
+	
+	
+	 <p:overlayPanel widgetVar="masUsadosWv" showEffect="fade" hideEffect="fade" dismissable="false" showCloseIcon="true">
+        <p:outputPanel id="carDetail">
+            <p:panelGrid style="margin-top:10px; margin-bottom:10px" columns="1" columnClasses="ui-grid-col-12" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+			     <p:dataList value="#{diagnosticoMB.diezMasUsadosTextoLibreList}"  emptyMessage="no hay aún" var="item" type="unordered" itemType="none" rows="10" >
+			        <f:facet name="header">
+			            Diagnósticos más usados:
+			        </f:facet>
+			        <p:commandLink update="creardiagnosticoMB" oncomplete="PF('masUsadosWv').hide()" title="seleccionar" actionListener="#{diagnosticoMB.seleccionarDiagnosticoLibreMasUsados(item)}" styleClass="fa fa-thumb-tack" />
+			        <h:outputText value="#{item}"/>
+			    </p:dataList>
+             </p:panelGrid>    
+        </p:outputPanel>
+    </p:overlayPanel>
+	
+	<p:dialog header="NUEVO PROCEDIMINETO DIAGNOSTICO Y/O TERAPEUTICO" widgetVar="nuevoDiagnosticoPaciente" resizable="false" draggable="false" appendTo="@(body)" responsive="true" modal="true" styleClass="box-solid box-primary" >
+		<h:form id="formDiagonosticoPaciente">    
+			<p:messages id="messagesDialogDiagnostico"/>
+                <p:growl/>
+                <p:panelGrid id="editPacienteGrid" columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+					<p:outputLabel  value="Aca los datos que requiera esta area. "/>
+			        
+				</p:panelGrid> 
+				
+				<p:separator/>
+			
+        	    <p:commandButton id="cancelarBtn" update="formHistoriaClinica" value="Cancelar"  styleClass="btn-danger ui-confirmdialog-no pull-left" icon="fa fa-close"   oncomplete="PF('nuevoDiagnosticoPaciente').hide()"/>
+        	    <p:commandButton ajax="true" id="nuevoDocumento" value="Confirmar" update="formHistoriaClinica"  styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check" />
+		</h:form>		
+	 </p:dialog> 
+	
+	
+	 
+    <script type="text/javascript">
+    
+    
+	PrimeFaces.locales['es'] = {
+	    closeText: 'Cerrar',
+	    prevText: 'Anterior',
+	    nextText: 'Siguiente',
+	    monthNames: ['Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+	    monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+	    dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+	    dayNamesShort: ['Dom','Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+	    dayNamesMin: ['D','L','M','M','J','V','S'],
+	    weekHeader: 'Semana',
+	    firstDay: 1,
+	    isRTL: false,
+	    showMonthAfterYear: false,
+	    yearSuffix: '',
+	    timeOnlyTitle: 'Sólo hora',
+	    timeText: 'Tiempo',
+	    hourText: 'Hora',
+	    minuteText: 'Minuto',
+	    secondText: 'Segundo',
+	    currentText: 'Fecha actual',
+	    ampm: false,
+	    month: 'Mes',
+	    week: 'Semana',
+	    day: 'Día',
+	    allDayText : 'Todo el día'
+	};
+ </script>
+    
+</ui:define>
+</ui:composition>

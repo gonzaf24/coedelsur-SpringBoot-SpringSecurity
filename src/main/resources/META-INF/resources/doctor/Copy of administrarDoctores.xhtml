@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:c="http://java.sun.com/jsp/jstl/core"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:pe="http://primefaces.org/ui/extensions"
+				xmlns:sec="http://www.springframework.org/security/tags"
+				xmlns:cm="http://java.sun.com/jsf/composite/components"
+				template="/WEB-INF/templates/templateDoctor.xhtml">
+<ui:define name="contentDoctor" >
+
+
+<h:form>
+	<div class="ui-g-12 ui-md-12 ui-lg-12">
+		<div class="ui-g-12 ui-md-3 ui-lg-2"/>
+		<div class="ui-g-12 ui-md-6 ui-lg-8">
+		      <div class="ui-g-12 ui-md-12 ui-lg-12" style="text-align: center">
+			      <h3>ADMINISTRAR DOCTORES</h3>
+			  </div>
+			  
+			  <div class="ui-g-12 ui-md-12 ui-lg-12" style="text-align: right;">
+			      <p:outputPanel style="margin-bottom:10px">
+				  		<p:commandButton  id="crearDoctor" actionListener="#{doctorConfigHandler.resetForm}" value="Nuevo Doctor" icon="ui-icon-plusthick" update="@widgetVar(crearDoctorWV)" oncomplete="PF('crearDoctorWV').initPosition(); PF('crearDoctorWV').show();"/>
+			      </p:outputPanel>
+			  </div>
+			  
+			  <div class="ui-g-12 ui-md-12 ui-lg-12">
+			  	    <p:dataTable rowsPerPageTemplate="5,10,15,20,25" reflow="true" rows="15" paginator="true" widgetVar="adminDocsTable"  var="doc" id="idAdminDocsTable"  value="#{administrarDoctoresForm.adminDoctoresList}" emptyMessage="No hay doctores en la lista">
+					   <p:column headerText="Nombre" filterBy="#{doc.getNombreCompleto()}" sortBy="#{doc.getNombreCompleto()}" filterMatchMode="contains">
+					         <p:outputLabel value="#{doc.getNombreCompleto()}"/>
+					   </p:column>
+					   <p:column headerText="Especialidad">
+					         <p:outputLabel value="#{doc.especialidad.label}"/>
+					   </p:column>
+					   <p:column headerText="Acción" style="text-align:center;">
+					    	<p:commandButton  title="Editar" actionListener="#{doctorConfigHandler.resetForm}" oncomplete="PF('editarDoctorWV').show(); " update="@widgetVar(editarDoctorWV)">
+					    		<f:setPropertyActionListener value="#{doc}" target="#{administrarDoctoresForm.doctorSelectedEdicion}" />
+					    	</p:commandButton>
+					   </p:column>
+					</p:dataTable>
+		      </div>
+		  </div>
+		  <div class="ui-g-12 ui-md-3 ui-lg-2"/>
+	  </div>    
+	</h:form>
+	
+	
+	<p:dialog widgetVar="crearDoctorWV" width="50%" position="center center" closable="true" responsive="true" style="overflow: scroll; max-height: 80%;">
+		<h:form id="crearDoctorForm1">
+         <p:messages id="messagesCrearDoctor" styleClass="eliminarTurnoClass" style="text-align:center" closable="true" showIcon="false"/>
+		 <div class="ui-g-12 ui-md-12 ui-lg-12" style="text-align: center"><h3>ALTA DE NUEVO DOCTOR</h3></div>
+		 <div class="ui-g-12 ui-md-12 ui-lg-12">
+				<div class="ui-g-12 ui-md-12 ui-lg-12"> 
+					<div class="ui-g-12 ui-md-12 ui-lg-12">
+				    	<p:outputLabel value="Usuario *" styleClass="labelOverInput">	
+					    	<p:inputText id="usuernameID" autocomplete="false" required="true" label="email" size="40" requiredMessage="Debe ingresar una direccion de correo electronico como usuario."	
+					    	             validatorMessage="Formato de email/usuario incorrecto." value="#{administrarDoctoresForm.usuario.username}">
+							  	<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+							</p:inputText>
+				    	</p:outputLabel>
+					</div>
+<!-- 					<div class="ui-g-12 ui-md-6 ui-lg-6">  -->
+<!-- 						<h:outputLabel id="pw11" for="pwd1" value="Contraseña *"  styleClass="labelOverInput"> -->
+<!-- 		        			<p:password id="pwd1" value="#{administrarDoctoresForm.pass1}" match="pwd2" label="Contraseña " required="true"/> -->
+<!-- 						</h:outputLabel> -->
+<!-- 					</div> -->
+<!-- 					<div class="ui-g-12 ui-md-6 ui-lg-6">  -->
+<!-- 		        		<h:outputLabel id="pw22" for="pwd2" value="Repetir Contraseña *"  styleClass="labelOverInput"> -->
+<!-- 		        			<p:password id="pwd2" value="#{administrarDoctoresForm.pass2}" label="Repetir Contraseña" required="true"/> -->
+<!-- 						</h:outputLabel> -->
+<!-- 					</div> -->
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<p:outputLabel value="Doctor/a *" styleClass="labelOverInput">
+				            <p:selectOneMenu id="sexoID" value="#{administrarDoctoresForm.selectedSexoDoctor}">
+					        	<f:selectItem itemValue="H" itemLabel="Dr." />
+		   						<f:selectItem itemValue="M" itemLabel="Dra." />
+					        </p:selectOneMenu>
+					    </p:outputLabel>	
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<p:outputLabel value="Especialidad *" styleClass="labelOverInput">
+				          <p:selectOneMenu  id="especialidadesID" value="#{administrarDoctoresForm.selectedEspecialidad}" required="true" vstyleClass="txtInputForm" converter="especialidadesConfigConverter">
+					          <f:selectItem itemLabel="Seleccionar"/>
+					          <f:selectItems value="#{administrarDoctoresForm.especialidadesList}" var="model1" itemLabel="#{model1.label}" itemValue="#{model1}"/>
+					      </p:selectOneMenu>
+						</p:outputLabel>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<p:outputLabel value="Nombre *" styleClass="labelOverInput" >
+			            	<p:inputText id="nombreID" value="#{administrarDoctoresForm.nuevoDoc.nombre}" required="true" requiredMessage="Debe ingresar el nombre.">
+			            	</p:inputText> 
+				    	</p:outputLabel>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<p:outputLabel value="Apellidos *" styleClass="labelOverInput" >
+			            	<p:inputText id="apellidosID" value="#{administrarDoctoresForm.nuevoDoc.apellidos}" required="true" requiredMessage="Debe ingresar los apellidos.">
+			             	</p:inputText> 
+				    	</p:outputLabel>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<p:outputLabel value="CI *" styleClass="labelOverInput" >
+			            	<p:inputText id="ciID" value="#{administrarDoctoresForm.nuevoDoc.cedulaIdentidad}" required="true" requiredMessage="Debe ingresar un a cédula de identidad.">
+			             	</p:inputText> 
+				    	</p:outputLabel>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<p:outputLabel  value="Teléfono *" styleClass="labelOverInput" >
+			            	<p:inputText id="telefonoID" value="#{administrarDoctoresForm.nuevoDoc.telefono}" required="true" requiredMessage="Debe ingresar un teléfono.">
+			             	</p:inputText> 
+				    	</p:outputLabel>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<p:outputLabel value="Departamento *" styleClass="labelOverInput" >
+				            <p:selectOneMenu id="departamentoID" value="#{administrarDoctoresForm.selectedDepartamento}" required="true" converter="departamentoConfigConverter">
+					        	<f:selectItem itemLabel="Seleccionar"/>
+					        	<f:selectItems value="#{administrarDoctoresForm.departamentoList}" var="model2" itemLabel="#{model2.label}" itemValue="#{model2}" />
+					        </p:selectOneMenu>
+					    </p:outputLabel>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<p:outputLabel  value="Domicilio *" styleClass="labelOverInput" >
+			            	<p:inputText id="domicilioID" value="#{administrarDoctoresForm.nuevoDoc.domicilio}" required="true" requiredMessage="Debe ingresar un domicilio.">
+			             	</p:inputText> 
+				    	</p:outputLabel>
+					</div>
+					<div class="ui-g-12 ui-md-12 ui-lg-12"> 
+						<p:outputLabel  value="Foto del doctor: ">
+					        <p:fileUpload id="uploadImageDocID" auto="true" fileUploadListener="#{doctorConfigHandler.uploadImagenDoc}" styleClass="txtInputForm"
+					        fileLimitMessage="Esta permitido un solo archivo." widgetVar="imagenFlyerAviso"
+					        dragDropSupport="false" multiple="false" allowTypes="/(\.|\/)(jpe?g|png)$/" update="messagesCrearDoctor,uploadImageDocID"
+							label="Seleccionar archivo "  invalidFileMessage="Solo esta permitido el formato .jpg de 400px X 400px." >
+					        <p:spacer width="20" height="5" />${administrarDoctoresForm.nombreArchivoFotoDoc}
+					        </p:fileUpload>
+					    </p:outputLabel>
+					</div>
+				</div>
+				<div class="ui-g-12 ui-md-12 ui-lg-12" style="text-align: center">
+			        <div class="ui-g-6 ui-md-6 ui-lg-6">
+				        <p:outputPanel> 
+				        	  <p:commandButton id="cancelarBtn" actionListener="#{doctorConfigHandler.resetForm}" update="@widgetVar(crearDoctorWV)" value="Cancelar" styleClass="buttonGeneralNegro" oncomplete="PF('crearDoctorWV').hide()"/>
+				        </p:outputPanel>
+			        </div>
+			        <div class="ui-g-6 ui-md-6 ui-lg-6">
+				         <p:outputPanel> 
+				        	  <p:commandButton ajax="true" id="confirmarDoctor" value="Confirmar" update="crearDoctorForm1" actionListener="#{doctorConfigHandler.crearGuardarDoctor}" styleClass="buttonGeneralNegro" icon="ui-icon-check" />
+				         </p:outputPanel>
+			        </div>
+		        </div>
+			</div>
+	   </h:form>
+    </p:dialog>
+    
+    <p:dialog widgetVar="editarDoctorWV" width="50%" position="center center" style=" overflow: scroll; max-height: 100%;">
+	   <h:form id="editarDoctorForm1">
+         <p:messages id="messagesEditarDoctor" styleClass="eliminarTurnoClass" style="text-align:center" closable="true" showIcon="false"/>
+		 <div class="ui-g-12 ui-md-12 ui-lg-12" style="text-align: center"><h3>EDITAR DATOS DEL DOCTOR</h3></div>
+		 <div class="ui-g-12 ui-md-12 ui-lg-12">
+				<div class="ui-g-12 ui-md-12 ui-lg-12"> 
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<p:outputLabel value="Doctor/a *" styleClass="labelOverInput">
+				            <p:selectOneMenu id="sexoEditID" value="#{administrarDoctoresForm.doctorSelectedEdicion.sexo}">
+				            	<f:selectItem itemValue="#{administrarDoctoresForm.doctorSelectedEdicion.sexo}" itemLabel="#{administrarDoctoresForm.doctorSelectedEdicion.sexo}"/>
+					        	<f:selectItem itemValue="H" itemLabel="Dr."  />
+		   						<f:selectItem itemValue="M" itemLabel="Dra." />
+					        </p:selectOneMenu>
+					    </p:outputLabel>	
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<p:outputLabel value="Especialidad *" styleClass="labelOverInput">
+				          <p:selectOneMenu  id="especialidadesEditID" value="#{administrarDoctoresForm.doctorSelectedEdicion.especialidad}" required="true" vstyleClass="txtInputForm" converter="especialidadesConfigConverter">
+					          <f:selectItem itemValue="#{administrarDoctoresForm.doctorSelectedEdicion.especialidad}" itemLabel="#{administrarDoctoresForm.doctorSelectedEdicion.especialidad.label}"/>
+					          <f:selectItems value="#{administrarDoctoresForm.especialidadesList}" var="model1" itemLabel="#{model1.label}" itemValue="#{model1}"/>
+					      </p:selectOneMenu>
+						</p:outputLabel>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<p:outputLabel value="Nombre *" styleClass="labelOverInput" >
+			            	<p:inputText id="nombreEditID" value="#{administrarDoctoresForm.doctorSelectedEdicion.nombre}" required="true" requiredMessage="Debe ingresar el nombre.">
+			            	</p:inputText> 
+				    	</p:outputLabel>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<p:outputLabel value="Apellidos *" styleClass="labelOverInput" >
+			            	<p:inputText id="apellidosEditID" value="#{administrarDoctoresForm.doctorSelectedEdicion.apellidos}" required="true" requiredMessage="Debe ingresar los apellidos.">
+			             	</p:inputText> 
+				    	</p:outputLabel>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<p:outputLabel value="CI *" styleClass="labelOverInput" >
+			            	<p:inputText id="ciEditID" value="#{administrarDoctoresForm.doctorSelectedEdicion.cedulaIdentidad}" required="true" requiredMessage="Debe ingresar un a cédula de identidad.">
+			             	</p:inputText> 
+				    	</p:outputLabel>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<p:outputLabel  value="Teléfono *" styleClass="labelOverInput" >
+			            	<p:inputText id="telefonoEditID" value="#{administrarDoctoresForm.doctorSelectedEdicion.telefono}" required="true" requiredMessage="Debe ingresar un teléfono.">
+			             	</p:inputText> 
+				    	</p:outputLabel>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<p:outputLabel value="Departamento *" styleClass="labelOverInput" >
+				            <p:selectOneMenu id="departamentoEditID" value="#{administrarDoctoresForm.selectedDepartamento}" required="true" converter="departamentoConfigConverter">
+					        	<f:selectItem itemValue="#{administrarDoctoresForm.doctorSelectedEdicion.departamento}" itemLabel="#{administrarDoctoresForm.doctorSelectedEdicion.departamento.label}"/>
+					        	<f:selectItems value="#{administrarDoctoresForm.departamentoList}" var="model2" itemLabel="#{model2.label}" itemValue="#{model2}" />
+					        </p:selectOneMenu>
+					    </p:outputLabel>
+					</div>
+					<div class="ui-g-12 ui-md-6 ui-lg-6">
+						<p:outputLabel  value="Domicilio *" styleClass="labelOverInput" >
+			            	<p:inputText id="domicilioEditID" value="#{administrarDoctoresForm.doctorSelectedEdicion.domicilio}" required="true" requiredMessage="Debe ingresar un domicilio.">
+			             	</p:inputText> 
+				    	</p:outputLabel>
+					</div>
+					<div class="ui-g-12 ui-md-12 ui-lg-12"> 
+						<p:outputLabel  value="Foto del doctor: ">
+					        <p:fileUpload id="uploadImageDocID" auto="true" fileUploadListener="#{doctorConfigHandler.uploadImagenEditDoc}" styleClass="txtInputForm"
+					        fileLimitMessage="Esta permitido un solo archivo." widgetVar="imagenFlyerAviso"
+					        dragDropSupport="false" multiple="false" allowTypes="/(\.|\/)(jpe?g|png)$/" update="messagesEditarDoctor,uploadImageDocID"
+							label="Seleccionar archivo "  invalidFileMessage="Solo esta permitido el formato .jpg de 400px X 400px.">
+					        <p:spacer width="20" height="5" />${administrarDoctoresForm.nombreArchivoFotoDoc}
+					        </p:fileUpload>
+					    </p:outputLabel>
+					</div>
+				</div>
+				<div class="ui-g-12 ui-md-12 ui-lg-12" style="text-align: center">
+			        <div class="ui-g-6 ui-md-6 ui-lg-6">
+				        <p:outputPanel> 
+				        	  <p:commandButton ajax="true" id="cancelarBtn1"  value="Cancelar" listener="#{doctorConfigHandler.resetForm}" update="@widgetVar(editarDoctorWV)" styleClass="buttonGeneralNegro" oncomplete="PF('editarDoctorWV').hide()"/>
+				        </p:outputPanel>
+			        </div>
+			        <div class="ui-g-6 ui-md-6 ui-lg-6">
+				         <p:outputPanel> 
+				        	  <p:commandButton  ajax="true" id="confirmarDoctor1" listener="#{doctorConfigHandler.confirmarEdicionDoctor}"  value="Confirmar" update="@widgetVar(editarDoctorWV)" styleClass="buttonGeneralNegro" icon="ui-icon-check"/>
+				         </p:outputPanel>
+			        </div>
+		        </div>
+          </div>
+	   </h:form>
+    </p:dialog>
+    
+</ui:define>
+</ui:composition>

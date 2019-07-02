@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:c="http://java.sun.com/jsp/jstl/core"
+				xmlns:p="http://primefaces.org/ui"
+				template="/paciente/solicitarCita.xhtml">
+				
+<ui:define name="steps">
+	
+	<f:metadata>
+    	<f:viewAction action="#{solicitarCitaMB.init1}"/>
+	</f:metadata>
+
+    <div class="box box-primary" style="margin-top: 100px">
+         <div class="box-header with-border">
+             <h:form id="formStep1">
+                    <div class="ui-g ui-fluid">
+                     <div class="ui-sm-12 ui-g-2"/>
+                     <div class="ui-sm-12 ui-g-8">
+		                      <div class="ui-sm-12 ui-g-4">
+		                           <div class="main-container">
+		  								<div class="fixer-container"> 
+					                        <p:outputLabel for="select1" value="Tipo consulta">
+						                        <p:selectOneMenu id="select1" value="#{solicitarCitaMB.selectedTipoConsulta}"  converter="tipoConsultaSolCitaConverter" >
+										          <f:selectItem itemLabel="Seleccionar"/>
+								    	          <p:ajax event="itemSelect"  listener="#{solicitarCitaMB.fillEspecialidadPorTipoConsulta}"  update="@widgetVar(seleccionado2)"  />
+									              <f:selectItems value="#{solicitarCitaMB.tipoConsultaList}" var="model" itemLabel="#{model.label}" itemValue="#{model}" />
+										        </p:selectOneMenu>
+									        </p:outputLabel>
+				                         </div>
+				                    </div>
+				              </div>
+				              <div class="ui-sm-12 ui-g-4">  
+				                    <div class="main-container">
+		  								<div class="fixer-container"> 
+						                        <p:outputLabel for="select2" value="Especialidad" >
+						                          <p:selectOneMenu widgetVar="seleccionado2"  id="select2" value="#{solicitarCitaMB.selectedEspecialidad}" converter="especialidadSolCitaConverter" >
+											          <f:selectItem itemLabel="Seleccionar"/>
+											          <p:ajax event="itemSelect"  listener="#{solicitarCitaMB.fillDoctoresPorEspecialidad}" update="@widgetVar(seleccionado3)" />
+											          <f:selectItems value="#{solicitarCitaMB.especialidadesList}"  var="model2" itemLabel="#{model2.label}" itemValue="#{model2}" />
+											      </p:selectOneMenu>
+											     </p:outputLabel>
+						                  </div>
+						              </div>      
+				              </div>
+				              <div class="ui-sm-12 ui-g-4">  
+				                    <div class="main-container">
+		  								<div class="fixer-container">  
+						                        <p:outputLabel for="select3" value="Doctor">
+						                         <p:selectOneMenu widgetVar="seleccionado3"  id="select3" value="#{solicitarCitaMB.selectedDoctor}"  converter="doctoresConverter">
+											        <f:selectItem itemLabel="Seleccionar"/>
+											        <p:ajax event="itemSelect"  listener="#{solicitarCitaMB.fillTarjetaDoctor}" update="formStep1"/>
+											        <f:selectItems value="#{solicitarCitaMB.doctoresList}" var="model3" itemLabel="#{model3.getNombreCompleto()}" itemValue="#{model3}" />
+											     </p:selectOneMenu>
+											     </p:outputLabel>
+						               </div>
+						           </div>      
+		                      </div>
+		              </div>        
+		              <div class="ui-sm-12 ui-g-2"/>        
+                      <div class="ui-sm-12 ui-g-12" style="margin-top: 50px">
+                             <div class="main-container">
+  								<div class="fixer-container">
+  								<div class="ui-sm-12 ui-g-12">
+  								 <c:if test="#{solicitarCitaMB.selectedDoctor != null}">
+  								<p:panel styleClass="card">
+							  	  <p:panelGrid columns="1" layout="grid" style="text-align:center" >
+								  		
+											    <f:facet name="header"  >
+												    <c:if test="#{solicitarCitaMB.selectedDoctor.foto != null}">
+												    	<img align="middle" src="data:image/jpg;base64,#{solicitarCitaMB.selectedDoctor.foto}" height="130px" width="130px" style="padding-top:1.40em" />
+												    </c:if>
+												    <c:if test="#{solicitarCitaMB.selectedDoctor.foto == null}">
+												    	<p:graphicImage name="/images/avatarImage.png"  height="130px" width="130px" style="padding-top:1.40em"/>
+												    </c:if>
+											    </f:facet>
+											    <h:outputText value="#{solicitarCitaMB.selectedDoctor.getNombreCompleto()}"/>
+											    <h:outputText value="#{solicitarCitaMB.selectedDoctor.especialidad.label}"/>
+											    <h:outputText value="Clinica #{msg['general.clinica.nombre']}"/>
+											    <h:outputText value="#{msg['general.clinica.direccion']}"/>
+										 
+								  </p:panelGrid>
+								 </p:panel>
+								 </c:if>
+								   <c:if test="#{solicitarCitaMB.selectedDoctor == null}">
+									<div style="height: 265px; display: block" > </div>
+								  </c:if>
+							    </div>
+							  </div>
+							</div>	  
+                       </div> 
+                       <div class="ui-sm-12 ui-g-12" style="margin-top: 50px">
+                         <div class="main-container">
+ 							<div class="fixer-container">
+					    		<p:commandButton styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check" disabled="#{solicitarCitaMB.disableStep1}" id="siguienteBtn" action="step2SolicitarCita?faces-redirect=true" actionListener="#{solicitarCitaMB.obtenerDiasAgendaDoctor}" value="Siguiente" />
+				   			</div>
+					   	 </div>
+					   </div>
+                     </div>
+                  </h:form>
+              </div>
+          </div>
+</ui:define>
+</ui:composition>

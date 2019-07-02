@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	parent="parent-flow" start-state="start">
+	
+	<var name="sessionState"              class="com.uy.clinicasUY.bean.SessionState"/>
+	<var name="messageForm"               class="com.uy.clinicasUY.bean.form.MessageForm"/>
+	<var name="usuarioForm"               class="com.uy.clinicasUY.bean.form.UsuarioForm"/>
+	<var name="clinicasTemplateForm"      class="com.uy.clinicasUY.bean.form.ClinicasTemplateForm"/>
+	<var name="doctorForm"                class="com.uy.clinicasUY.bean.form.DoctorForm"/>
+	<var name="crearTurnosForm"           class="com.uy.clinicasUY.bean.form.CrearTurnosForm"/>
+	<var name="editarTurnosForm"          class="com.uy.clinicasUY.bean.form.EditarTurnosForm"/>
+	<var name="miAgendaForm"              class="com.uy.clinicasUY.bean.form.MiAgendaForm"/>
+	<var name="otraAgendaForm"            class="com.uy.clinicasUY.bean.form.OtraAgendaForm"/>
+	<var name="administrarDoctoresForm"   class="com.uy.clinicasUY.bean.form.AdministrarDoctoresForm"/>
+	<var name="administrarConsultasForm"  class="com.uy.clinicasUY.bean.form.AdministrarConsultasForm"/>
+	<var name="administrarCodiguerasForm" class="com.uy.clinicasUY.bean.form.AdministrarCodiguerasForm"/>
+	<var name="fichaPacienteForm"         class="com.uy.clinicasUY.bean.form.FichaPacienteForm"/>
+	<var name="historiaClinicaForm"       class="com.uy.clinicasUY.bean.form.HistoriaClinicaForm"/>
+	<var name="busquedaPacienteForm"      class="com.uy.clinicasUY.bean.form.BusquedaPacienteForm"/>
+	<var name="consultaActualForm"        class="com.uy.clinicasUY.bean.form.ConsultaActualForm"/>
+	<var name="diagnosticoForm"           class="com.uy.clinicasUY.bean.form.DiagnosticoForm"/>
+	
+	<action-state id="start">
+	     <evaluate expression="doctorController.preStart(externalContext)" />
+	     <transition on="next" to="inicio" />
+	     <transition on="invalidUser" to="timeOut" />
+  	</action-state>
+  	
+  	<view-state id="timeOut" model="pacienteForm">
+	</view-state>
+	
+	<view-state id="inicio"  model="doctorForm">
+		 <secured attributes="ROLE_DOCTOR" />
+		 <on-entry>
+	      	<evaluate expression="doctorController.preInicio()" />
+	     </on-entry>
+	     <transition on="editar" to="editarTurnos" />
+	</view-state>
+
+	<view-state id="crearTurnos"  model="crearTurnosForm">
+		 <secured attributes="ROLE_DOCTOR" />
+		 <on-entry>
+	      	<evaluate expression="doctorController.preCrearTurnos()" />
+	     </on-entry>
+	     <transition on="inicio" to="inicio" />
+	     <transition on="editar" to="editarTurnos" />
+	     <on-exit>
+	      	<evaluate expression="doctorController.postCrearTurnos()" />
+	     </on-exit>
+	</view-state> 
+	
+	<view-state id="editarTurnos"  model="editarTurnosForm">
+		 <secured attributes="ROLE_DOCTOR" />
+		 <on-entry>
+	      	<evaluate expression="doctorController.preEditarTurnos()" />
+	     </on-entry>
+	     <transition on="inicio" to="inicio" />
+	     <on-exit>
+	      	<evaluate expression="doctorController.postEditarTurnos()" />
+	     </on-exit>
+	</view-state>
+	
+	<view-state id="miAgenda"  model="miAgendaForm">
+		 <secured attributes="ROLE_DOCTOR" />
+		 <on-entry>
+	      	<evaluate expression="doctorController.preMiAgenda()" />
+	     </on-entry>
+	     <transition on="inicio" to="inicio" />
+	     <transition on="salir" to="end" />
+	     <transition on="verPaciente" to="fichaPaciente" />
+	     <transition on="verHistoriaClinica" to="historiaClinica" />
+	      <on-exit>
+	      	<evaluate expression="doctorController.postMiAgenda()" />
+	     </on-exit>
+	</view-state>
+	
+	<view-state id="otraAgenda"  model="otraAgendaForm">
+		 <secured attributes="ROLE_DOCTOR" />
+		 <on-entry>
+	      	<evaluate expression="doctorController.preOtraAgenda()" />
+	     </on-entry>
+	     <transition on="inicio" to="inicio" />
+	     <transition on="verPaciente" to="fichaPaciente" />
+	     <on-exit>
+	      	<evaluate expression="doctorController.postOtraAgenda()" />
+	     </on-exit>
+	</view-state>
+	
+	<view-state id="administrarDoctores"  model="administrarDoctoresForm">
+		 <secured attributes="ROLE_DOCTOR" />
+		 <on-entry>
+	      	<evaluate expression="configuracionController.preAdministrarDoctores()" />
+	     </on-entry>
+	     <transition on="inicio" to="inicio" />
+	</view-state>
+	
+	<view-state id="administrarConsultas"  model="administrarConsultasForm">
+		 <secured attributes="ROLE_DOCTOR" />
+		 <on-entry>
+	      	<evaluate expression="configuracionController.preAdministrarConsultas()" />
+	     </on-entry>
+	     <transition on="inicio" to="inicio" />
+	</view-state>
+	
+	<view-state id="administrarCodigueras"  model="administrarCodiguerasForm">
+		 <secured attributes="ROLE_DOCTOR" />
+		 <on-entry>
+	      	<evaluate expression="configuracionController.preAdministrarCodigueras()" />
+	     </on-entry>
+	     <transition on="inicio" to="inicio" />
+	</view-state>
+	
+	<view-state id="busquedaPaciente"  model="busquedaPacienteForm">
+		 <secured attributes="ROLE_DOCTOR" />
+		 <on-entry>
+	      	<evaluate expression="pacienteController.preBusquedaPaciente()" />
+	     </on-entry>
+	     <transition on="inicio" to="inicio" />
+	     <transition on="verPaciente" to="fichaPaciente" />
+	</view-state>
+	
+	<view-state id="fichaPaciente"  model="fichaPacienteForm">
+		 <secured attributes="ROLE_DOCTOR" />
+		 <on-entry>
+	      	<evaluate expression="pacienteController.preFichaPaciente()" />
+	     </on-entry>
+	     <transition on="inicio" to="inicio" />
+	     <transition on="verHistoriaClinica" to="historiaClinica" />
+	</view-state>
+	
+	<view-state id="historiaClinica"  model="historiaClinicaForm">
+		 <secured attributes="ROLE_DOCTOR" />
+		 <on-entry>
+	      	<evaluate expression="doctorController.preHistoriaClinica()" />
+	     </on-entry>
+	     <transition on="inicio" to="inicio" />
+	     <transition on="verPaciente" to="fichaPaciente" />
+	     <transition on="verHistoriaClinica" to="historiaClinica" />
+	</view-state>
+	 
+</flow>

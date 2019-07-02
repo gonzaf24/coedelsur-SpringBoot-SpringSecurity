@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:c="http://java.sun.com/jsp/jstl/core"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:pe="http://primefaces.org/ui/extensions"
+				xmlns:sec="http://www.springframework.org/security/tags"
+				xmlns:cm="http://java.sun.com/jsf/composite/components"
+				template="/WEB-INF/templates/templateDoctor.xhtml">
+<ui:define name="body" >
+
+	<f:metadata>
+    	<f:viewAction action="#{editarTurnosMB.init}"/>
+    	
+	</f:metadata>
+	
+	<div class="box box-primary">
+	    <div class="box-header with-border">
+	        <h:form id="formEditarTurnos">
+	            <div class="ui-g ui-fluid">
+	                <div class="ui-sm-12 ui-g-12">
+	                	
+						  <h2 class="align-center">
+					            EDITAR TURNOS
+					            <br/>
+					      </h2>
+					      <p:separator style="margin-top:20px"/>
+					      <h4 class="align-center">
+				             Selecciona un doctor para ver sus turnos.
+				            <br/>
+					      </h4>
+					      <div class="ui-sm-12 ui-g-12">
+					       <div class="main-container">
+								<div class="fixer-container">
+							        <p:outputLabel for="consultaID" value="Doctor/a" >
+							            <p:selectOneMenu id="consultaID" value="#{editarTurnosMB.selectedDoctor}" converter="editarTurnosConverter" required="true">
+							                <p:ajax event="itemSelect"  listener="#{editarTurnosMB.fillListaAgendaEditarTurno}" update="@widgetVar(editarTurnosTable)" />
+								        	<f:selectItems value="#{editarTurnosMB.listDoctores}" var="model1" itemLabel="#{model1.label}" itemValue="#{model1}" />
+								        </p:selectOneMenu>
+								    </p:outputLabel>
+						         </div>
+						    </div>
+					      </div>
+					      
+					      <div class="ui-sm-12 ui-g-2"/>
+						  <div class="ui-sm-12 ui-g-8">
+						  		<div class="ui-sm-12 ui-g-3">
+						     		<p:outputPanel >
+						     			<p:commandLink rendered="${not empty editarTurnosMB.listaAgendaEditarTurno}" id="verHistorico" update="@widgetVar(editarTurnosTable)"  actionListener="#{editarTurnosMB.obtenerHistoricoEditarTurno}" value="Ver Historico" styleClass="fa fa-search" />
+									</p:outputPanel>	
+								</div>
+								<div class="ui-sm-12 ui-g-9" />	
+						  		<div class="ui-sm-12 ui-g-12">
+						  	    <p:dataTable rowsPerPageTemplate="5,10,15,20,25" reflow="true" rows="15" paginator="true" widgetVar="editarTurnosTable"  var="agenda" id="idListaHoraTurno"  value="#{editarTurnosMB.listaAgendaEditarTurno}" emptyMessage="No hay turnos generados">
+								   
+								   <p:column headerText="Día (dia/mes/año)" filterBy="#{agenda.labelDia}" sortBy="#{agenda.labelDia}" filterMatchMode="contains" >
+								         <p:outputLabel value="#{agenda.labelDia}" />
+								   </p:column>
+								   <p:column headerText="Hr/Min Desde">
+								         <p:outputLabel value="#{agenda.labelHoraDesde}" />
+								   </p:column>
+								   <p:column headerText="Hr/Min Hasta">
+								        <p:outputLabel value="#{agenda.labelHoraHasta}" /> 
+								   </p:column>
+								   <p:column headerText="Consultorio">
+								    	<p:outputLabel value="#{agenda.consultorio.label}" />
+								   </p:column>
+								   <p:column headerText="Tipo Consulta">
+								    	<p:outputLabel value="#{agenda.tipoConsulta.label}" />
+								   </p:column>
+								   <p:column headerText="Especialidad">
+								    	<p:outputLabel value="#{agenda.especialidad.label}"  />
+								   </p:column>
+								   <p:column headerText="Paciente" >
+								   		<p:commandLink rendered="${not empty agenda.idPaciente}" actionListener="#{editarTurnosMB.obtenerPaciente(agenda.idPaciente)}" onclick="PF('pacienteDialog').show();" title="ver paciente" styleClass="fa fa-eye"/>
+								   </p:column>
+								   <p:column headerText="Acción">
+								
+								        <p:commandLink  title="eliminar turno" disabled="${not empty agenda.idPaciente}" styleClass="fa fa-trash" update="@widgetVar(editarTurnosTable),@(.eliminarTurnoClass)" actionListener="#{editarTurnosMB.eliminarTurno(agenda)}" >
+								    		<p:confirm header="Atencion!" message="Esta seguro que desea eliminar el turno ?" icon="ui-icon-alert"/>
+								        </p:commandLink>
+								   </p:column>
+								</p:dataTable>
+								</div>
+					      </div>
+					      <div class="ui-sm-12 ui-g-2"/>
+					</div>
+				</div>
+			</h:form>
+		</div>
+	 </div>				      
+
+     <p:confirmDialog global="true" header="" width="auto"  widgetVar="eliminarTurnoWV" styleClass="box-solid box-danger">
+			 <p:commandButton value="Cancelar" type="button" styleClass="btn-danger ui-confirmdialog-no" icon="fa fa-close" />
+			 <p:commandButton  value="Confirmar" type="button" styleClass="btn-primary ui-confirmdialog-yes" icon="fa fa-check" />
+     </p:confirmDialog>
+    
+     <p:dialog header="Información del paciente" widgetVar="pacienteDialog" responsive="true" width="400" modal="true">
+     	<h:form  id="formDialogInfoPaciente" >
+     	<div class="ui-sm-12 ui-g-12" > 
+        	<div class="ui-sm-12 ui-g-12"> 
+        		<h:outputLabel  style="margin-right:5px" value="Nombre :" />
+	            <h:outputText value="#{editarTurnosMB.selectedPaciente.getNombreCompleto()}" />
+	 		</div>
+	 		<div class="ui-sm-12 ui-g-12">
+	 		 	<h:outputLabel style="margin-right:5px"  value="CI :" />
+	            <h:outputText value="#{editarTurnosMB.selectedPaciente.cedulaIdentidad}" />
+	 		</div>
+	 		<div class="ui-sm-12 ui-g-12">
+	 		 	<h:outputLabel style="margin-right:5px"  value="Fecha nacimiento :" />
+	            <h:outputText value="#{editarTurnosMB.selectedPaciente.fechaNacimiento}" />
+	 		</div>
+	 		<div class="ui-sm-12 ui-g-12"> 
+	 			<h:outputLabel style="margin-right:5px"  value="Teléfono :" />
+	            <h:outputText value="#{editarTurnosMB.selectedPaciente.telefono}" />
+	 		</div>
+	 		<div class="ui-sm-12 ui-g-12"> 
+	 			<h:outputLabel style="margin-right:5px"  value="Domicilio :" />
+	            <h:outputText value="#{editarTurnosMB.selectedPaciente.domicilio}" />
+	 		</div>
+	 		
+	 		<div class="ui-sm-12 ui-g-12" style="text-align: center">
+	 			<p:outputPanel  style="text-align: center"> 
+		        	<p:commandButton value="Cerrar" type="button" icon="ui-icon-close" onclick="PF('pacienteDialog').hide();" />
+		        </p:outputPanel>
+	 		</div>
+	 	</div>
+	 	</h:form>
+     </p:dialog>
+      
+</ui:define>
+</ui:composition>

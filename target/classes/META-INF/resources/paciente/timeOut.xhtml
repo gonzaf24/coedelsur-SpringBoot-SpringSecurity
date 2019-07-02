@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:sec="http://www.springframework.org/security/tags">
+	
+	<f:view contentType="text/html">
+		<h:head>
+				<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+				<meta name="viewport" content="width=device-width, initial-scale=1" />
+				<f:facet name="first">
+		            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		            <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		            <meta name="viewport" content="width=device-width, initial-scale=1" />	
+		        </f:facet>
+		        <f:facet name="middle">
+				   <h:outputStylesheet name="bootstrap/css/bootstrap.css" />
+				   <h:outputStylesheet name="css/dashboard.css" />
+				   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
+				   <h:outputScript name="bootstrap/js/bootstrap.js" />
+				   <h:outputStylesheet name="css/font-awesome.css" />
+				</f:facet>
+		        <f:facet name="last">
+		            <h:outputStylesheet name="css/font-awesome.css" />
+		        </f:facet>
+		</h:head>
+		<h:body>
+			  <p:separator />
+			<h:form> 
+			  <div class="ui-g-12 ui-md-12 ui-lg-12" style="text-align: center; padding-top:80px;">
+			    <h4>Tiempo de sessión agotado.</h4> <i class=" fa fa-history fa-5x" style="color: red;"></i> 
+			  </div>
+			
+			  <div class="ui-g-12 ui-md-12 ui-lg-12" style="text-align: center; padding-top:80px;">
+			  		<h4>Vuelva a loguearse  <a href="logout" id="cerrarSesion_id" >aquí.</a></h4>
+			  </div>
+			  
+			  <div class="ui-g-12 ui-md-12 ui-lg-12" style="text-align: center; padding-top:80px;">
+			  		<h4>Esta pagina se autoredireccionara al Login en ...</h4>
+			  		<pe:timer   visible="false"  ontimerstep="sync(intervalData)"  ontimercomplete="window.location.href = 'logout'"  timeout="15"/>  
+					<p:knob   min="0"  max="15"  widgetVar="knob"  disabled="true"   value="0"/> 
+			  </div>
+			
+			  <a href="logout" id="cerrarSesion_id" style="display:none" class="redireccionClass"/>
+			
+			  <script>  
+			    window.sync = function(t){  
+			        PF('knob').setValue(t.current);  
+			    }  
+			  </script>
+			  
+			</h:form>
+		</h:body>
+	</f:view>
+</html>

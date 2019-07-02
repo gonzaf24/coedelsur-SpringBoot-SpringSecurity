@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:c="http://java.sun.com/jsp/jstl/core"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:sec="http://www.springframework.org/security/tags"
+				xmlns:cm="http://java.sun.com/jsf/composite/components"
+				template="/paciente/solicitarCita.xhtml">
+<ui:define name="steps">
+
+	
+	
+<script type="text/javascript">
+	var idDay = null;
+	
+	function highLightDay(element){
+		if(idDay!=null){
+			document.getElementById(idDay.id).className = "ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only buttonDefault ui-state-hover";
+		    document.getElementById(element.id).className = "ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only buttonDefaultSelected ui-state-hover";
+			idDay = document.getElementById(element.id);
+		}else{
+			if(element.id!=null){
+				document.getElementById(element.id).className = "ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only buttonDefaultSelected ui-state-hover";
+				idDay = document.getElementById(element.id);
+			}
+		}
+		
+	}
+</script>
+
+<f:metadata>
+    <f:viewAction action="#{solicitarCitaMB.init2}"/>
+</f:metadata>
+
+<div class="box box-primary" style="margin-top: 100px">
+       <div class="box-header with-border">
+           <h:form id="formStep2">
+               <div class="ui-g ui-fluid">
+                    <div class="col-sm-12 col-md-12">
+                    
+                         <h2 class="align-center">
+					             Seleccione el día de su consulta.
+					            <br/>
+					      </h2>
+					      <div class="ui-sm-12 ui-g-12">
+							  <div class="ui-sm-12 ui-g-1"/>
+				              <div class="ui-sm-12 ui-g-10">
+								  <p:dataGrid var="diaVar" value="#{solicitarCitaMB.listDiasAgendaDoctor}" columns="4" layout="grid" paginator="true" id="dias" paginatorPosition="bottom"
+								        paginatorTemplate="{PreviousPageLink} {NextPageLink}" emptyMessage="No hay días/turnos libres." styleClass="ui-datagrid-no-border">
+								    	<p:commandButton ajax="true" id="btnId" actionListener="#{solicitarCitaMB.selectDia(diaVar)}" value="#{diaVar.label}" onsuccess="highLightDay(this);" update="formStep2"/>
+								  </p:dataGrid>
+							  </div>
+							  <div class="ui-sm-12 ui-g-1"/>
+						  </div>
+						  <div class="ui-sm-12 ui-g-12">
+							 <div class="ui-sm-6 ui-g-4">
+							 	  <div class="main-container">
+									<div class="fixer-container">
+									     <p:outputPanel >
+										    <p:commandButton id="atrasBtnStep2" styleClass="btn-danger ui-confirmdialog-no pull-left" icon="fa fa-arrow-left" action="step1SolicitarCita?faces-redirect=true" value="Atrás" />
+										 </p:outputPanel>
+								    </div>
+								 </div>
+							 </div>
+							 <div class="ui-sm-6 ui-g-4">
+							 	  <div class="main-container">
+									<div class="fixer-container">
+									     <p:outputPanel >
+										    <b>#{solicitarCitaMB.selectedAgendaDia.label}</b>
+										 </p:outputPanel>
+								    </div>
+								 </div>								 
+							 </div> 
+							 <div class="ui-sm-6 ui-g-4">
+							 	  <div class="main-container">
+									<div class="fixer-container">
+									     <p:outputPanel >
+										    <p:commandButton  id="siguienteBtnStep2" styleClass="btn-primary ui-confirmdialog-yes pull-right" icon="fa fa-check" disabled="#{solicitarCitaMB.disableStep2}"  action="step3SolicitarCita?faces-redirect=true" actionListener="#{solicitarCitaMB.obtenerTurnosAgendaDoctor}" value="Siguiente"/>
+										 </p:outputPanel>
+								    </div>
+								 </div>								 
+							 </div> 
+						  </div>
+                 </div>
+           </div>
+      </h:form>
+   </div>
+</div>
+
+</ui:define>
+</ui:composition>

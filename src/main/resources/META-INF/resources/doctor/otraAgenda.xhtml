@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:c="http://java.sun.com/jsp/jstl/core"
+				xmlns:p="http://primefaces.org/ui"
+				template="/WEB-INF/templates/templateDoctor.xhtml">
+<ui:define name="body" >
+	
+	<f:metadata>
+    	<f:viewAction action="#{otraAgendaMB.init}"/>
+	</f:metadata>
+		
+	<div class="box box-primary">
+		  <div class="box-header with-border">
+		         <h:form id="otraAgendaDocForm">
+		                <div class="col-sm-12 col-md-12">
+		                     <h2 class="align-center">
+						             AGENDAS
+						            <br/>
+						     </h2>
+						     <p:separator style="margin-top:20px"/>
+		                     <h4 class="align-center">
+						             Selecciona un doctor para ver su agenda.
+						            <br/>
+						     </h4>
+						     <div class="ui-sm-12 ui-g-12" style="text-align:center">
+								        <p:outputLabel for="consultaID" value="Doctor/a" >
+								            <p:selectOneMenu id="consultaID" value="#{otraAgendaMB.selectedDoctor}" converter="otraAgendaConverter" required="true">
+								                <f:selectItem itemLabel="Seleccionar"/>
+								                <p:ajax event="itemSelect"  listener="#{otraAgendaMB.buscarAgendaPorDoctor}" update="@widgetVar(myscheduleA)" />
+									        	<f:selectItems value="#{otraAgendaMB.listDoctores}" var="model1" itemLabel="#{model1.label}" itemValue="#{model1}" />
+									        </p:selectOneMenu>
+									    </p:outputLabel>
+						     </div>
+						     <div class="ui-sm-12 ui-g-12">
+			                    <h:panelGrid columnClasses="value">
+								   <p:schedule id="schedule" value="#{otraAgendaMB.getEventModel()}" widgetVar="myscheduleA" timeZone="GMT" locale="es" timeFormat="HH:mm" slotLabelFormat="HH:mm" slotDuration="15">
+								    <!--<p:ajax event="dateSelect" listener="#{scheduleView.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" /> -->
+									<p:ajax event="eventSelect" listener="#{otraAgendaMB.onEventSelect}" update="dialogotraAgendaMB" oncomplete="PF('otraAgendaDialog').show();" />
+									<!--<p:ajax event="eventMove" listener="#{scheduleView.onEventMove}" update="messages" /> -->
+									<!--<p:ajax event="eventResize" listener="#{scheduleView.onEventResize}" update="messages" /> -->
+								    </p:schedule>
+								</h:panelGrid>
+						    </div>
+		                </div>
+		         </h:form>
+		  </div>
+		  
+		  <p:dialog styleClass="box-solid box-primary" widgetVar="otraAgendaDialog" header="PACIENTE" resizable="false" modal="true" appendTo="@(body)" responsive="true" >
+	            <h:form id="dialogotraAgendaMB">
+		            <p:panelGrid  columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8" cellpadding="5" layout="grid" styleClass="no-border ui-fluid">
+	            		 <p:outputLabel for="nombre" value="Nombre: "/>
+	            		 <h:outputText id="nombre" value="#{otraAgendaMB.paciente.getNombreCompleto()}"/>
+	            		 <p:outputLabel for="fnac" value="F.Nacimiento: "/>
+	            		 <h:outputText id="fnac" value="#{otraAgendaMB.paciente.fechaNacimiento}"/>
+	            		 <p:outputLabel for="dia" value="Dia: "/>
+	            		 <h:outputText id="dia" value="#{otraAgendaMB.agenda.labelDia}"/>
+	            		 <p:outputLabel for="turno" value="Turno: "/>
+	            		 <h:outputText id="turno" value="#{otraAgendaMB.agenda.labelHoraDesde} hrs.  a  #{otraAgendaMB.agenda.labelHoraHasta} hrs."/>
+	            		 <p:outputLabel for="tel" value="Teléfono: "/>
+	            		 <h:outputText id="tel" value="#{otraAgendaMB.paciente.telefono}"/>
+		            </p:panelGrid>
+		            <p:separator/>
+		            <p:panelGrid  columns="2" layout="grid" styleClass="no-border ui-fluid" columnClasses="ui-grid-col-6,ui-grid-col-6">
+		             	  <p:commandButton id="verFicha" value="Ver Paciente" styleClass="btn-primary" action="verPaciente" >
+			                    <f:setPropertyActionListener value="#{otraAgendaMB.paciente.id}" target="#{fichaPacienteMB.selectedIdPaciente}" />
+			              </p:commandButton>
+		       			  <p:commandButton id="verHClinica" value="HistoriaClinica" styleClass="btn-primary" action="verPaciente" >
+			                    <f:setPropertyActionListener value="#{otraAgendaMB.paciente.id}" target="#{fichaPacienteMB.selectedIdPaciente}" />
+			              </p:commandButton>
+		            </p:panelGrid>
+	            </h:form>
+	      </p:dialog>
+</div>		  
+
+ <script type="text/javascript">
+	PrimeFaces.locales['es'] = {
+	    closeText: 'Cerrar',
+	    prevText: 'Anterior',
+	    nextText: 'Siguiente',
+	    monthNames: ['Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+	    monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+	    dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+	    dayNamesShort: ['Dom','Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+	    dayNamesMin: ['D','L','M','X','J','V','S'],
+	    weekHeader: 'Semana',
+	    firstDay: 1,
+	    isRTL: false,
+	    showMonthAfterYear: false,
+	    yearSuffix: '',
+	    timeOnlyTitle: 'Sólo hora',
+	    timeText: 'Tiempo',
+	    hourText: 'Hora',
+	    minuteText: 'Minuto',
+	    secondText: 'Segundo',
+	    currentText: 'Fecha actual',
+	    ampm: false,
+	    month: 'Mes',
+	    week: 'Semana',
+	    day: 'Día',
+	    allDayText : 'Todo el día'
+	};
+ </script>
+ 
+ <style type="text/css"> 
+     .value { 
+         width: 1000px !important; 
+    } 
+    
+     .fc-time-grid .fc-slats .ui-widget-content {
+		background-image: initial;
+	    background-position-x: 0px;
+	    background-position-y: center;
+	    background-size: initial;
+	    background-repeat-x: initial;
+	    background-repeat-y: initial;
+	    background-attachment: initial;
+	    background-origin: initial;
+	    background-clip: initial;
+	    background-color: white;
+	}
+	
+	
+	.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight, .form-control .ui-state-highlight{
+		  background-image: none;
+	}
+	
+	body .fc .ui-state-highlight, body .fc .ui-widget-content .ui-state-highlight, body .fc .ui-widget-header .ui-state-highlight {
+	    background: #f8f8f8 none;
+	    background-color: #f8f8f8 none;
+	}
+	
+	.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight, .form-control .ui-state-highlight{
+		border-color: #ffffff;
+		color: #968f8f;
+	}
+	
+</style> 
+
+</ui:define>
+</ui:composition>
