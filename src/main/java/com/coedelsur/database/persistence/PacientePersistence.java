@@ -7,7 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.coedelsur.database.connections.DBManager;
+import com.coedelsur.database.connections.ManagerDB;
+import com.coedelsur.database.connections.Querys;
 import com.coedelsur.model.Archivo;
 import com.coedelsur.model.Paciente;
 import com.coedelsur.model.PacienteFile;
@@ -21,8 +22,8 @@ public class PacientePersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_PACIENTE_BY_ID);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_PACIENTE_BY_ID);
             ps.setInt(1, idPaciente);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -58,8 +59,8 @@ public class PacientePersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_INSERT_PACIENTE);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_INSERT_PACIENTE);
             ps.setInt(1, paciente.getId());
             ps.setInt(2, paciente.getCedulaIdentidad());
             ps.setString(3, paciente.getNombre());
@@ -90,8 +91,8 @@ public class PacientePersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_FILES_PACIENTE);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_FILES_PACIENTE);
             ps.setInt(1, idPaciente);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -119,8 +120,8 @@ public class PacientePersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_INSERT_FILES_PACIENTE);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_INSERT_FILES_PACIENTE);
             ps.setInt(1, pacienteFile.getIdPaciente());
             ps.setInt(2, pacienteFile.getIdDoctor());
             ps.setString(3, pacienteFile.getDescripcion());
@@ -147,8 +148,8 @@ public class PacientePersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_FILE_PACIENTE);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_FILE_PACIENTE);
             ps.setInt(1, idArchivo);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -176,7 +177,7 @@ public class PacientePersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
+            conexion = ManagerDB.getDBConection();
             String queryStr = "SELECT * FROM pacientes";
             ps = conexion.prepareStatement(queryStr);
             rs = ps.executeQuery();
@@ -211,8 +212,8 @@ public class PacientePersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_ELIMINAR_FILE);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_ELIMINAR_FILE);
             ps.setInt(1, pacienteFile.getId());
             int rows = ps.executeUpdate();
             if (rows == 1) {
@@ -239,8 +240,8 @@ public class PacientePersistence extends UtilPersistence {
         ResultSet rs = null;
         
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_EDITAR_PACIENTE);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_EDITAR_PACIENTE);
             ps.setInt(1, pacienteSelectedEdicion.getCedulaIdentidad());
             ps.setString(2, pacienteSelectedEdicion.getNombre());
             ps.setString(3, pacienteSelectedEdicion.getApellidos());

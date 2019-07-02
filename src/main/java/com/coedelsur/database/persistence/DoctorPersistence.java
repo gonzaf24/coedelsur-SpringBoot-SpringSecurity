@@ -6,7 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.coedelsur.database.connections.DBManager;
+import com.coedelsur.database.connections.ManagerDB;
+import com.coedelsur.database.connections.Querys;
 import com.coedelsur.model.Doctor;
 import com.coedelsur.model.SelectStringString;
 import com.coedelsur.model.SelectStringValue;
@@ -19,8 +20,8 @@ public class DoctorPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_DOCTOR_BY_ID);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_DOCTOR_BY_ID);
             ps.setInt(1, idDoctor);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -63,8 +64,8 @@ public class DoctorPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_INSERT_DOCTOR);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_INSERT_DOCTOR);
             ps.setInt(1, doctor.getId());
             ps.setInt(2, doctor.getCedulaIdentidad());
             ps.setInt(3, doctor.getEspecialidad().getCode());
@@ -95,8 +96,8 @@ public class DoctorPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_LIST_DOCTORES);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_LIST_DOCTORES);
             rs = ps.executeQuery();
             Doctor doc;
             while (rs.next()) {
@@ -143,8 +144,8 @@ public class DoctorPersistence extends UtilPersistence {
         ResultSet rs = null;
         
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_EDITAR_DOCTOR);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_EDITAR_DOCTOR);
             ps.setInt(1, doctorSelectedEdicion.getCedulaIdentidad());
             ps.setString(2, doctorSelectedEdicion.getNombre());
             ps.setString(3, doctorSelectedEdicion.getApellidos());
@@ -174,8 +175,8 @@ public class DoctorPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_LIST_DOCTORES_CODIGOS);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_LIST_DOCTORES_CODIGOS);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Integer id = rs.getInt("idD");

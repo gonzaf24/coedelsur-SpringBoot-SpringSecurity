@@ -7,7 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.coedelsur.database.connections.DBManager;
+import com.coedelsur.database.connections.ManagerDB;
+import com.coedelsur.database.connections.Querys;
 import com.coedelsur.model.SelectStringValue;
 
 public class ConsultorioPersistence extends UtilPersistence {
@@ -18,8 +19,8 @@ public class ConsultorioPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_CONSULTORIOS);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_CONSULTORIOS);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Integer id = rs.getInt("id");

@@ -12,7 +12,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-import com.coedelsur.database.connections.DBManager;
+import com.coedelsur.database.connections.ManagerDB;
+import com.coedelsur.database.connections.Querys;
 import com.coedelsur.model.Agenda;
 import com.coedelsur.model.AgendaDia;
 import com.coedelsur.model.AgendaTurno;
@@ -36,8 +37,8 @@ public class AgendaPersistence extends UtilPersistence {
         Calendar cal = Calendar.getInstance();
         int index = 0;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_DIAS_AGENDA_DOCTOR);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_DIAS_AGENDA_DOCTOR);
             ps.setInt(1, doc.getId());
             ps.setDate(2, convertFromJAVADateToSQLDate(new java.util.Date()));
             rs = ps.executeQuery();
@@ -75,8 +76,8 @@ public class AgendaPersistence extends UtilPersistence {
         AgendaTurno agendaTurno;
         Calendar cal = Calendar.getInstance();
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_TURNOS_AGENDA_DOCTOR);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_TURNOS_AGENDA_DOCTOR);
             ps.setInt(1, doc.getId());
             ps.setDate(2, convertFromJAVADateToSQLDate(agDia.getDia()));
             rs = ps.executeQuery();
@@ -118,8 +119,8 @@ public class AgendaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_RESERVAR_TURNO);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_RESERVAR_TURNO);
             ps.setInt(1, paciente.getId());
             ps.setInt(2, consutlaDoctor.getId());
             ps.setInt(3, agTurno.getId());
@@ -141,8 +142,8 @@ public class AgendaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_CANCELAR_RESERVA_TURNO);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_CANCELAR_RESERVA_TURNO);
             ps.setInt(1, selectedAgendaTurno.getId());
             ps.executeUpdate();
         } catch (Exception e) {
@@ -162,8 +163,8 @@ public class AgendaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_TURNO_LIBRE);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_TURNO_LIBRE);
             ps.setInt(1, selectedAgendaTurno.getId());
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -191,8 +192,8 @@ public class AgendaPersistence extends UtilPersistence {
         Calendar cal = Calendar.getInstance();
         Consulta consulta = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_CONSULTAS_PACIENTE);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_CONSULTAS_PACIENTE);
             ps.setInt(1, idPaciente);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -281,8 +282,8 @@ public class AgendaPersistence extends UtilPersistence {
         for (int i = 0; i < listaAgenda.size(); i++) {
             Agenda agenda = listaAgenda.get(i);
             try {
-                conexion = DBManager.getDBConection();
-                ps = conexion.prepareStatement(DBManager.CLI_QUERY_INSERT_AGENDA);
+                conexion = ManagerDB.getDBConection();
+                ps = conexion.prepareStatement(Querys.CLI_QUERY_INSERT_AGENDA);
                 ps.setInt(1, agenda.getIdDoctor());
                 ps.setInt(2, agenda.getIdConsultorio());
                 ps.setDate(3, convertFromJAVADateToSQLDate(agenda.getDia()));
@@ -310,9 +311,9 @@ public class AgendaPersistence extends UtilPersistence {
         SimpleDateFormat dateFormatDia = new SimpleDateFormat("EEEE d MMMM , yyyy", new Locale("es", "ES"));
         SimpleDateFormat dateFormatHora = new SimpleDateFormat ("HH:mm");
         try {
-            conexion = DBManager.getDBConection();
+            conexion = ManagerDB.getDBConection();
             int index = 1;
-            String consulta = DBManager.CLI_QUERY_GET_AGENDA_POR_DIAS;
+            String consulta = Querys.CLI_QUERY_GET_AGENDA_POR_DIAS;
             for (int i = 0; i < arrayList.size(); i++) {
                 if (i == 0) {
                     consulta = consulta + " dia = ? ";
@@ -364,8 +365,8 @@ public class AgendaPersistence extends UtilPersistence {
         SimpleDateFormat dateDiaFormat = new SimpleDateFormat("dd/M/yyyy");
         SimpleDateFormat dateFormatHora = new SimpleDateFormat ("HH:mm");
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_AGENDA_POR_ID_DOCTOR);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_AGENDA_POR_ID_DOCTOR);
             ps.setInt(1, idDoctor);
             ps.setDate(2, convertFromJAVADateToSQLDate(new java.util.Date()));
             rs = ps.executeQuery();
@@ -418,8 +419,8 @@ public class AgendaPersistence extends UtilPersistence {
         SimpleDateFormat dateDiaFormat = new SimpleDateFormat("dd/M/yyyy");
         SimpleDateFormat dateFormatHora = new SimpleDateFormat ("HH:mm");
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_AGENDA_HOSTORICA_POR_ID_DOCTOR);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_AGENDA_HOSTORICA_POR_ID_DOCTOR);
             ps.setInt(1, idDoctorParam);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -478,8 +479,8 @@ public class AgendaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_DELETE_TURNO);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_DELETE_TURNO);
             ps.setInt(1, idTurno);
             int rows = ps.executeUpdate();
             if (rows == 1) {
@@ -508,8 +509,8 @@ public class AgendaPersistence extends UtilPersistence {
         SimpleDateFormat dateDiaFormat = new SimpleDateFormat("dd/M/yyyy");
         SimpleDateFormat dateFormatHora = new SimpleDateFormat ("HH:mm");
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_MI_AGENDA_POR_ID_DOCTOR);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_MI_AGENDA_POR_ID_DOCTOR);
             ps.setInt(1, idDoctor);
             ps.setDate(2, convertFromJAVADateToSQLDate(new java.util.Date()));
             rs = ps.executeQuery();
@@ -580,8 +581,8 @@ public class AgendaPersistence extends UtilPersistence {
         SimpleDateFormat dateDiaFormat = new SimpleDateFormat("dd/M/yyyy");
         SimpleDateFormat dateFormatHora = new SimpleDateFormat ("HH:mm");
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_MI_AGENDA_HISTORICO_POR_ID_DOCTOR);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_MI_AGENDA_HISTORICO_POR_ID_DOCTOR);
             ps.setInt(1, idDoctor);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -648,8 +649,8 @@ public class AgendaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_CONSULTORIO_AGENDA_TURNO);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_CONSULTORIO_AGENDA_TURNO);
             ps.setInt(1, selectedAgendaTurno.getId());
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -677,8 +678,8 @@ public class AgendaPersistence extends UtilPersistence {
         SimpleDateFormat dateDiaFormat = new SimpleDateFormat("dd/M/yyyy");
         SimpleDateFormat dateFormatHora = new SimpleDateFormat ("HH:mm");
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_AGENDA_PACIENTE);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_AGENDA_PACIENTE);
             ps.setInt(1, aux.getId());
             rs = ps.executeQuery();
             while (rs.next()) {

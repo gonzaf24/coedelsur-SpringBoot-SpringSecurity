@@ -15,11 +15,11 @@ public class UsuarioServImpl implements UsuarioServ{
 
 
 	@Override
-	public void cambiarPassword(String oldPsw, String newPsw, Integer idOng) throws Exception {
+	public void cambiarPassword(String oldPsw, String newPsw, Integer id) throws Exception {
 		try{
-			String oldPassword = obtenerPassword(idOng);
+			String oldPassword = obtenerPassword(id);
 			if(oldPsw.equals(oldPassword)){
-				UsuarioPersistence.cambiarPassword(newPsw, idOng);
+				UsuarioPersistence.cambiarPassword(newPsw, id);
 			}else{
 				throw new Exception("Contraseña actual incorrecta.");
 			}
@@ -29,20 +29,20 @@ public class UsuarioServImpl implements UsuarioServ{
 	}
 	
 	@Override
-	public String obtenerPassword(Integer idOng) throws Exception {
+	public String obtenerPassword(Integer id) throws Exception {
 		String salida = new String();
 		try{
-			salida = UsuarioPersistence.obtenerPassword(idOng);
+			salida = UsuarioPersistence.obtenerPassword(id);
 		}catch(Exception e){
 			throw e;
 		}
 		return salida;
 	}
 	
-	public Usuario obtenerUsuario(Integer idOng) throws Exception{
+	public Usuario obtenerUsuario(Integer id) throws Exception{
 		Usuario salida = new Usuario();
 		try{
-			salida = UsuarioPersistence.obtenerUsuario(idOng);
+			salida = UsuarioPersistence.obtenerUsuario(id);
 		}catch(Exception e){
 			throw e;
 		}

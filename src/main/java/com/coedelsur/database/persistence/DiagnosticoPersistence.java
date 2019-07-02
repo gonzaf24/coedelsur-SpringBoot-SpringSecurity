@@ -6,7 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.coedelsur.database.connections.DBManager;
+import com.coedelsur.database.connections.ManagerDB;
+import com.coedelsur.database.connections.Querys;
 import com.coedelsur.model.SelectCIE10;
 
 public class DiagnosticoPersistence extends UtilPersistence {
@@ -17,8 +18,8 @@ public class DiagnosticoPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_PRIMER_CAPITULO_DIAGNOSTICO);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_PRIMER_CAPITULO_DIAGNOSTICO);
             rs = ps.executeQuery();
             while (rs.next()) {
                 String id10 = rs.getString("id10");
@@ -45,8 +46,8 @@ public class DiagnosticoPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_SEGUNDO_CAPITULO_DIAGNOSTICO);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_SEGUNDO_CAPITULO_DIAGNOSTICO);
             ps.setString(1, "|"+selectPrimerCapitulo.getId10()+"%");
             ps.setString(2, selectPrimerCapitulo.getGrp10());
             rs = ps.executeQuery();
@@ -75,8 +76,8 @@ public class DiagnosticoPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_TERCER_CAPITULO_DIAGNOSTICO);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_TERCER_CAPITULO_DIAGNOSTICO);
             ps.setString(1, "|"+selectSegundoCapitulo.getId10());
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -104,8 +105,8 @@ public class DiagnosticoPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_CUARTO_CAPITULO_DIAGNOSTICO);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_CUARTO_CAPITULO_DIAGNOSTICO);
             ps.setString(1, selectTercerCapitulo.getId10()+"%");
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -133,8 +134,8 @@ public class DiagnosticoPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_DIAGNOSTICO_POR_TEXTO);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_DIAGNOSTICO_POR_TEXTO);
             
             ps.setString(1, filtroBusquedaPorTexto(nombre));
             rs = ps.executeQuery();
@@ -173,8 +174,8 @@ public class DiagnosticoPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_DIAGNOSTICO_POR_CODIGO);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_DIAGNOSTICO_POR_CODIGO);
             ps.setString(1, codigo + "%");
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -203,8 +204,8 @@ public class DiagnosticoPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_DIAGNOSTICO_LIBRE_MAS_USADO);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_DIAGNOSTICO_LIBRE_MAS_USADO);
             rs = ps.executeQuery();
             while (rs.next()) {
                 String dec10 = rs.getString("valor");

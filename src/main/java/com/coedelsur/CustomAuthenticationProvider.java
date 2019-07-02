@@ -9,6 +9,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import com.coedelsur.database.persistence.LoginPersistence;
+import com.coedelsur.model.Usuario;
+
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 	
@@ -19,7 +22,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		
 		String user = authentication.getName();
 		String password = authentication.getCredentials().toString();
-		UserDetails userDetails = UserDetailService.loadUserByUsername(user.toLowerCase());
+		UserDetails userDetails = loadUserByUsername(user.toLowerCase());
 	    if (userDetails != null ) {
 	    	if(password.equals(userDetails.getPassword())){
 	    		
@@ -37,6 +40,14 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 		return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
 
+	}
+	
+	public static UserDetails loadUserByUsername(String userName) {
+		Usuario user = LoginPersistence.obtenerUsuario(userName);
+		if (user != null && user.isEnabled()) {
+			return user;
+		}
+		return null;
 	}
 	
 }

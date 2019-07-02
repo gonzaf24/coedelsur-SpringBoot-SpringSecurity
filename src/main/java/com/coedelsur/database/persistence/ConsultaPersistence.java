@@ -6,7 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.coedelsur.database.connections.DBManager;
+import com.coedelsur.database.connections.ManagerDB;
+import com.coedelsur.database.connections.Querys;
 import com.coedelsur.model.ConsultaDoctor;
 import com.coedelsur.model.SelectStringValue;
 
@@ -18,8 +19,8 @@ public class ConsultaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_CONSULTAS_HABILITADOS);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_CONSULTAS_HABILITADOS);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Integer id = rs.getInt("idCon");
@@ -51,8 +52,8 @@ public class ConsultaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_CONSULTAS);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_CONSULTAS);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Integer id = rs.getInt("idCon");
@@ -83,8 +84,8 @@ public class ConsultaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_INSERT_CONSULTA);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_INSERT_CONSULTA);
             ps.setString(1, consDoc.getDescripcion());
             ps.setInt(2, consDoc.getPrecio());
             ps.setInt(3, consDoc.getTipoConsulta().getCode());
@@ -108,8 +109,8 @@ public class ConsultaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_INSERT_TIPO_CONSULTA);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_INSERT_TIPO_CONSULTA);
             ps.setString(1, descripcion);
             ps.executeUpdate();
         } catch (Exception e) {
@@ -129,8 +130,8 @@ public class ConsultaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_INSERT_ESPECIALIDAD);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_INSERT_ESPECIALIDAD);
             ps.setString(1, descripcion);
             ps.executeUpdate();
         } catch (Exception e) {
@@ -150,8 +151,8 @@ public class ConsultaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_INSERT_CONSULTORIO);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_INSERT_CONSULTORIO);
             ps.setString(1, descripcion);
             ps.executeUpdate();
         } catch (Exception e) {

@@ -8,7 +8,8 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
-import com.coedelsur.database.connections.DBManager;
+import com.coedelsur.database.connections.ManagerDB;
+import com.coedelsur.database.connections.Querys;
 import com.coedelsur.model.ConsultaDoctor;
 import com.coedelsur.model.Doctor;
 import com.coedelsur.model.SelectStringString;
@@ -26,8 +27,8 @@ public class CodiguerasPersistence extends UtilPersistence {
         ResultSet rs = null;
         SelectStringValue obj;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_DEPARTAMENTOS);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_DEPARTAMENTOS);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Integer id = rs.getInt("id");
@@ -54,8 +55,8 @@ public class CodiguerasPersistence extends UtilPersistence {
         ResultSet rs = null;
         SelectStringValue tc;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_TIPO_CONSULTAS);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_TIPO_CONSULTAS);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Integer id = rs.getInt("id");
@@ -83,8 +84,8 @@ public class CodiguerasPersistence extends UtilPersistence {
         ResultSet rs = null;
         SelectStringValue tc;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_TIPO_CONSULTAS);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_TIPO_CONSULTAS);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Integer id = rs.getInt("id");
@@ -112,8 +113,8 @@ public class CodiguerasPersistence extends UtilPersistence {
         ResultSet rs = null;
         SelectStringValue espe;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_ESPECIALIDADES);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_ESPECIALIDADES);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Integer id = rs.getInt("id");
@@ -141,8 +142,8 @@ public class CodiguerasPersistence extends UtilPersistence {
         ResultSet rs = null;
         SelectStringValue espe;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_ESPECIALIDADES);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_ESPECIALIDADES);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Integer id = rs.getInt("id");
@@ -169,8 +170,8 @@ public class CodiguerasPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_DOCTORES);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_DOCTORES);
             ps.setInt(1, idEspecialidad);
             rs = ps.executeQuery();
             Doctor doc;
@@ -219,8 +220,8 @@ public class CodiguerasPersistence extends UtilPersistence {
         ResultSet rs = null;
         SelectStringValue espe;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_ESPECIALIDADES_POR_TIPO_CONSULTA_SOLICITAR_CITA);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_ESPECIALIDADES_POR_TIPO_CONSULTA_SOLICITAR_CITA);
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -249,8 +250,8 @@ public class CodiguerasPersistence extends UtilPersistence {
         ResultSet rs = null;
         SelectStringValue tc;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_TIPO_CONSULTAS_SOLICITAR_CITA);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_TIPO_CONSULTAS_SOLICITAR_CITA);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Integer id = rs.getInt("idTipoCons");
@@ -278,8 +279,8 @@ public class CodiguerasPersistence extends UtilPersistence {
         ResultSet rs = null;
         SelectStringValue consultorio;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_CONSULTORIOS_TODOS);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_CONSULTORIOS_TODOS);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Integer id = rs.getInt("id");
@@ -312,8 +313,8 @@ public class CodiguerasPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_CONSULTA_SOLICITAR_CITA);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_CONSULTA_SOLICITAR_CITA);
             ps.setInt(1, codTipoConsulta);
             ps.setInt(2, codEspecialidad);
             rs = ps.executeQuery();

@@ -7,7 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.coedelsur.database.connections.DBManager;
+import com.coedelsur.database.connections.ManagerDB;
+import com.coedelsur.database.connections.Querys;
 import com.coedelsur.model.Antecedente;
 import com.coedelsur.model.AntecedenteObject;
 import com.coedelsur.model.ConsultaMedica;
@@ -23,8 +24,8 @@ public class HistoriaClinicaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_HISTORIA_CLINICA_BY_ID_PACIENTE);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_HISTORIA_CLINICA_BY_ID_PACIENTE);
             ps.setInt(1, idPaciente);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -49,8 +50,8 @@ public class HistoriaClinicaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_INSERT_HISTORIA_CLINICA);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_INSERT_HISTORIA_CLINICA);
             ps.setInt(1, paciente.getId());
             ps.setInt(2, paciente.getCedulaIdentidad());
             ps.setInt(3, 0);
@@ -75,8 +76,8 @@ public class HistoriaClinicaPersistence extends UtilPersistence {
         ResultSet rs = null;
         long generado = 0;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_INSERT_CONSULTA_MEDICA ,PreparedStatement.RETURN_GENERATED_KEYS);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_INSERT_CONSULTA_MEDICA ,PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setInt(1, consulta.getIdPaciente());
             ps.setInt(2, consulta.getIdDoctor());
             ps.setDate(3, convertFromJAVADateToSQLDate(new java.util.Date()));
@@ -96,8 +97,8 @@ public class HistoriaClinicaPersistence extends UtilPersistence {
                 generado = rs.getLong(1);
                 Long idGenerado = new Long(generado); 
                 closeCon(conexion, ps, rs);
-                conexion = DBManager.getDBConection();
-                ps = conexion.prepareStatement(DBManager.CLI_QUERY_INSERT_DIAGNOSTICO_DE_CONSULTA_MEDICA );
+                conexion = ManagerDB.getDBConection();
+                ps = conexion.prepareStatement(Querys.CLI_QUERY_INSERT_DIAGNOSTICO_DE_CONSULTA_MEDICA );
                 ps.setInt(1, consulta.getDiagnosticoObject().getIdDoctor());
                 ps.setInt(2, consulta.getDiagnosticoObject().getIdPaciente());
                 ps.setInt(3, idGenerado.intValue());
@@ -131,8 +132,8 @@ public class HistoriaClinicaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_EDITAR_DIAGNOSTICO_DE_CONSULTA_MEDICA);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_EDITAR_DIAGNOSTICO_DE_CONSULTA_MEDICA);
             ps.setInt(1, consulta.getDiagnosticoObject().getIdDoctor());
             ps.setInt(2, consulta.getDiagnosticoObject().getIdPaciente());
             ps.setString(3, consulta.getDiagnosticoObject().getTipo());
@@ -159,8 +160,8 @@ public class HistoriaClinicaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_EDITAR_CONSULTA_MEDICA);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_EDITAR_CONSULTA_MEDICA);
             ps.setBoolean(1, consulta.getRepetirMedicamento());
             ps.setString(2, consulta.getMotivoConsulta());
             ps.setString(3, consulta.getAnemesis());
@@ -190,14 +191,14 @@ public class HistoriaClinicaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_ELIMINAR_DIAGNOSTICO_DE_CONSULTA_MEDICA);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_ELIMINAR_DIAGNOSTICO_DE_CONSULTA_MEDICA);
             ps.setInt(1, consulta.getId());
             int rows = ps.executeUpdate();
             closeCon(conexion, ps, rs);
             if (rows == 1) {
-                conexion = DBManager.getDBConection();
-                ps = conexion.prepareStatement(DBManager.CLI_QUERY_ELIMINAR_CONSULTA_MEDICA);
+                conexion = ManagerDB.getDBConection();
+                ps = conexion.prepareStatement(Querys.CLI_QUERY_ELIMINAR_CONSULTA_MEDICA);
                 ps.setInt(1, consulta.getId());
                 int rows1 = ps.executeUpdate();
                 if (rows1 == 1) {
@@ -229,8 +230,8 @@ public class HistoriaClinicaPersistence extends UtilPersistence {
         
             if(antecedente.getPersonal().getAntecedente() != null || antecedente.getFamiliar().getAntecedente() != null || antecedente.getMedicamento().getMedicamento() != null){
                 
-                conexion = DBManager.getDBConection();
-                ps = conexion.prepareStatement(DBManager.CLI_QUERY_INSERT_ANTECEDENTE, PreparedStatement.RETURN_GENERATED_KEYS);
+                conexion = ManagerDB.getDBConection();
+                ps = conexion.prepareStatement(Querys.CLI_QUERY_INSERT_ANTECEDENTE, PreparedStatement.RETURN_GENERATED_KEYS);
                 ps.setInt(1, antecedente.getIdPaciente());
                 ps.setInt(2, antecedente.getIdDoctor());
                 ps.setDate(3, convertFromJAVADateToSQLDate(new java.util.Date()));
@@ -242,8 +243,8 @@ public class HistoriaClinicaPersistence extends UtilPersistence {
                 closeCon(conexion, ps, rs);
                 
                 if(antecedente.getPersonal().getAntecedente() != null){
-                    conexion = DBManager.getDBConection();
-                    ps = conexion.prepareStatement(DBManager.CLI_QUERY_INSERT_ANTECEDENTE_PERSONAL);
+                    conexion = ManagerDB.getDBConection();
+                    ps = conexion.prepareStatement(Querys.CLI_QUERY_INSERT_ANTECEDENTE_PERSONAL);
                     ps.setInt(1, antecedente.getId());
                     ps.setInt(2, antecedente.getIdDoctor());
                     ps.setDate(3, convertFromJAVADateToSQLDate(new java.util.Date()));
@@ -257,8 +258,8 @@ public class HistoriaClinicaPersistence extends UtilPersistence {
                 }
                 
                 if(antecedente.getFamiliar().getAntecedente() != null){
-                    conexion = DBManager.getDBConection();
-                    ps = conexion.prepareStatement(DBManager.CLI_QUERY_INSERT_ANTECEDENTE_FAMILIAR);
+                    conexion = ManagerDB.getDBConection();
+                    ps = conexion.prepareStatement(Querys.CLI_QUERY_INSERT_ANTECEDENTE_FAMILIAR);
                     ps.setInt(1, antecedente.getId());
                     ps.setInt(2, antecedente.getIdDoctor());
                     ps.setDate(3, convertFromJAVADateToSQLDate(new java.util.Date()));
@@ -272,8 +273,8 @@ public class HistoriaClinicaPersistence extends UtilPersistence {
                 }
                 
                 if(antecedente.getMedicamento().getMedicamento() != null){
-                    conexion = DBManager.getDBConection();
-                    ps = conexion.prepareStatement(DBManager.CLI_QUERY_INSERT_ANTECEDENTE_MEDICAMENTO);
+                    conexion = ManagerDB.getDBConection();
+                    ps = conexion.prepareStatement(Querys.CLI_QUERY_INSERT_ANTECEDENTE_MEDICAMENTO);
                     ps.setInt(1, antecedente.getId());
                     ps.setInt(2, antecedente.getIdDoctor());
                     ps.setDate(3, convertFromJAVADateToSQLDate(new java.util.Date()));
@@ -305,8 +306,8 @@ public class HistoriaClinicaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_EDITAR_ANTECEDENTE_PERSONAL);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_EDITAR_ANTECEDENTE_PERSONAL);
             ps.setString(1, antecedentePersonal.getAntecedente());
             ps.setDate(2, convertFromJAVADateToSQLDate(antecedentePersonal.getFechaDesde()));
             ps.setDate(3, convertFromJAVADateToSQLDate(antecedentePersonal.getFechaHasta()));
@@ -332,8 +333,8 @@ public class HistoriaClinicaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_ELIMINAR_ANTECEDENTE_PERSONAL);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_ELIMINAR_ANTECEDENTE_PERSONAL);
             ps.setInt(1, antecedentePersonal.getId());
             int rows = ps.executeUpdate();
             if (rows == 1) {
@@ -357,8 +358,8 @@ public class HistoriaClinicaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_EDITAR_ANTECEDENTE_PERSONAL);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_EDITAR_ANTECEDENTE_PERSONAL);
             ps.setString(1, antecedenteFamiliar.getAntecedente());
             ps.setDate(2, convertFromJAVADateToSQLDate(antecedenteFamiliar.getFechaDesde()));
             ps.setDate(3, convertFromJAVADateToSQLDate(antecedenteFamiliar.getFechaHasta()));
@@ -384,8 +385,8 @@ public class HistoriaClinicaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_ELIMINAR_ANTECEDENTE_FAMILIAR);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_ELIMINAR_ANTECEDENTE_FAMILIAR);
             ps.setInt(1, antecedenteFamiliar.getId());
             int rows = ps.executeUpdate();
             if (rows == 1) {
@@ -410,8 +411,8 @@ public class HistoriaClinicaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_EDITAR_ANTECEDENTE_MEDICAMENTO);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_EDITAR_ANTECEDENTE_MEDICAMENTO);
             ps.setString(1, medicamento.getMedicamento());
             ps.setDate(2, convertFromJAVADateToSQLDate(medicamento.getFechaDesde()));
             ps.setDate(3, convertFromJAVADateToSQLDate(medicamento.getFechaHasta()));
@@ -436,8 +437,8 @@ public class HistoriaClinicaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_ELIMINAR_ANTECEDENTE_MEDICAMENTO);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_ELIMINAR_ANTECEDENTE_MEDICAMENTO);
             ps.setInt(1, medicamento.getId());
             int rows = ps.executeUpdate();
             if (rows == 1) {
@@ -461,8 +462,8 @@ public class HistoriaClinicaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_ELIMINAR_ANTECEDENTE);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_ELIMINAR_ANTECEDENTE);
             ps.setInt(1, antecedente.getId());
             int rows = ps.executeUpdate();
             if (rows == 1) {
@@ -489,8 +490,8 @@ public class HistoriaClinicaPersistence extends UtilPersistence {
         ResultSet rs = null;
         Antecedente antecedente;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_SELECT_ANTECEDENTES_BY_ID_PACIENTE);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_SELECT_ANTECEDENTES_BY_ID_PACIENTE);
             ps.setInt(1, idPaciente);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -575,8 +576,8 @@ public class HistoriaClinicaPersistence extends UtilPersistence {
         ResultSet rs = null;
         ConsultaMedica consulta;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_CONSULTAS_MEDICAS_BY_ID_PACIENTE);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_CONSULTAS_MEDICAS_BY_ID_PACIENTE);
             ps.setInt(1, idPaciente);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -615,8 +616,8 @@ public class HistoriaClinicaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_INSERT_ANTECEDENTE_PERSONAL);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_INSERT_ANTECEDENTE_PERSONAL);
             ps.setInt(1, antecedente.getId());
             ps.setInt(2, antecedente.getIdDoctor());
             ps.setDate(3, convertFromJAVADateToSQLDate(new java.util.Date()));
@@ -645,8 +646,8 @@ public class HistoriaClinicaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_INSERT_ANTECEDENTE_FAMILIAR);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_INSERT_ANTECEDENTE_FAMILIAR);
             ps.setInt(1, antecedente.getId());
             ps.setInt(2, antecedente.getIdDoctor());
             ps.setDate(3, convertFromJAVADateToSQLDate(new java.util.Date()));
@@ -674,8 +675,8 @@ public class HistoriaClinicaPersistence extends UtilPersistence {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_INSERT_ANTECEDENTE_MEDICAMENTO);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_INSERT_ANTECEDENTE_MEDICAMENTO);
             ps.setInt(1, antecedente.getId());
             ps.setInt(2, antecedente.getIdDoctor());
             ps.setDate(3, convertFromJAVADateToSQLDate(new java.util.Date()));

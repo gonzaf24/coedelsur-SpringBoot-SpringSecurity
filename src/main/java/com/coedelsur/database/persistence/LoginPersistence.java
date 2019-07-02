@@ -7,7 +7,8 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
-import com.coedelsur.database.connections.DBManager;
+import com.coedelsur.database.connections.ManagerDB;
+import com.coedelsur.database.connections.Querys;
 import com.coedelsur.model.Usuario;
 
 public class LoginPersistence extends UtilPersistence{
@@ -21,8 +22,8 @@ public class LoginPersistence extends UtilPersistence{
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_USUARIO);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_USUARIO);
             ps.setString(1, userName);
             ps.setString(2, password);
             rs = ps.executeQuery();
@@ -70,8 +71,8 @@ public class LoginPersistence extends UtilPersistence{
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            conexion = DBManager.getDBConection();
-            ps = conexion.prepareStatement(DBManager.CLI_QUERY_GET_USUARIO);
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_USUARIO);
             ps.setString(1, userName);
             rs = ps.executeQuery();
             if (rs.next()) {
