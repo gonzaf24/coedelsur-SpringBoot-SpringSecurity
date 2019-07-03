@@ -131,7 +131,7 @@ public class UsuarioPersistence extends UtilPersistence {
             rs = ps.executeQuery();
             while (rs.next()) {
                 //String user = rs.getString("usuario");
-                return false;
+                return true;
             }
         } catch (Exception e) {
             throw e;
@@ -142,7 +142,7 @@ public class UsuarioPersistence extends UtilPersistence {
                 throw e;
             }
         }
-        return true;
+        return false;
     }
 
     public static void registrarLogueo(String string) throws Exception {

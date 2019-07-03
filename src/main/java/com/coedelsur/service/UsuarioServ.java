@@ -7,11 +7,11 @@ import com.coedelsur.model.Usuario;
 
 public interface UsuarioServ {
 
-    public void cambiarPassword(String oldPsw, String newPsw, Integer idOng) throws Exception;
+    public void cambiarPassword(String oldPsw, String newPsw, Integer id) throws Exception;
 
-    public String obtenerPassword(Integer idOng) throws Exception;
+    public String obtenerPassword(Integer id) throws Exception;
 
-    public Usuario obtenerUsuario(Integer idOng) throws Exception;
+    public Usuario obtenerUsuario(Integer id) throws Exception;
 
     public boolean registrarUsuario(Usuario user, Paciente paciente) throws Exception;
     

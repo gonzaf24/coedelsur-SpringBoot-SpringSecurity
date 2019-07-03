@@ -5,6 +5,7 @@
     <artifactId>coedelsur</artifactId>
     <version>0.1-SNAPSHOT</version>
     <name>coedelsur</name>
+    
     <parent>
         <groupId>org.joinfaces</groupId>
         <artifactId>joinfaces-parent</artifactId>
@@ -85,22 +86,42 @@
 		<dependency>
 		    <groupId>org.primefaces.extensions</groupId>
 		    <artifactId>primefaces-extensions</artifactId>
-		    <version>7.0.1</version>
+		    <version>7.0.1</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
+		
+		
 		<dependency>
-		    <groupId>org.webjars</groupId>
-		    <artifactId>font-awesome</artifactId>
-		    <version>5.9.0</version>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-bean-validators</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        
+        <dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-data-rest</artifactId>
+		    <version>2.1.6.RELEASE</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
+		
 		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>2.7.0</version>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-webflux</artifactId>
+		    <version>2.1.6.RELEASE</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
+		
 		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>2.7.0</version>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-actuator</artifactId>
+		    <version>2.1.6.RELEASE</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
         
     </dependencies>
