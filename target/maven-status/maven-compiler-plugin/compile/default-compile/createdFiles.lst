@@ -1,8 +1,8 @@
 com/coedelsur/converter/DiagnosticoConverter.class
 com/coedelsur/database/persistence/DoctorPersistence.class
-com/coedelsur/SwaggerConfiguration.class
 com/coedelsur/bean/SessionMB.class
 com/coedelsur/model/DefaultGenericCode.class
+com/coedelsur/bean/RecuperarPasswordMB.class
 com/coedelsur/service/PacienteServ.class
 com/coedelsur/converter/ConsultaDoctorConverter.class
 com/coedelsur/service/HistoriaClinicaServ.class
@@ -20,6 +20,7 @@ com/coedelsur/converter/ConsultorioConverter.class
 com/coedelsur/model/Archivo.class
 com/coedelsur/converter/EspecialidadConfigConverter.class
 com/coedelsur/service/ConsultorioServ.class
+com/coedelsur/bean/NewUserMB.class
 com/coedelsur/model/Ciudad.class
 com/coedelsur/model/AntecedenteObject.class
 com/coedelsur/converter/EditarTurnosConverter.class
@@ -40,6 +41,7 @@ com/coedelsur/model/Usuario.class
 com/coedelsur/model/PacienteFile.class
 com/coedelsur/service/DiagnosticoServ.class
 com/coedelsur/model/Car.class
+com/coedelsur/rest/model/PacienteRest.class
 com/coedelsur/service/DoctorServ.class
 com/coedelsur/database/persistence/HistoriaClinicaPersistence.class
 com/coedelsur/converter/OtraAgendaConverter.class
@@ -53,7 +55,6 @@ com/coedelsur/service/impl/DiagnosticoServImpl.class
 com/coedelsur/model/ConsultaDoctor.class
 com/coedelsur/bean/doctor/FichaPacienteMB.class
 com/coedelsur/service/UsuarioServ.class
-com/coedelsur/form/NewUserForm.class
 com/coedelsur/util/Utils.class
 com/coedelsur/service/impl/UsuarioServImpl.class
 com/coedelsur/converter/DepartamentoConfigConverter.class
@@ -65,6 +66,7 @@ com/coedelsur/model/Consulta.class
 com/coedelsur/util/Logger$Level.class
 com/coedelsur/bean/doctor/HistoriaClinicaMB$MyFooter.class
 com/coedelsur/converter/EspecialidadSolCitaConverter.class
+com/coedelsur/rest/PacienteResource.class
 com/coedelsur/service/ConsultaServ.class
 com/coedelsur/bean/doctor/AdministrarConsultasMB.class
 com/coedelsur/converter/TipoConsultaConverter.class
@@ -82,14 +84,13 @@ com/coedelsur/model/SelectCIE10.class
 com/coedelsur/service/impl/UtilServImpl.class
 com/coedelsur/bean/doctor/MiAgendaMB.class
 com/coedelsur/database/persistence/DiagnosticoPersistence.class
+com/coedelsur/converter/DepartamentoRegistroConverter.class
 com/coedelsur/database/connections/Querys.class
 com/coedelsur/model/Doctor.class
-com/coedelsur/bean/NewUserForm.class
 com/coedelsur/bean/doctor/BusquedaPacienteMB.class
 com/coedelsur/model/SelectStringValue.class
 com/coedelsur/AdminBootApplication.class
 com/coedelsur/model/Agenda.class
-com/coedelsur/form/RecuperarPasswordForm.class
 com/coedelsur/model/Medicamento.class
 com/coedelsur/util/Logger.class
 com/coedelsur/bean/doctor/CrearTurnosMB$1.class
@@ -97,6 +98,7 @@ com/coedelsur/service/ComboUtilsServ.class
 com/coedelsur/util/Base64Utils.class
 com/coedelsur/database/persistence/CodiguerasPersistence.class
 com/coedelsur/bean/paciente/InformesDocumentosMB.class
+com/coedelsur/Swagger2Config.class
 com/coedelsur/database/persistence/LoginPersistence.class
 com/coedelsur/model/Antecedente.class
 com/coedelsur/bean/doctor/OtraAgendaMB.class

@@ -14,8 +14,7 @@ public class DepartamentoConfigConverter implements Converter<Object> {
 
 	public Object getAsObject(FacesContext ctx, UIComponent uic, String value) {
 		SelectStringValue doc = new SelectStringValue();
-		ValueExpression vex = ctx.getApplication().getExpressionFactory().createValueExpression(ctx.getELContext(),
-				"#{sessionMB}", SessionMB.class);
+		ValueExpression vex = ctx.getApplication().getExpressionFactory().createValueExpression(ctx.getELContext(),"#{sessionMB}", SessionMB.class);
 		SessionMB sessionMB = (SessionMB) vex.getValue(ctx.getELContext());
 		if (sessionMB != null && sessionMB.getDepartamentoList() != null) {
 			boolean encontre = false;

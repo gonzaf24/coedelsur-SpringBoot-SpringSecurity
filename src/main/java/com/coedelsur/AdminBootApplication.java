@@ -16,29 +16,13 @@
 
 package com.coedelsur;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
 import org.apache.log4j.Logger;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-import com.coedelsur.model.Car;
-import com.coedelsur.util.Utils;
 
 @SpringBootApplication
 public class AdminBootApplication {
 	
 	final static Logger logger = Logger.getLogger(AdminBootApplication.class);
 	
-	@Inject
-	private Utils utils;
 	
-    @Bean
-    public List<Car> getCars() {
-    	logger.info( "***************************** getCars");
-        return utils.getCars();
-    }
-
 }

@@ -28,7 +28,7 @@ public class AdminBootMain {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AdminBootApplication.class, args);
-		logger.info( "***************************** AdminBootMain");
+		logger.info( "Aplicacion COE del SUR - INICIADA OK!");
 	}
 
 

@@ -52,6 +52,7 @@ public class SessionMB implements Serializable {
 	public void init() throws Exception {
 		currentUser = SecurityContextHolder.getContext().getAuthentication().getName();
 		Usuario user = LoginPersistence.obtenerUsuario(currentUser.toLowerCase());
+		@SuppressWarnings("unchecked")
 		List<GrantedAuthority> grantedAuths = (List<GrantedAuthority>) SecurityContextHolder.getContext().getAuthentication(). getAuthorities();
 		if(grantedAuths.get(0).getAuthority().equalsIgnoreCase("ROLE_DOCTOR")) {
 			doctor = doctorServ.obtenerDoctor(user.getId());

@@ -4,21 +4,21 @@ public class Querys {
 	
     
 	//login
-	public static String CLI_QUERY_GET_DEPARTAMENTOS = "SELECT * FROM departamento where activo= true order by descripcion asc";
-	public static String CLI_QUERY_GET_USUARIO = "SELECT * FROM usuarios WHERE usuario = ? ";
+	public static String CLI_QUERY_GET_DEPARTAMENTOS      = "SELECT * FROM departamento where activo= true order by descripcion asc";
+	public static String CLI_QUERY_GET_USUARIO            = "SELECT * FROM usuarios WHERE usuario = ? ";
     public static String CLI_QUERY_GET_USUARIO_HABILITADO = "SELECT * FROM usuarios WHERE usuario = ? AND pass = ? and habilitado = true ";
    
-    public static String CLI_QUERY_OBT_PSSWRD = "SELECT pass FROM usuarios WHERE id = ? ";
+    public static String CLI_QUERY_OBT_PSSWRD    = "SELECT pass FROM usuarios WHERE id = ? ";
     public static String CLI_QUERY_UPDATE_PSSWRD = "UPDATE usuarios SET pass = ? WHERE id = ? ";
-    public static String CLI_QUERY_OBT_USUARIO = "SELECT * FROM usuarios WHERE id = ? ";
-    public static String CLI_QUERY_EXISTE_EMAIL = "SELECT * FROM usuarios WHERE usuario = ? ";
+    public static String CLI_QUERY_OBT_USUARIO   = "SELECT * FROM usuarios WHERE id = ? ";
+    public static String CLI_QUERY_EXISTE_EMAIL  = "SELECT * FROM usuarios WHERE usuario = ? ";
     
-    public static String CLI_QUERY_GET_PRIMER_CAPITULO_DIAGNOSTICO = "select * from cie10  where grp10 in ('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21') and id10 not like '%|%' ";
+    public static String CLI_QUERY_GET_PRIMER_CAPITULO_DIAGNOSTICO  = "select * from cie10  where grp10 in ('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21') and id10 not like '%|%' ";
     public static String CLI_QUERY_GET_SEGUNDO_CAPITULO_DIAGNOSTICO = "select * from cie10  where id10 like ? and grp10 = ? ";
-    public static String CLI_QUERY_GET_TERCER_CAPITULO_DIAGNOSTICO = "select * from cie10 where grp10 like ? ";
-    public static String CLI_QUERY_GET_CUARTO_CAPITULO_DIAGNOSTICO = "select * from cie10  where id10 like ? and LENGTH(id10) > (3)";
-    public static String CLI_QUERY_GET_DIAGNOSTICO_POR_TEXTO = "select * from cie10  where dec10 ilike ? and LENGTH(id10) > (3) limit 25";
-    public static String CLI_QUERY_GET_DIAGNOSTICO_POR_CODIGO = "select * from cie10  where id10 ilike ? and LENGTH(id10) > (3) limit 25";
+    public static String CLI_QUERY_GET_TERCER_CAPITULO_DIAGNOSTICO  = "select * from cie10 where grp10 like ? ";
+    public static String CLI_QUERY_GET_CUARTO_CAPITULO_DIAGNOSTICO  = "select * from cie10  where id10 like ? and LENGTH(id10) > (3)";
+    public static String CLI_QUERY_GET_DIAGNOSTICO_POR_TEXTO        = "select * from cie10  where dec10 ilike ? and LENGTH(id10) > (3) limit 25";
+    public static String CLI_QUERY_GET_DIAGNOSTICO_POR_CODIGO       = "select * from cie10  where id10 ilike ? and LENGTH(id10) > (3) limit 25";
     
     public static String CLI_QUERY_GET_DIAGNOSTICO_LIBRE_MAS_USADO = "SELECT dec10 as valor, COUNT(dec10) from diagnostico where id10 = '0000' group by dec10 order by count desc limit 10";
     
@@ -52,19 +52,19 @@ public class Querys {
     
     public static String CLI_QUERY_SELECT_LOGUEO_USUARIO =  "SELECT * FROM usuarios_auditoria  order by id desc limit 10";
 
-    public static String CLI_QUERY_INSERT_USUARIO =  "INSERT INTO usuarios (usuario, pass, tipo,role,habilitado,fecha_creacion) VALUES (?,?,?,?,?,?)";
+    public static String CLI_QUERY_INSERT_USUARIO  =  "INSERT INTO usuarios (usuario, pass, tipo,role,habilitado,fecha_creacion) VALUES (?,?,?,?,?,?)";
     
-    public static String CLI_QUERY_INSERT_DOCTOR =  "INSERT INTO doctores (id,ci,id_especialidad,nombre,apellidos,telefono,domicilio,id_departamento,fecha_creacion,activo,sexo,foto) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+    public static String CLI_QUERY_INSERT_DOCTOR   =  "INSERT INTO doctores (id,ci,id_especialidad,nombre,apellidos,telefono,domicilio,id_departamento,fecha_creacion,activo,sexo,foto) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
     
     public static String CLI_QUERY_INSERT_PACIENTE =  "INSERT INTO pacientes (id, ci, nombre, apellidos, telefono,id_departamento,domicilio,fecha_nacimiento,fecha_creacion) VALUES (?,?,?,?,?,?,?,?,?)";
     
     public static String CLI_QUERY_INSERT_HISTORIA_CLINICA =  "INSERT INTO historia_clinica (id_paciente, ci_paciente, id_episodio, fecha_creacion,habilitado) VALUES (?,?,?,?,?)";
     
-    public static String CLI_QUERY_INSERT_CONSULTA_MEDICA =  "INSERT INTO consulta_medica (id_paciente, id_doctor, fecha_creacion,repetir_medicamento ,motivo,anemesis,examen_fisico,peso_kgs,talla_cms,imc,cintura_cms,diagnostico,conducta) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    public static String CLI_QUERY_INSERT_CONSULTA_MEDICA  =  "INSERT INTO consulta_medica (id_paciente, id_doctor, fecha_creacion,repetir_medicamento ,motivo,anemesis,examen_fisico,peso_kgs,talla_cms,imc,cintura_cms,diagnostico,conducta) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     public static String CLI_QUERY_INSERT_DIAGNOSTICO_DE_CONSULTA_MEDICA =  "INSERT INTO diagnostico (id_doctor,id_paciente,id_consulta,fecha_creacion,tipo,descripcion,id10,dec10,grp10) VALUES (?,?,?,?,?,?,?,?,?)";
 
-    public static String CLI_QUERY_EDITAR_CONSULTA_MEDICA = "UPDATE consulta_medica SET repetir_medicamento = ? ,"
+    public static String CLI_QUERY_EDITAR_CONSULTA_MEDICA   = "UPDATE consulta_medica SET repetir_medicamento = ? ,"
                                                                                         + "motivo = ?,"
                                                                                         + "anemesis = ?,"
                                                                                         + "examen_fisico = ?,"
@@ -85,13 +85,13 @@ public class Querys {
                                                                                                 + "grp10 = ? "
                                                                                                 + " WHERE id_consulta = ? "; 
     
-    public static String CLI_QUERY_GET_CONSULTAS_MEDICAS_BY_ID_PACIENTE =  "SELECT * FROM consulta_medica WHERE id_paciente = ? order by fecha_creacion desc"; ;
+    public static String CLI_QUERY_GET_CONSULTAS_MEDICAS_BY_ID_PACIENTE    =  "SELECT * FROM consulta_medica WHERE id_paciente = ? order by fecha_creacion desc"; ;
     
     public static String CLI_QUERY_ELIMINAR_DIAGNOSTICO_DE_CONSULTA_MEDICA = "DELETE FROM diagnostico WHERE id_consulta = ?";
     
     public static String CLI_QUERY_ELIMINAR_CONSULTA_MEDICA = "DELETE FROM consulta_medica WHERE id = ?";
     
-    public static String CLI_QUERY_INSERT_ANTECEDENTE =  "INSERT INTO antecedente (id_paciente, id_doctor, fecha_creacion) VALUES (?,?,?)";
+    public static String CLI_QUERY_INSERT_ANTECEDENTE       =  "INSERT INTO antecedente (id_paciente, id_doctor, fecha_creacion) VALUES (?,?,?)";
     
     public static String CLI_QUERY_SELECT_ANTECEDENTES_BY_ID_PACIENTE = "SELECT     antecedente.id  AS antId,"
                                                                                 + " antecedente.id_paciente AS antIdPaciente,"
@@ -141,16 +141,16 @@ public class Querys {
                                                                                                                                                                             
     public static String CLI_QUERY_ELIMINAR_ANTECEDENTE_PERSONAL= "DELETE FROM antecedente_personal WHERE id = ?";
     
-    public static String CLI_QUERY_INSERT_ANTECEDENTE_FAMILIAR =  "INSERT INTO antecedente_familiar (id, id_doctor, fecha_creacion,antecedente,fecha_desde,fecha_hasta,origen,observaciones) VALUES (?,?,?,?,?,?,?,?)";
+    public static String CLI_QUERY_INSERT_ANTECEDENTE_FAMILIAR  =  "INSERT INTO antecedente_familiar (id, id_doctor, fecha_creacion,antecedente,fecha_desde,fecha_hasta,origen,observaciones) VALUES (?,?,?,?,?,?,?,?)";
     
-    public static String CLI_QUERY_EDITAR_ANTECEDENTE_FAMILIAR = "UPDATE antecedente_familiar SET antecedente  = ? ,"
+    public static String CLI_QUERY_EDITAR_ANTECEDENTE_FAMILIAR  = "UPDATE antecedente_familiar SET antecedente  = ? ,"
                                                                                                 + "fecha_desde = ?,"
                                                                                                 + "fecha_hasta = ?,"
                                                                                                 + "origen = ?,"
                                                                                                 + "observaciones  = ?"
                                                                                                 + "  WHERE id = ? ";
     
-    public static String CLI_QUERY_ELIMINAR_ANTECEDENTE_FAMILIAR= "DELETE FROM antecedente_familiar WHERE id = ?";
+    public static String CLI_QUERY_ELIMINAR_ANTECEDENTE_FAMILIAR  = "DELETE FROM antecedente_familiar WHERE id = ?";
     
     public static String CLI_QUERY_INSERT_ANTECEDENTE_MEDICAMENTO =  "INSERT INTO antecedente_medicamento (id, id_doctor, fecha_creacion,medicamento,fecha_desde,fecha_hasta,origen,observaciones) VALUES (?,?,?,?,?,?,?,?)";
    
@@ -161,11 +161,11 @@ public class Querys {
                                                                                                 + "observaciones  = ?"
                                                                                                 + "  WHERE id = ? ";
 
-    public static String CLI_QUERY_ELIMINAR_ANTECEDENTE_MEDICAMENTO= "DELETE FROM antecedente_medicamento WHERE id = ?";
+    public static String CLI_QUERY_ELIMINAR_ANTECEDENTE_MEDICAMENTO = "DELETE FROM antecedente_medicamento WHERE id = ?";
     
     
                                 
-    public static String CLI_QUERY_GET_TIPO_CONSULTAS = "SELECT * FROM tipo_consulta where habilitado=true order by descripcion asc";
+    public static String CLI_QUERY_GET_TIPO_CONSULTAS       = "SELECT * FROM tipo_consulta where habilitado=true order by descripcion asc";
     
     public static String CLI_QUERY_GET_TIPO_CONSULTAS_TODAS = "SELECT * FROM tipo_consulta where order by descripcion asc";
     
@@ -177,11 +177,11 @@ public class Querys {
                                                                                     + " where c.id_tipo_consulta = tc.id "
                                                                                     + " and tc.habilitado=true ";
     
-    public static String CLI_QUERY_GET_ESPECIALIDADES = "SELECT * FROM especialidades where habilitado=true order by nombre asc";
+    public static String CLI_QUERY_GET_ESPECIALIDADES       = "SELECT * FROM especialidades where habilitado=true order by nombre asc";
     public static String CLI_QUERY_GET_ESPECIALIDADES_TODAS = "SELECT * FROM especialidades where order by nombre asc";
     
-    public static String CLI_QUERY_GET_CONSULTORIOS =  "SELECT * FROM consultorios WHERE activo = true";
-    public static String CLI_QUERY_GET_CONSULTORIOS_TODOS =  "SELECT * FROM consultorios order by descripcion asc ";
+    public static String CLI_QUERY_GET_CONSULTORIOS         =  "SELECT * FROM consultorios WHERE activo = true";
+    public static String CLI_QUERY_GET_CONSULTORIOS_TODOS   =  "SELECT * FROM consultorios order by descripcion asc ";
     
     public static String CLI_QUERY_GET_ESPECIALIDADES_POR_TIPO_CONSULTA_SOLICITAR_CITA = "SELECT DISTINCT c.id_especialidad  AS idEsp, "
                                                                                         + " e.nombre          AS nombre,"
@@ -270,11 +270,11 @@ public class Querys {
     
     public static String CLI_QUERY_INSERT_FILES_PACIENTE =  "INSERT INTO pacientes_file (id_paciente,id_doctor,descripcion,archivo,tipo_archivo,fecha_creacion,activo) VALUES (?,?,?,?,?,?,?)";
     
-    public static String CLI_QUERY_GET_FILES_PACIENTE = "SELECT * FROM pacientes_file WHERE id_paciente= ? and activo = true order by fecha_creacion desc ";
+    public static String CLI_QUERY_GET_FILES_PACIENTE    = "SELECT * FROM pacientes_file WHERE id_paciente= ? and activo = true order by fecha_creacion desc ";
     
-    public static String CLI_QUERY_GET_FILE_PACIENTE = "SELECT * FROM pacientes_file WHERE id= ? and activo = true ";
+    public static String CLI_QUERY_GET_FILE_PACIENTE     = "SELECT * FROM pacientes_file WHERE id= ? and activo = true ";
     
-    public static String CLI_QUERY_ELIMINAR_FILE = "DELETE FROM pacientes_file WHERE id = ?";
+    public static String CLI_QUERY_ELIMINAR_FILE    = "DELETE FROM pacientes_file WHERE id = ?";
     
     public static String CLI_QUERY_GET_DOCTOR_BY_ID =  "SELECT  d.id              AS idD, "
                                                             + " d.ci              AS ciD,"
@@ -295,10 +295,10 @@ public class Querys {
                                                             + " and d.id_departamento = dep.id ";
             
     public static String CLI_QUERY_INSERT_TIPO_CONSULTA =  "INSERT INTO tipo_consulta (descripcion) VALUES (?)";
-    public static String CLI_QUERY_INSERT_ESPECIALIDAD =  "INSERT INTO especialidades (nombre) VALUES (?)";
-    public static String CLI_QUERY_INSERT_CONSULTORIO =  "INSERT INTO consultorios (descripcion) VALUES (?)";
+    public static String CLI_QUERY_INSERT_ESPECIALIDAD  =  "INSERT INTO especialidades (nombre) VALUES (?)";
+    public static String CLI_QUERY_INSERT_CONSULTORIO   =  "INSERT INTO consultorios (descripcion) VALUES (?)";
     
-    public static String CLI_QUERY_INSERT_CONSULTA =  "INSERT INTO consulta (descripcion,precio,id_tipo_consulta,id_especialidad,habilitado) VALUES (?,?,?,?,?)";
+    public static String CLI_QUERY_INSERT_CONSULTA   =  "INSERT INTO consulta (descripcion,precio,id_tipo_consulta,id_especialidad,habilitado) VALUES (?,?,?,?,?)";
     
     public static String CLI_QUERY_GET_LIST_DOCTORES =  "SELECT d.id              AS idD, "
                                                             + " d.ci              AS ciD,"

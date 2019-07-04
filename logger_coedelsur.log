@@ -3,3 +3,392 @@
 2019-07-03 12:51:01 DEBUG LoginPersistence:68 - martin
 2019-07-03 12:51:01 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
 2019-07-03 12:51:01 DEBUG LoginPersistence:68 - martin
+2019-07-03 12:57:54 INFO  AdminBootApplication:40 - ***************************** getCars
+2019-07-03 12:57:55 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-03 12:58:04 INFO  AdminBootApplication:40 - ***************************** getCars
+2019-07-03 12:58:05 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-03 12:59:12 INFO  AdminBootApplication:40 - ***************************** getCars
+2019-07-03 12:59:14 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-03 12:59:32 DEBUG LoginPersistence:68 - manuel
+2019-07-03 12:59:32 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-03 12:59:33 DEBUG LoginPersistence:68 - manuel
+2019-07-03 12:59:44 DEBUG LoginPersistence:68 - manuel
+2019-07-03 12:59:44 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-03 13:00:33 DEBUG LoginPersistence:68 - manuel
+2019-07-03 13:00:33 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-03 13:01:51 INFO  AdminBootApplication:40 - ***************************** getCars
+2019-07-03 13:01:52 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-03 13:02:35 INFO  AdminBootApplication:40 - ***************************** getCars
+2019-07-03 13:02:37 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-03 13:03:03 INFO  AdminBootApplication:40 - ***************************** getCars
+2019-07-03 13:03:04 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-03 13:03:53 INFO  AdminBootApplication:40 - ***************************** getCars
+2019-07-03 13:03:54 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-03 13:04:33 INFO  AdminBootApplication:40 - ***************************** getCars
+2019-07-03 13:04:33 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-03 13:04:52 INFO  AdminBootApplication:40 - ***************************** getCars
+2019-07-03 13:04:53 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-03 13:06:06 INFO  AdminBootApplication:40 - ***************************** getCars
+2019-07-03 13:06:07 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-03 13:06:33 INFO  AdminBootApplication:40 - ***************************** getCars
+2019-07-03 13:06:33 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-03 13:06:44 INFO  AdminBootApplication:40 - ***************************** getCars
+2019-07-03 13:06:45 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-03 13:07:06 INFO  AdminBootApplication:40 - ***************************** getCars
+2019-07-03 13:07:07 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-03 13:48:18 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-03 13:49:07 DEBUG LoginPersistence:68 - anonymoususer
+2019-07-03 13:49:41 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-03 13:49:59 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-03 14:05:40 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-03 14:06:41 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-03 14:07:46 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-03 14:08:19 INFO  AdminBootMain:31 - ***************************** AdminBootMain
+2019-07-03 14:09:05 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 14:10:26 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 14:16:50 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 14:16:58 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 14:21:00 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 14:21:56 DEBUG LoginPersistence:68 - anonymoususer
+2019-07-03 14:21:59 DEBUG LoginPersistence:68 - anonymoususer
+2019-07-03 14:23:41 DEBUG LoginPersistence:68 - anonymoususer
+2019-07-03 14:23:46 DEBUG LoginPersistence:68 - anonymoususer
+2019-07-03 14:26:05 DEBUG LoginPersistence:68 - anonymoususer
+2019-07-03 14:26:58 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 14:27:20 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 14:28:14 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 14:28:34 DEBUG LoginPersistence:68 - anonymoususer
+2019-07-03 14:29:27 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 14:29:35 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 14:29:46 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 14:31:16 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 14:33:13 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 14:35:34 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 14:35:55 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 14:39:56 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 14:40:06 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 14:40:40 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 14:43:02 DEBUG LoginPersistence:68 - anonymoususer
+2019-07-03 14:43:12 DEBUG LoginPersistence:68 - anonymoususer
+2019-07-03 14:44:00 DEBUG LoginPersistence:68 - anonymoususer
+2019-07-03 14:45:41 DEBUG LoginPersistence:68 - anonymoususer
+2019-07-03 14:46:20 DEBUG LoginPersistence:68 - anonymoususer
+2019-07-03 14:47:22 DEBUG LoginPersistence:68 - anonymoususer
+2019-07-03 14:47:26 DEBUG LoginPersistence:68 - anonymoususer
+2019-07-03 14:47:49 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 14:53:51 DEBUG LoginPersistence:68 - anonymoususer
+2019-07-03 14:54:45 DEBUG LoginPersistence:68 - anonymoususer
+2019-07-03 14:55:42 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 14:56:00 DEBUG LoginPersistence:68 - anonymoususer
+2019-07-03 14:56:37 DEBUG LoginPersistence:68 - anonymoususer
+2019-07-03 14:59:38 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 14:59:54 DEBUG LoginPersistence:68 - 
+2019-07-03 15:00:51 DEBUG LoginPersistence:68 - anonymoususer
+2019-07-03 15:01:20 DEBUG LoginPersistence:68 - anonymoususer
+2019-07-03 15:03:43 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 15:05:20 DEBUG LoginPersistence:68 - manuel
+2019-07-03 15:05:20 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-03 15:05:23 DEBUG LoginPersistence:68 - manuel
+2019-07-03 15:06:19 DEBUG LoginPersistence:68 - martin
+2019-07-03 15:06:19 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-03 15:06:23 DEBUG LoginPersistence:68 - martin
+2019-07-03 15:11:23 DEBUG LoginPersistence:68 - martin
+2019-07-03 15:11:23 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-03 15:11:23 DEBUG LoginPersistence:68 - martin
+2019-07-03 15:11:57 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 15:12:06 DEBUG LoginPersistence:68 - manuel
+2019-07-03 15:12:06 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-03 15:12:07 DEBUG LoginPersistence:68 - manuel
+2019-07-03 15:13:11 DEBUG LoginPersistence:68 - martin
+2019-07-03 15:13:11 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-03 15:17:16 DEBUG LoginPersistence:68 - martin
+2019-07-03 15:17:16 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-03 15:17:16 DEBUG LoginPersistence:68 - martin
+2019-07-03 15:19:27 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 15:19:33 DEBUG LoginPersistence:68 - martin
+2019-07-03 15:19:33 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-03 15:19:53 DEBUG LoginPersistence:68 - martin
+2019-07-03 15:23:37 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 15:23:45 DEBUG LoginPersistence:68 - manuel
+2019-07-03 15:23:45 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-03 15:23:49 DEBUG LoginPersistence:68 - manuel
+2019-07-03 15:27:08 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 15:27:23 DEBUG LoginPersistence:68 - manuel
+2019-07-03 15:27:23 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-03 15:27:28 DEBUG LoginPersistence:68 - manuel
+2019-07-03 15:28:23 DEBUG LoginPersistence:68 - martin
+2019-07-03 15:28:23 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-03 15:28:23 DEBUG LoginPersistence:68 - martin
+2019-07-03 22:03:03 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 22:05:22 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 22:05:43 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 22:06:02 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 22:06:21 DEBUG LoginPersistence:68 - martin
+2019-07-03 22:06:21 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-03 22:06:22 DEBUG LoginPersistence:68 - martin
+2019-07-03 22:07:47 DEBUG LoginPersistence:68 - martin
+2019-07-03 22:07:47 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-03 22:07:47 DEBUG LoginPersistence:68 - martin
+2019-07-03 22:09:14 DEBUG LoginPersistence:68 - manuel
+2019-07-03 22:09:14 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-03 22:09:14 DEBUG LoginPersistence:68 - manuel
+2019-07-03 22:10:26 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 22:10:34 DEBUG LoginPersistence:68 - martin
+2019-07-03 22:10:34 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-03 22:10:35 DEBUG LoginPersistence:68 - martin
+2019-07-03 22:11:53 DEBUG LoginPersistence:68 - martin
+2019-07-03 22:11:53 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-03 22:15:14 DEBUG LoginPersistence:68 - martin
+2019-07-03 22:15:14 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-03 22:15:14 DEBUG LoginPersistence:68 - martin
+2019-07-03 22:15:28 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 22:16:35 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-03 22:17:17 DEBUG LoginPersistence:68 - martin
+2019-07-03 22:17:17 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-03 22:17:18 DEBUG LoginPersistence:68 - martin
+2019-07-03 22:17:25 DEBUG LoginPersistence:68 - martin
+2019-07-03 22:17:25 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-03 22:17:25 DEBUG LoginPersistence:68 - martin
+2019-07-03 22:18:14 DEBUG LoginPersistence:68 - martin
+2019-07-03 22:18:14 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-03 22:18:14 DEBUG LoginPersistence:68 - martin
+2019-07-04 11:16:47 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-04 20:32:03 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-04 20:32:25 DEBUG LoginPersistence:68 - martin
+2019-07-04 20:32:25 ERROR LoginPersistence:88 - martin
+org.postgresql.util.PSQLException: FATAL: password authentication failed for user "gonzaf21_coedelsur"
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:514)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:141)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:192)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
+	at org.postgresql.Driver.makeConnection(Driver.java:454)
+	at org.postgresql.Driver.connect(Driver.java:256)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at com.coedelsur.database.connections.ManagerDB.getDBConection(ManagerDB.java:24)
+	at com.coedelsur.database.persistence.LoginPersistence.obtenerUsuario(LoginPersistence.java:74)
+	at com.coedelsur.CustomAuthenticationProvider.loadUserByUsername(CustomAuthenticationProvider.java:46)
+	at com.coedelsur.CustomAuthenticationProvider.authenticate(CustomAuthenticationProvider.java:25)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:174)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:199)
+	at org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.attemptAuthentication(UsernamePasswordAuthenticationFilter.java:94)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:212)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:66)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:155)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:123)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:108)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:800)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:806)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1498)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2019-07-04 20:32:51 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-04 20:33:01 DEBUG LoginPersistence:68 - martin
+2019-07-04 20:33:34 ERROR LoginPersistence:88 - martin
+org.postgresql.util.PSQLException: FATAL: database "webadmin" does not exist
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2440)
+	at org.postgresql.core.v3.QueryExecutorImpl.readStartupMessages(QueryExecutorImpl.java:2559)
+	at org.postgresql.core.v3.QueryExecutorImpl.<init>(QueryExecutorImpl.java:133)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:250)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
+	at org.postgresql.Driver.makeConnection(Driver.java:454)
+	at org.postgresql.Driver.connect(Driver.java:256)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at com.coedelsur.database.connections.ManagerDB.getDBConection(Unknown Source)
+	at com.coedelsur.database.persistence.LoginPersistence.obtenerUsuario(LoginPersistence.java:74)
+	at com.coedelsur.CustomAuthenticationProvider.loadUserByUsername(CustomAuthenticationProvider.java:46)
+	at com.coedelsur.CustomAuthenticationProvider.authenticate(CustomAuthenticationProvider.java:25)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:174)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:199)
+	at org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.attemptAuthentication(UsernamePasswordAuthenticationFilter.java:94)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:212)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:66)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:155)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:123)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:108)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:800)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:806)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1498)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2019-07-04 20:33:41 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-04 20:33:50 DEBUG LoginPersistence:68 - martin
+2019-07-04 20:34:47 ERROR LoginPersistence:88 - martin
+org.postgresql.util.PSQLException: FATAL: password authentication failed for user "gonzaf21_coedelsur"
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:514)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:141)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:192)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:195)
+	at org.postgresql.Driver.makeConnection(Driver.java:454)
+	at org.postgresql.Driver.connect(Driver.java:256)
+	at java.sql.DriverManager.getConnection(DriverManager.java:664)
+	at java.sql.DriverManager.getConnection(DriverManager.java:247)
+	at com.coedelsur.database.connections.ManagerDB.getDBConection(ManagerDB.java:24)
+	at com.coedelsur.database.persistence.LoginPersistence.obtenerUsuario(LoginPersistence.java:74)
+	at com.coedelsur.CustomAuthenticationProvider.loadUserByUsername(CustomAuthenticationProvider.java:46)
+	at com.coedelsur.CustomAuthenticationProvider.authenticate(CustomAuthenticationProvider.java:25)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:174)
+	at org.springframework.security.authentication.ProviderManager.authenticate(ProviderManager.java:199)
+	at org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.attemptAuthentication(UsernamePasswordAuthenticationFilter.java:94)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:212)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:66)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:155)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:123)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:108)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:800)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:806)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1498)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2019-07-04 20:35:59 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-04 20:36:06 DEBUG LoginPersistence:68 - martin
+2019-07-04 20:36:11 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-04 20:36:12 DEBUG LoginPersistence:68 - martin
+2019-07-04 21:00:45 DEBUG LoginPersistence:68 - manuel
+2019-07-04 21:00:45 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-04 21:00:45 DEBUG LoginPersistence:68 - manuel
+2019-07-04 21:01:44 DEBUG LoginPersistence:68 - martin
+2019-07-04 21:01:44 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-04 21:01:44 DEBUG LoginPersistence:68 - martin
