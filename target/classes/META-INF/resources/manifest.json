@@ -21,6 +21,6 @@
     "theme_color": "#3c8dbc",
     "background_color": "#ffffff",
     "scope": "/coedelsur/",
-    "start_url": "/coedelsur/index.xhtml",
+    "start_url": "/coedelsur/login.xhtml",
     "display": "standalone"
 }
