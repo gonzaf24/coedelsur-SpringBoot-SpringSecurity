@@ -10,9 +10,9 @@ public class ManagerDB {
 //    private static String DB_NAME = "gonzaf21_coedelsur";
 //    private static String DB_PASSWORD = "gon11gon";
     
-    private static String DB_PROVIDER = "jdbc:postgresql://31.24.152.94:5432/gonzaf21_coedelsur";
-    private static String DB_NAME = "webadmin";
-    private static String DB_PASSWORD = "EPAfik49911";
+    private static String DB_PROVIDER = "jdbc:postgresql://31.24.152.50:5432/gonzaf21_coedelsur";
+    private static String DB_NAME = "gonzaf21_coedelsur";
+    private static String DB_PASSWORD = "gonza11gonza";
     
     //private static String DB_PROVIDER = "jdbc:postgresql://qdjjtnkv.db.elephantsql.com:5432/lajisaul";
     //private static String DB_NAME = "lajisaul";

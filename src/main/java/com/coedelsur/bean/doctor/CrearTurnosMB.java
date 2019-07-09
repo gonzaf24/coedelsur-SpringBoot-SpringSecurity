@@ -74,6 +74,7 @@ public class CrearTurnosMB implements Serializable {
         setListConsultorios(new ArrayList<SelectStringValue>(consultorioServ.obtenerConsultorios()));
         setHastaHoraSel(obtenerDiaHoyHorayMinutoCero());
         setDesdeHoraSel(obtenerDiaHoyHorayMinutoCero());
+        listAgendaDia = new ArrayList<AgendaDia>();
     }
 
     public void postCrearTurnos() {
@@ -86,25 +87,25 @@ public class CrearTurnosMB implements Serializable {
         if (existeDiaEnLista(getDiaSelected())) {
             FacesContext.getCurrentInstance().addMessage("messagesCrearTurnos", new FacesMessage(FacesMessage.SEVERITY_ERROR, "El d�a ya se encuentra en la lista.", ""));
         } else {
-            Collections.reverse(getListAgendaDia());
-            getListAgendaDia().add(diaSelected);
-            Integer index = getListAgendaDia().indexOf(diaSelected);
+            Collections.reverse(listAgendaDia);
+            listAgendaDia.add(diaSelected);
+            Integer index = listAgendaDia.indexOf(diaSelected);
             diaSelected.setId(index);
-            Collections.reverse(getListAgendaDia());
+            Collections.reverse(listAgendaDia);
         }
     }
 
     public void eliminarDiaCrearTurno(AgendaDia agendaDia) throws Exception {
-        if (getListAgendaDia().contains(agendaDia)) {
-            getListAgendaDia().remove(agendaDia);
+        if (listAgendaDia.contains(agendaDia)) {
+            listAgendaDia.remove(agendaDia);
         }
     }
 
     private boolean existeDiaEnLista(Date diaSelecconado) {
         boolean encontre = false;
-        if (getListAgendaDia() != null) {
-            for (int i = 0; i < getListAgendaDia().size() && !encontre; i++) {
-                AgendaDia agDia = getListAgendaDia().get(i);
+        if (listAgendaDia != null) {
+            for (int i = 0; i < listAgendaDia.size() && !encontre; i++) {
+                AgendaDia agDia = listAgendaDia.get(i);
                 if (agDia.getDia().equals(diaSelecconado)) {
                     return true;
                 }
@@ -143,7 +144,7 @@ public class CrearTurnosMB implements Serializable {
     public void crearTurnos() throws Exception {
         ArrayList<Agenda> listaAgenda = new ArrayList<Agenda>();
         //lista de dias
-        ArrayList<AgendaDia> agendaDia = getListAgendaDia();
+        ArrayList<AgendaDia> agendaDia = listAgendaDia;
         //lista de turnos
         ArrayList<AgendaHoraTurno> agendaHoraTurno = getListAgendaHoraTurno();
         for (int i = 0; i < agendaDia.size(); i++) {
@@ -198,8 +199,8 @@ public class CrearTurnosMB implements Serializable {
     
     private boolean validarInterceptarPeriodos(ArrayList<Agenda> listaAgendaCreada) throws Exception {
         ArrayList<Date> arrayDiasConsulta = new ArrayList<Date>();
-        for (int i = 0; i < getListAgendaDia().size(); i++) {
-            AgendaDia agDia = getListAgendaDia().get(i);
+        for (int i = 0; i < listAgendaDia.size(); i++) {
+            AgendaDia agDia = listAgendaDia.get(i);
             arrayDiasConsulta.add(agDia.getDia());
         }
         ArrayList<Agenda> listaAgendaBD = agendaServ.obtenerAgendaPorDias(arrayDiasConsulta);

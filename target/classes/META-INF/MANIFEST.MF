@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: coedelsur
+Implementation-Version: 0.1-SNAPSHOT
+Built-By: Gonza
+Implementation-Vendor-Id: com.coedelsur
+Build-Jdk: 1.8.0_161
+Implementation-URL: http://persapiens.org/joinfaces-parent/coedelsur
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: JoinFaces
+

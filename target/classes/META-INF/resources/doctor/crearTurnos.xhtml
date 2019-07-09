@@ -39,8 +39,8 @@
 								        <f:facet name="header">
 								            Días Seleccionados
 								        </f:facet>
-								        <p:commandLink update="listAgendaDia, @widgetVar(crearWidgetID) " actionListener="#{crearTurnosMB.eliminarDiaCrearTurno(agendaDia)}" title="Eliminar día" styleClass="ui-icon ui-icon-closethick" style="float:left;margin-right:10px">
-								            <f:setPropertyActionListener value="#{agendaDia.dia}" target="#{crearTurnosMB.diaSelected}" />
+								        <p:commandLink immediate="true" update="listAgendaDia,@widgetVar(crearWidgetID) " actionListener="#{crearTurnosMB.eliminarDiaCrearTurno(agendaDia)}" title="Eliminar día" styleClass="ui-icon ui-icon-closethick" style="float:left;margin-right:10px">
+<!-- 								            <f:setPropertyActionListener value="#{agendaDia.dia}" target="#{crearTurnosMB.diaSelected}" /> -->
 								            <h:outputText value="#{agendaDia.label}" />
 								        </p:commandLink>
 								        <h:outputText value="#{agendaDia.label}" style="display:inline-block"/>
