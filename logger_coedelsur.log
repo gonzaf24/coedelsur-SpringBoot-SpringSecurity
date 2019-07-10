@@ -23,3 +23,6 @@
 2019-07-09 19:17:06 DEBUG LoginPersistence:68 - martin
 2019-07-09 19:17:06 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
 2019-07-09 19:17:06 DEBUG LoginPersistence:68 - martin
+2019-07-10 13:52:21 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-10 13:53:44 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-10 19:14:25 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
