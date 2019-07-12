@@ -7,7 +7,10 @@
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/database/persistence/AgendaPersistence.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/util/Utils.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/bean/doctor/AdministrarConsultasMB.java
+/Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/database/persistence/PasswordTokenPersistence.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/service/impl/AgendaServImpl.java
+/Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/service/impl/UserServiceImpl.java
+/Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/service/impl/PasswordResetTokenRepositoryServImpl.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/model/Diagnostico.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/service/impl/ConsultaServImpl.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/service/impl/DiagnosticoServImpl.java
@@ -18,6 +21,7 @@
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/converter/TipoConsultaConverter.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/model/Paciente.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/database/persistence/DiagnosticoPersistence.java
+/Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/bean/RecoveryMB.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/database/persistence/PacientePersistence.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/bean/doctor/DiagnosticoMB.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/service/UsuarioServ.java
@@ -42,12 +46,14 @@
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/converter/DiagnosticoConverter.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/bean/paciente/SolicitarCitaMB.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/bean/RecuperarPasswordMB.java
+/Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/service/PasswordResetTokenRepositoryServ.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/converter/DepartamentoRegistroConverter.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/model/SelectStringValue.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/service/ConsultorioServ.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/model/Agenda.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/util/ConstantesUY.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/service/impl/DoctorServImpl.java
+/Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/prueba/PasswordResetToken.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/bean/doctor/EditarTurnosMB.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/database/persistence/UsuarioPersistence.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/bean/paciente/InformesDocumentosMB.java
@@ -71,10 +77,12 @@
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/util/Base64.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/bean/doctor/MiAgendaMB.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/model/SelectStringString.java
+/Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/service/UserServiceServ.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/bean/doctor/BusquedaPacienteMB.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/model/Medicamento.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/service/impl/ConsultorioServImpl.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/converter/EditarTurnosConverter.java
+/Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/controller/OldRegistrationController.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/model/Car.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/service/ConsultaServ.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/service/PacienteServ.java

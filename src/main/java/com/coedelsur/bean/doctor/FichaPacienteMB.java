@@ -41,16 +41,12 @@ public class FichaPacienteMB implements Serializable {
 
 	@Inject
 	PacienteServ pacienteServ;
-
 	@Inject
 	HistoriaClinicaServ historiaClinicaServ;
-
 	@Inject
 	ComboUtilsServ comboUtilsServ;
-
 	@Inject
 	SessionMB sessionMB;
-
 	@Inject
 	BusquedaPacienteMB busquedaPacienteMB;
 

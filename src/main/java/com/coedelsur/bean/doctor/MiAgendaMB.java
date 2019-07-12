@@ -36,16 +36,12 @@ public class MiAgendaMB implements Serializable {
 
 	@Inject
 	DoctorServ doctorSrv;
-	
 	@Inject
 	AgendaServ agendaServ;
-	
 	@Inject
 	PacienteServ pacienteServ;
-	
 	@Inject
 	HistoriaClinicaServ historiaClinicaServ;
-	
 	@Inject
 	SessionMB sessionMB;
 	

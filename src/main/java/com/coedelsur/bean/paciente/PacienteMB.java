@@ -42,10 +42,8 @@ public class PacienteMB {
 	ComboUtilsServ comboUtilsServ;
 	@Inject
 	HistoriaClinicaServ historiaClinicaServ;
-	
 	@Inject
 	SessionMB sessionMB;
-	
 	@Inject
 	FichaPacienteMB fichaPacienteMB;
 	

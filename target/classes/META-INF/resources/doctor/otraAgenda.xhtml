@@ -36,7 +36,7 @@
 						     </div>
 						     <div class="ui-sm-12 ui-g-12">
 			                    <h:panelGrid columnClasses="value">
-								   <p:schedule id="schedule" value="#{otraAgendaMB.getEventModel()}" widgetVar="myscheduleA" timeZone="GMT" locale="es" timeFormat="HH:mm" slotLabelFormat="HH:mm" slotDuration="15">
+								   <p:schedule id="schedule" value="#{otraAgendaMB.getEventModel()}" widgetVar="myscheduleA" timeZone="GMT" locale="es" timeFormat="HH:mm" slotLabelFormat="HH:mm" slotDuration="00:15:00">
 								    <!--<p:ajax event="dateSelect" listener="#{scheduleView.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" /> -->
 									<p:ajax event="eventSelect" listener="#{otraAgendaMB.onEventSelect}" update="dialogotraAgendaMB" oncomplete="PF('otraAgendaDialog').show();" />
 									<!--<p:ajax event="eventMove" listener="#{scheduleView.onEventMove}" update="messages" /> -->

@@ -38,7 +38,7 @@
              
             <div class="box login-box-body">
                 <h:form>
-                
+                	<p:messages id="messagesRecuperar" closable="true"/>
                     <h3 class="align-center">
 			            Recuperar contraseña
 			            <br/>
@@ -48,13 +48,12 @@
 			            Ingrese su dirección de email, le enviaremos un correo con el link.
 			            <br/>
 				    </h4>
-                    <p:messages closable="true"/>
                     
                     <div class="ui-sm-12 ui-g-12">
                     	<div class="ui-sm-12 ui-g-2"/>
                         <div class="ui-sm-12 ui-g-8">
                     		<div class="form-group has-feedback">
-		                        <p:inputText value="#{recuperarPasswordMB.email}" title="Debe ingresar su dirección de email" id="usuario"  styleClass="form-control" placeholder="Email" required="true" requiredMessage="Email es requerido.">
+		                        <p:inputText value="#{recoveryMB.email}" title="Debe ingresar su dirección de email" id="usuario"  styleClass="form-control" placeholder="Email" required="true" requiredMessage="Email es requerido.">
 		                        	<f:validator validatorId="custom.emailValidator" />
 		                        </p:inputText>	
 		                        <p:tooltip id="toolTipUsuario" for="usuario" showEvent="focus" hideEvent="blur" position="top"/>
@@ -71,7 +70,7 @@
                      <div class="row">
                         <p:spacer height="10"/>
                          <div class="col-xs-12" style="text-align: center">
-                         	<p:commandButton ajax="false" id="button" value="Recuperar" actionListener="#{recuperarPasswordMB.recuperarPassword}" class="btn btn-success btn-block"></p:commandButton>
+                         	<p:commandButton ajax="false" id="button" value="Recuperar" actionListener="#{recoveryMB.resetPassword}" class="btn btn-success btn-block"></p:commandButton>
                         </div>
                      </div>
                      </div>

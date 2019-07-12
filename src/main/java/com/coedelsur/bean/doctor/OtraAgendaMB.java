@@ -35,13 +35,10 @@ public class OtraAgendaMB implements Serializable {
 	
 	@Inject
     DoctorServ doctorSrv;
-	
 	@Inject
 	AgendaServ agendaServ;
-	
 	@Inject
 	PacienteServ pacienteServ;
-	
 	@Inject
 	HistoriaClinicaServ historiaClinicaServ;
 	

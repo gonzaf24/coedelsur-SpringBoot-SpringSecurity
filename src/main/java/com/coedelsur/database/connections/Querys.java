@@ -378,7 +378,13 @@ public class Querys {
     
     
     
-    public static String CLI_QUERY_INSERT_AGENDA =  "INSERT INTO agenda (id_doctor, id_consultorio, dia, horadesde , horahasta) VALUES (?,?,?,?,?)";
+    public static String CLI_QUERY_INSERT_AGENDA =   "INSERT INTO agenda (id_doctor, id_consultorio, dia, horadesde , horahasta) VALUES (?,?,?,?,?)";
+    
+    
+    public static String CLI_QUERY_INSERT_MYTOKEN =  "INSERT INTO passwordresettoken (expirydate, token, user_id) VALUES (?,?,?)" ;
+    
+    public static String CLI_QUERY_OBT_TOKEN =  "SELECT * FROM passwordresettoken WHERE token = ? " ;
+    
     
     public static String CLI_QUERY_GET_AGENDA_POR_DIAS =  "SELECT * FROM agenda WHERE ";
     

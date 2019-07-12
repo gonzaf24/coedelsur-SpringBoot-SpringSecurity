@@ -1,12 +1,16 @@
 package com.coedelsur.bean;
 
 import java.io.Serializable;
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -38,6 +42,10 @@ public class SessionMB implements Serializable {
 	@Inject
 	ComboUtilsServ comboUtilsServ;
 	
+	@Autowired
+    private ApplicationContext applicationContext;
+	
+	
 	private static final long serialVersionUID = 1L;
 	private String currentUser;
 	private Paciente paciente;
@@ -47,6 +55,9 @@ public class SessionMB implements Serializable {
 	private ArrayList<SelectStringValue> especialidadesList;
 	private ArrayList<Doctor> doctoresList;
 	private ArrayList<String> logueosList;
+	private Integer port;
+	private String serverName;
+	private Integer ip;
 
 	@PostConstruct
 	public void init() throws Exception {
@@ -63,17 +74,52 @@ public class SessionMB implements Serializable {
         setTipoConsultaList(comboUtilsServ.obtenerTipoConsultas());
         setEspecialidadesList(comboUtilsServ.obtenerEspecialdades());
         setLogueosList(usuaurioServ.obtenerLogueos());
+        
+        serverName = InetAddress.getLocalHost().getHostAddress();
+        port = applicationContext.getBean(Environment.class).getProperty("server.port", Integer.class, 8080);
+        System.out.printf("%s:%d", ip, port);
+        
+     // Local address
+        InetAddress.getLocalHost().getHostAddress();
+        InetAddress.getLocalHost().getHostName();
+
+        // Remote address
+        InetAddress.getLoopbackAddress().getHostAddress();
+        InetAddress.getLoopbackAddress().getHostName();
+        
+	}
+	
+	public Integer getIp() {
+		return ip;
+	}
+
+	public void setIp(Integer ip) {
+		this.ip = ip;
+	}
+
+	public Integer getPort() {
+		return port;
+	}
+
+	public void setPort(Integer port) {
+		this.port = port;
+	}
+
+	public String getServerName() {
+		return serverName;
+	}
+
+	public void setServerName(String serverName) {
+		this.serverName = serverName;
 	}
 
 	public void refrescarLista() throws Exception {
 		logueosList = new ArrayList<>(usuaurioServ.obtenerLogueos());
-
 	}
 
 	public void registrarLogueo() throws Exception {
 		usuaurioServ.registrarLogueo(getCurrentUser());
 		logueosList = new ArrayList<>(usuaurioServ.obtenerLogueos());
-
 	}
 
 	public Paciente getPaciente() {

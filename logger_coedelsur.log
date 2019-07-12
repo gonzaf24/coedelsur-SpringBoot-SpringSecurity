@@ -29,3 +29,169 @@
 2019-07-10 19:16:01 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
 2019-07-10 19:16:39 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
 2019-07-10 19:17:25 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-10 19:18:35 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-10 20:45:27 DEBUG LoginPersistence:68 - martin
+2019-07-10 20:45:28 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-10 20:45:28 DEBUG LoginPersistence:68 - martin
+2019-07-11 07:27:25 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 07:27:50 DEBUG LoginPersistence:68 - martin
+2019-07-11 07:27:50 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-11 07:27:51 DEBUG LoginPersistence:68 - martin
+2019-07-11 07:47:02 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 07:50:03 DEBUG LoginPersistence:68 - martin
+2019-07-11 07:50:03 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-11 07:50:03 DEBUG LoginPersistence:68 - martin
+2019-07-11 07:54:55 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 07:55:16 DEBUG LoginPersistence:68 - martin
+2019-07-11 07:55:16 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-11 07:55:16 DEBUG LoginPersistence:68 - martin
+2019-07-11 07:56:25 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 07:56:36 DEBUG LoginPersistence:68 - martin
+2019-07-11 07:56:37 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-11 07:56:37 DEBUG LoginPersistence:68 - martin
+2019-07-11 08:03:27 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 08:03:42 DEBUG LoginPersistence:68 - martin
+2019-07-11 08:03:42 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-11 08:03:43 DEBUG LoginPersistence:68 - martin
+2019-07-11 08:08:20 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 08:08:35 DEBUG LoginPersistence:68 - martin
+2019-07-11 08:08:35 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-11 08:08:35 DEBUG LoginPersistence:68 - martin
+2019-07-11 08:10:07 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 08:10:22 DEBUG LoginPersistence:68 - martin
+2019-07-11 08:10:22 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-11 08:10:40 DEBUG LoginPersistence:68 - martin
+2019-07-11 08:10:40 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-11 08:11:04 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 08:11:23 DEBUG LoginPersistence:68 - martin
+2019-07-11 08:11:23 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-11 08:11:24 DEBUG LoginPersistence:68 - martin
+2019-07-11 08:12:19 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 08:12:38 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 08:12:54 DEBUG LoginPersistence:68 - martin
+2019-07-11 08:12:54 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-11 08:12:55 DEBUG LoginPersistence:68 - martin
+2019-07-11 08:14:00 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 08:27:47 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 08:28:10 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 08:28:31 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 08:28:59 INFO  AdminBootMain:31 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 08:45:08 DEBUG LoginPersistence:68 - martin
+2019-07-11 08:45:08 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-11 08:45:09 DEBUG LoginPersistence:68 - martin
+2019-07-11 15:18:06 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 15:20:27 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 15:23:26 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 15:23:44 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 15:26:11 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 15:26:22 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 15:26:56 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 15:27:55 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 15:29:45 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 15:30:51 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 15:36:31 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 15:38:22 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 15:39:20 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 15:39:30 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 16:41:49 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 16:42:17 DEBUG LoginPersistence:68 - gonzaf21@hotmail.com
+2019-07-11 16:50:18 DEBUG LoginPersistence:68 - gonzaf21@hotmail.com
+2019-07-11 16:50:39 DEBUG LoginPersistence:68 - anonymoususer
+2019-07-11 16:50:49 DEBUG LoginPersistence:68 - anonymoususer
+2019-07-11 16:50:57 DEBUG LoginPersistence:68 - anonymoususer
+2019-07-11 16:52:05 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 16:52:20 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 16:52:31 DEBUG LoginPersistence:68 - gonzaf21@hotmail.com
+2019-07-11 16:56:33 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 16:56:47 DEBUG LoginPersistence:68 - gonzaf21@hotmail.com
+2019-07-11 16:57:34 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 16:57:48 DEBUG LoginPersistence:68 - gonzaf21@hotmail.com
+2019-07-11 16:58:19 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 16:58:36 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 16:58:45 DEBUG LoginPersistence:68 - gonzaf21@hotmail.com
+2019-07-11 16:59:43 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 16:59:44 DEBUG LoginPersistence:68 - gonzaf21@hotmail.com
+2019-07-11 17:00:02 DEBUG LoginPersistence:68 - gonzaf21@hotmail.com
+2019-07-11 17:11:11 DEBUG LoginPersistence:68 - gonzaf21@hotmail.com
+2019-07-11 17:11:56 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 17:26:31 INFO  AdminBootMain:24 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 17:26:56 DEBUG LoginPersistence:68 - gonzaf21@hotmail.com
+2019-07-11 17:40:29 INFO  AdminBootMain:24 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 17:40:30 INFO  AdminBootMain:24 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 17:40:54 INFO  AdminBootMain:24 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 17:41:05 INFO  AdminBootMain:24 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 17:41:07 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 17:41:46 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 17:41:54 DEBUG LoginPersistence:68 - gonzaf21@hotmail.com
+2019-07-11 17:43:09 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 17:44:13 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 17:44:31 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 17:46:36 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 17:46:45 DEBUG LoginPersistence:68 - gonzaf21@hotmail.com
+2019-07-11 17:49:07 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 17:50:41 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 17:53:25 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 17:53:45 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 17:53:54 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 17:54:18 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 17:55:36 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 17:57:03 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 18:01:36 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 18:03:16 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 18:07:51 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 18:08:15 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 18:09:12 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 18:10:00 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 18:14:30 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 18:14:50 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 18:16:08 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 18:16:45 DEBUG LoginPersistence:68 - gonzaf21@hotmail.com
+2019-07-11 20:54:44 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 20:56:27 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 20:58:36 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:00:17 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:00:33 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:00:46 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:11:33 INFO  AdminBootMain:17 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:11:48 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:16:09 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:17:20 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:18:24 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:18:48 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:19:04 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:19:32 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:19:46 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:20:08 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:21:21 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:21:43 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:21:59 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:22:33 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:22:49 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:27:19 DEBUG LoginPersistence:68 - gonzaf21@hotmail.com
+2019-07-11 21:27:55 DEBUG LoginPersistence:68 - 
+2019-07-11 21:28:16 DEBUG LoginPersistence:68 - gonzaf21@hotmail.com
+2019-07-11 21:28:45 DEBUG LoginPersistence:68 - 
+2019-07-11 21:28:55 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:30:05 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:31:17 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:31:35 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:32:12 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:36:34 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:42:29 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:47:51 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-11 21:48:33 DEBUG LoginPersistence:68 - gonzaf21@hotmail.com
+2019-07-11 21:53:28 DEBUG LoginPersistence:68 - gonzaf21@hotmail.com
+2019-07-11 21:54:39 DEBUG LoginPersistence:68 - 
+2019-07-11 21:54:44 DEBUG LoginPersistence:68 - martin
+2019-07-11 21:54:51 DEBUG LoginPersistence:68 - martin
+2019-07-11 21:54:52 INFO  CustomizeAuthenticationSuccessHandler:24 - AT onAuthenticationSuccess(...) !
+2019-07-11 21:54:52 DEBUG LoginPersistence:68 - martin
+2019-07-12 11:24:44 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-12 11:24:52 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-12 12:04:59 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-12 12:09:41 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-12 12:09:59 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-12 12:11:35 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-12 12:14:32 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!
+2019-07-12 12:15:37 DEBUG LoginPersistence:68 - gonzaf21@hotmail.com
+2019-07-12 12:17:42 INFO  AdminBootMain:16 - Aplicacion COE del SUR - INICIADA OK!

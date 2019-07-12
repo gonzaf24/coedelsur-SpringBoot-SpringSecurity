@@ -30,6 +30,7 @@ import sun.misc.BASE64Encoder;
 @SessionScope
 @Component
 public class AdministrarDoctoresMB implements Serializable {
+	
 	@Inject
 	ComboUtilsServ comboUtilsServ;
 	@Inject

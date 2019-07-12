@@ -62,22 +62,16 @@ public class HistoriaClinicaMB implements Serializable {
 
 	@Inject
 	DoctorServ doctorSrv;
-	
 	@Inject
 	AgendaServ agendaServ;
-	
 	@Inject
 	PacienteServ pacienteServ;
-	
 	@Inject
 	HistoriaClinicaServ historiaClinicaServ;
-	
 	@Inject
 	FichaPacienteMB fichaPacienteMB;
-	
 	@Inject
 	DiagnosticoMB diagnosticoMB;
-	
 	@Inject
 	SessionMB sessionMB;
 	

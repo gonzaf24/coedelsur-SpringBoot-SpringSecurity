@@ -26,7 +26,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-			http.authorizeRequests().antMatchers("/register.xhtml","/recuperar.xhtml","/confirmUser.xhtml","/javax.faces.resource/**").permitAll()
+			http.authorizeRequests().antMatchers("/old/user/changePassword*" , "/register.xhtml" ,
+					                             "/updatePassword.xhtml", "/recuperar.xhtml",
+												 "/confirmUser.xhtml","/javax.faces.resource/**").permitAll()
 									.antMatchers("/paciente/**").hasRole("PACIENTE")
 									.antMatchers("/doctor/**").hasRole("DOCTOR")
 									.antMatchers("/","/login.xhtml").permitAll()
