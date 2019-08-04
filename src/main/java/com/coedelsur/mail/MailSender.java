@@ -16,18 +16,13 @@ public class MailSender {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	public void sendMail(String from, String to, String subject, String body) {
-
 		SimpleMailMessage mail = new SimpleMailMessage();
-
 		mail.setFrom(from);
 		mail.setTo(to);
 		mail.setSubject(subject);
 		mail.setText(body);
-
 		logger.info("Sending...");
-
 		javaMailSender.send(mail);
-
 		logger.info("Done!");
 	}
 

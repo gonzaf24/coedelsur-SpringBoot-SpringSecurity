@@ -53,7 +53,7 @@ public class RecoveryController {
             return "redirect:/login.xhtml";
         }
 
-        return "redirect:/updatePassword.xhtml";
+        return "redirect:/updatePassword.xhtml?idPers="+id;
     }
     
     public static UserDetails loadUserByUsername(String userName) {

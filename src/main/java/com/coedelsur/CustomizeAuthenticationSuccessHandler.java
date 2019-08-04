@@ -20,17 +20,15 @@ public class CustomizeAuthenticationSuccessHandler implements AuthenticationSucc
   @Override
   public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         response.setStatus(HttpServletResponse.SC_OK);
-        boolean doctor = false;
-        logger.info("AT onAuthenticationSuccess(...) !");
+        logger.info("autenticando .... !");
         for (GrantedAuthority auth : authentication.getAuthorities()) {
             if ("ROLE_DOCTOR".equals(auth.getAuthority())){
-              doctor = true;
-            }
-        }
-        if(doctor){
-          response.sendRedirect("/doctor/inicio.xhtml");
-        }else{
-          response.sendRedirect("/paciente/inicioPaciente.xhtml");
+            	logger.info("inicio como Doctor");
+                response.sendRedirect("/doctor/inicio.xhtml");
+            }else if ("ROLE_PACIENTE".equals(auth.getAuthority())){
+          	 	 logger.info("inicio como Paciente");
+                 response.sendRedirect("/paciente/inicioPaciente.xhtml");
+               }
         }
   }
 }

@@ -2,6 +2,7 @@
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/service/impl/HistoriaClinicaServImpl.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/model/DefaultGenericCode.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/database/persistence/CodiguerasPersistence.java
+/Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/model/Mail.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/CustomAuthenticationProvider.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/service/impl/ComboUtilsServImpl.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/database/persistence/AgendaPersistence.java
@@ -82,8 +83,8 @@
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/model/Medicamento.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/service/impl/ConsultorioServImpl.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/converter/EditarTurnosConverter.java
-/Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/controller/OldRegistrationController.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/model/Car.java
+/Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/service/impl/EmailServiceImpl.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/service/ConsultaServ.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/service/PacienteServ.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/util/MessagesReader.java
@@ -95,6 +96,8 @@
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/model/ConsultaMedica.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/model/Archivo.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/model/Consulta.java
+/Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/mail/MailSender.java
+/Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/controller/RecoveryController.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/database/connections/Querys.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/bean/doctor/OtraAgendaMB.java
 /Users/Gonza/Desktop/coedelsur/src/main/java/com/coedelsur/model/HistoriaClinica.java

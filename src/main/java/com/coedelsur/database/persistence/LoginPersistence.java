@@ -96,4 +96,35 @@ public class LoginPersistence extends UtilPersistence{
         return usuario;
     }
     
+    public static Usuario obtenerUsuarioById(Integer idUsuario) {
+        Connection conexion = null;
+        Usuario usuario = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conexion = ManagerDB.getDBConection();
+            ps = conexion.prepareStatement(Querys.CLI_QUERY_GET_USUARIOBYID);
+            ps.setInt(1, idUsuario);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                Integer id = rs.getInt("id");
+                String user = rs.getString("usuario");
+                String pass = rs.getString("pass");
+                String role = rs.getString("role");
+                String tipo = rs.getString("tipo");
+                boolean habilitado = rs.getBoolean("habilitado");
+                usuario = new Usuario(id, user, pass, role,tipo, habilitado);
+            }
+        } catch (Exception e) {
+            logger.error(idUsuario, e);
+        } finally {
+            try {
+                closeCon(conexion, ps, rs);
+            } catch (SQLException e) {
+                logger.error(idUsuario, e);
+            }
+        }
+        return usuario;
+    }
+    
 }

@@ -6,6 +6,7 @@ com/coedelsur/bean/RecuperarPasswordMB.class
 com/coedelsur/service/PacienteServ.class
 com/coedelsur/converter/ConsultaDoctorConverter.class
 com/coedelsur/service/HistoriaClinicaServ.class
+com/coedelsur/model/Mail.class
 com/coedelsur/service/impl/DoctorServImpl.class
 com/coedelsur/database/persistence/AgendaPersistence.class
 com/coedelsur/model/Paciente.class
@@ -50,6 +51,7 @@ com/coedelsur/converter/OtraAgendaConverter.class
 com/coedelsur/model/Diagnostico.class
 com/coedelsur/service/AgendaServ.class
 com/coedelsur/validador/EmailValidator.class
+com/coedelsur/controller/RecoveryController.class
 com/coedelsur/SecurityConfig.class
 com/coedelsur/bean/doctor/DiagnosticoMB.class
 com/coedelsur/AdminBootMain.class
@@ -64,9 +66,9 @@ com/coedelsur/database/persistence/PasswordTokenPersistence.class
 com/coedelsur/converter/DepartamentoConfigConverter.class
 com/coedelsur/database/persistence/UtilPersistence.class
 com/coedelsur/bean/doctor/AdministrarCodiguerasMB.class
+com/coedelsur/mail/MailSender.class
 com/coedelsur/database/persistence/UsuarioPersistence.class
 com/coedelsur/converter/SexoConfigConverter.class
-com/coedelsur/controller/OldRegistrationController.class
 com/coedelsur/model/Consulta.class
 com/coedelsur/util/Logger$Level.class
 com/coedelsur/bean/doctor/HistoriaClinicaMB$MyFooter.class
@@ -113,6 +115,7 @@ com/coedelsur/bean/doctor/OtraAgendaMB.class
 com/coedelsur/model/AgendaDia.class
 com/coedelsur/model/SelectStringString.class
 com/coedelsur/util/Base64.class
+com/coedelsur/service/impl/EmailServiceImpl.class
 com/coedelsur/service/impl/HistoriaClinicaServImpl.class
 com/coedelsur/model/Pago.class
 com/coedelsur/util/ConstantesUY.class

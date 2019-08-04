@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -46,7 +48,7 @@ public class NewUserMB implements Serializable {
 			usuarioServ.registrarUsuario(nuevoUsuario.getUsuario(), nuevoUsuario.getPaciente());
 			nuevoUsuario = new NewUser();
 		}else{
-			// aqui se envia mensaje de que el usuario ya existe
+            FacesContext.getCurrentInstance().addMessage("messageRegister", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario ya registrado. Intente recuperar su contraseña", ""));
 		}
     }
 

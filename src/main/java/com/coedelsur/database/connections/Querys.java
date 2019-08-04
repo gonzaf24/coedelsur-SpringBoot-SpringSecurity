@@ -6,6 +6,7 @@ public class Querys {
 	//login
 	public static String CLI_QUERY_GET_DEPARTAMENTOS      = "SELECT * FROM departamento where activo= true order by descripcion asc";
 	public static String CLI_QUERY_GET_USUARIO            = "SELECT * FROM usuarios WHERE usuario = ? ";
+	public static String CLI_QUERY_GET_USUARIOBYID            = "SELECT * FROM usuarios WHERE id = ? ";
     public static String CLI_QUERY_GET_USUARIO_HABILITADO = "SELECT * FROM usuarios WHERE usuario = ? AND pass = ? and habilitado = true ";
    
     public static String CLI_QUERY_OBT_PSSWRD    = "SELECT pass FROM usuarios WHERE id = ? ";

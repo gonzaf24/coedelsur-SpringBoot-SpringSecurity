@@ -5,7 +5,6 @@
     <artifactId>coedelsur</artifactId>
     <version>0.1-SNAPSHOT</version>
     <name>coedelsur</name>
-    
     <parent>
         <groupId>org.joinfaces</groupId>
         <artifactId>joinfaces-parent</artifactId>
